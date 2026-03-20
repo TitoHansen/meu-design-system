@@ -1,5 +1,5 @@
 {
- "name": "whansen/meu-design-system",
+ "name": "whansen-ds",
  "version": "0.3.0",
  "type": "module",
  "main": "./dist/index.js",
