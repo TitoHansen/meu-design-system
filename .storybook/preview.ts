@@ -1,18 +1,25 @@
-import type { Preview } from '@storybook/react-vite'
+import type { Preview } from '@storybook/react-vite';
 
 const preview: Preview = {
   tags: ['autodocs'],
   parameters: {
+    options: {
+      storySort: {
+        order: ['Overview', 'DS', 'Components'],
+      },
+    },
+
     controls: {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
     },
+
     a11y: {
-      test: 'todo'
-    }
+      test: 'todo',
+    },
   },
 };
 
-export default preview
+export default preview;
