@@ -11,15 +11,23 @@ var COLORS = {
   actionHover:    '#4A5FA3',
   // Brand (Verde)
   brandGreen:     '#24732F',
-  // Fundos
+  // Fundos dark
   bgPrimary:      '#08090D',
   bgSecondary:    '#0F1117',
   surface:        '#092640',
-  // Texto
+  // Fundos light (para componentes — boa leitura no canvas do Figma)
+  cardBg:         '#FFFFFF',
+  inputBg:        '#FFFFFF',
+  disabledBg:     '#F5F5F5',
+  // Texto (em fundos claros)
+  textDark:       '#1C274D',      // blue-900 — título em fundo claro
+  textMuted:      '#3A3F4B',      // neutral-500 — descrição em fundo claro
+  // Texto (em fundos escuros)
   textPrimary:    '#F2F2F2',
   textSecondary:  '#8C92A3',
   // Borda
-  border:         '#3A3F4B',
+  border:         '#D6DEF5',      // blue-100 — borda suave em fundo claro
+  borderStrong:   '#3A3F4B',      // neutral-500
   // Semânticos
   success:        '#3FAF4F',
   successBg:      '#D9F5DD',
@@ -28,7 +36,7 @@ var COLORS = {
   warning:        '#E6A23C',
   warningBg:      '#FFF4E5',
   // Primitivos úteis
-  white:          '#F2F2F2',
+  white:          '#FFFFFF',
   blue300:        '#7F93D9',
   blue100:        '#D6DEF5',
   green300:       '#7DDB8A',
@@ -183,7 +191,7 @@ async function buildButton(cv, fv) {
     txt.fontName   = { family: 'Inter', style: 'Regular' };
     txt.fontSize   = FONT.sm;
     txt.characters = c.name;
-    txt.fills      = [{ type: 'SOLID', color: hexToRgb(COLORS.offWhite), opacity: 1 }];
+    txt.fills      = [{ type: 'SOLID', color: hexToRgb(COLORS.white), opacity: 1 }];
     c.appendChild(txt);
     container.appendChild(c);
   }
@@ -271,8 +279,8 @@ async function buildCard(cv, fv) {
     c.counterAxisAlignItems = 'MIN';
     c.cornerRadius = RADIUS.lg;
     c.effects = SHADOWS.md;
-    c.fills   = [{ type: 'SOLID', color: hexToRgb(COLORS.surface), opacity: 1 }];
-    c.strokes = [bindColor(cv['color/border'], COLORS.border)];
+    c.fills   = [{ type: 'SOLID', color: hexToRgb(COLORS.cardBg), opacity: 1 }];
+    c.strokes = [{ type: 'SOLID', color: hexToRgb(COLORS.border), opacity: 1 }];
     c.strokeWeight = 1; c.strokeAlign = 'INSIDE';
 
     // Badge opcional
@@ -296,7 +304,7 @@ async function buildCard(cv, fv) {
     title.fontName   = { family: 'Inter', style: 'Bold' };
     title.fontSize   = FONT.lg;
     title.characters = d.title;
-    title.fills      = [{ type: 'SOLID', color: hexToRgb(COLORS.textOnBrand), opacity: 1 }];
+    title.fills      = [{ type: 'SOLID', color: hexToRgb(COLORS.textDark), opacity: 1 }];
     c.appendChild(title);
     title.layoutSizingHorizontal = 'FILL';
 
@@ -305,7 +313,7 @@ async function buildCard(cv, fv) {
     desc.fontName   = { family: 'Inter', style: 'Regular' };
     desc.fontSize   = FONT.sm;
     desc.characters = d.desc;
-    desc.fills      = [bindColor(cv['color/neutral'], COLORS.neutral)];
+    desc.fills      = [{ type: 'SOLID', color: hexToRgb(COLORS.textMuted), opacity: 1 }];
     desc.lineHeight = { unit: 'PERCENT', value: 150 };
     c.appendChild(desc);
     desc.layoutSizingHorizontal = 'FILL';
@@ -321,7 +329,7 @@ async function buildCard(cv, fv) {
       btnTxt.fontName   = { family: 'Inter', style: 'Regular' };
       btnTxt.fontSize   = FONT.sm;
       btnTxt.characters = d.btnLabel;
-      btnTxt.fills      = [{ type: 'SOLID', color: hexToRgb(COLORS.offWhite), opacity: 1 }];
+      btnTxt.fills      = [{ type: 'SOLID', color: hexToRgb(COLORS.white), opacity: 1 }];
       btn.appendChild(btnTxt);
       c.appendChild(btn);
       btn.layoutSizingHorizontal = 'FILL';
@@ -345,10 +353,10 @@ async function buildInput(cv, fv) {
       placeholder:'Digite aqui...',
       borderHex:  COLORS.border,
       borderVar:  'color/border',
-      bgHex:      COLORS.surface,
+      bgHex:      COLORS.inputBg,
       bgVar:      'color/surface',
-      labelHex:   COLORS.textPrimary,
-      textHex:    COLORS.textSecondary,
+      labelHex:   COLORS.textDark,
+      textHex:    COLORS.textMuted,
       disabled:   false,
     },
     {
@@ -357,10 +365,10 @@ async function buildInput(cv, fv) {
       placeholder:'••••••••',
       borderHex:  COLORS.border,
       borderVar:  'color/border',
-      bgHex:      COLORS.surface,
+      bgHex:      COLORS.inputBg,
       bgVar:      'color/surface',
-      labelHex:   COLORS.textPrimary,
-      textHex:    COLORS.textSecondary,
+      labelHex:   COLORS.textDark,
+      textHex:    COLORS.textMuted,
       disabled:   false,
     },
     {
@@ -369,10 +377,10 @@ async function buildInput(cv, fv) {
       placeholder:'Campo desabilitado',
       borderHex:  COLORS.border,
       borderVar:  'color/border',
-      bgHex:      COLORS.bgSecondary,
+      bgHex:      COLORS.disabledBg,
       bgVar:      'color/bgSecondary',
-      labelHex:   COLORS.textSecondary,
-      textHex:    COLORS.textSecondary,
+      labelHex:   COLORS.textMuted,
+      textHex:    COLORS.textMuted,
       disabled:   true,
     },
   ];
@@ -445,10 +453,10 @@ async function buildSelect(cv, fv) {
       value:     'Selecione...',
       borderHex: COLORS.border,
       borderVar: 'color/border',
-      bgHex:     COLORS.surface,
+      bgHex:     COLORS.inputBg,
       bgVar:     'color/surface',
-      labelHex:  COLORS.textPrimary,
-      valueHex:  COLORS.textSecondary,
+      labelHex:  COLORS.textDark,
+      valueHex:  COLORS.textMuted,
       disabled:  false,
     },
     {
@@ -457,10 +465,10 @@ async function buildSelect(cv, fv) {
       value:     'Opção 1',
       borderHex: COLORS.actionPrimary,
       borderVar: 'color/actionPrimary',
-      bgHex:     COLORS.surface,
+      bgHex:     COLORS.inputBg,
       bgVar:     'color/surface',
-      labelHex:  COLORS.textPrimary,
-      valueHex:  COLORS.textPrimary,
+      labelHex:  COLORS.textDark,
+      valueHex:  COLORS.textDark,
       disabled:  false,
     },
     {
@@ -469,10 +477,10 @@ async function buildSelect(cv, fv) {
       value:     'Indisponível',
       borderHex: COLORS.border,
       borderVar: 'color/border',
-      bgHex:     COLORS.bgSecondary,
+      bgHex:     COLORS.disabledBg,
       bgVar:     'color/bgSecondary',
-      labelHex:  COLORS.textSecondary,
-      valueHex:  COLORS.textSecondary,
+      labelHex:  COLORS.textMuted,
+      valueHex:  COLORS.textMuted,
       disabled:  true,
     },
   ];
@@ -708,9 +716,6 @@ figma.ui.onmessage = async function(msg) {
   if (msg.type === 'build-components') {
     var results = { built: [], errors: [] };
     try {
-      // Fundo da página → dark-first (#08090D)
-      figma.currentPage.backgrounds = [{ type: 'SOLID', color: hexToRgb(COLORS.bgPrimary), opacity: 1 }];
-
       var cvArr = await figma.variables.getLocalVariablesAsync('COLOR');
       var fvArr = await figma.variables.getLocalVariablesAsync('FLOAT');
       var cv = buildVarMap(cvArr);
