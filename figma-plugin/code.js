@@ -423,8 +423,8 @@ async function buildInput(cv, fv) {
     field.paddingLeft = 14; field.paddingRight = 14;
     field.cornerRadius = RADIUS.md;
     field.effects = SHADOWS.sm;
-    field.fills   = [bindColor(cv[d.bgVar], d.bgHex)];
-    field.strokes = [bindColor(cv[d.borderVar], d.borderHex)];
+    field.fills   = [{ type: 'SOLID', color: hexToRgb(d.bgHex), opacity: 1 }];
+    field.strokes = [{ type: 'SOLID', color: hexToRgb(d.borderHex), opacity: 1 }];
     field.strokeWeight = 1.5; field.strokeAlign = 'INSIDE';
 
     var placeholder = figma.createText();
