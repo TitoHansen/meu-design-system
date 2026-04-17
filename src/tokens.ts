@@ -70,17 +70,16 @@ export const tokens = {
       primaria: 'Mulish',  // headings, body, labels
       mono:     'DM Mono', // código, captions técnicas
     },
-    // ⚠️ line-height não estava nos anexos — valores abaixo são inferidos (1.2 headings / 1.5 body)
     escala: {
-      display:  { tamanho: 48, peso: 800, lineHeight: null },
-      h1:       { tamanho: 36, peso: 700, lineHeight: null },
-      h2:       { tamanho: 28, peso: 700, lineHeight: null },
-      h3:       { tamanho: 22, peso: 600, lineHeight: null },
-      h4:       { tamanho: 18, peso: 600, lineHeight: null },
-      bodyLg:   { tamanho: 16, peso: 400, lineHeight: null },
-      body:     { tamanho: 14, peso: 400, lineHeight: null },
-      caption:  { tamanho: 12, peso: 400, lineHeight: null },
-      mono:     { tamanho: 13, peso: 400, lineHeight: null },
+      display:  { tamanho: 48, peso: 800, lineHeight: 1.1  }, // hero, highlights
+      h1:       { tamanho: 36, peso: 700, lineHeight: 1.2  }, // page titles
+      h2:       { tamanho: 28, peso: 700, lineHeight: 1.25 }, // section titles
+      h3:       { tamanho: 22, peso: 600, lineHeight: 1.3  }, // subsections
+      h4:       { tamanho: 18, peso: 600, lineHeight: 1.4  }, // small headings
+      bodyLg:   { tamanho: 16, peso: 400, lineHeight: 1.6  }, // primary text
+      body:     { tamanho: 14, peso: 400, lineHeight: 1.6  }, // secondary text
+      caption:  { tamanho: 12, peso: 400, lineHeight: 1.5  }, // metadata
+      mono:     { tamanho: 13, peso: 400, lineHeight: 1.5  }, // code (DM Mono)
     },
   },
 
@@ -142,22 +141,36 @@ export const tokens = {
   },
 
   // ─── GRID & LAYOUT ───────────────────────────────────────────────
-  // ⚠️ INCOMPLETO — breakpoints em px, gutter e margin não legíveis.
   grid: {
-    colunas: 12,
     breakpoints: {
-      xs:  null,
-      sm:  null,
-      md:  null,
-      lg:  null,
-      xl:  null,
-      '2xl': null,
+      xs:  0,    // --bp-xs
+      sm:  480,  // --bp-sm
+      md:  768,  // --bp-md
+      lg:  1024, // --bp-lg
+      xl:  1280, // --bp-xl
+      xxl: 1440, // --bp-xxl
     },
+    colunas: {
+      mobile:  4,  // xs – sm
+      tablet:  8,  // md
+      desktop: 12, // lg – xl – xxl
+    },
+    gutter: {
+      mobile:  16, // px
+      tablet:  24,
+      desktop: 24,
+    },
+    margin: {
+      mobile:  16, // px
+      tablet:  24,
+      desktop: 32,
+    },
+    containerMaxWidth: 1280, // px — wide (xxl) centralizado
   },
 
 } as const;
 
-// ─── CSS VARIABLES (referência) ──────────────────────────────────
+// ─── CSS VARIABLES (referência completa) ─────────────────────────
 // Mapeamento semântico → CSS custom property
 export const cssVars = {
   '--color-bg-primary':    tokens.cores.bgPrimary,
@@ -175,6 +188,43 @@ export const cssVars = {
   '--color-error-bg':      tokens.cores.errorBg,
   '--color-warning':       tokens.cores.warning,
   '--color-warning-bg':    tokens.cores.warningBg,
+
+  // Tipografia
+  '--font-size-display':  '48px',
+  '--font-size-h1':       '36px',
+  '--font-size-h2':       '28px',
+  '--font-size-h3':       '22px',
+  '--font-size-h4':       '18px',
+  '--font-size-body-lg':  '16px',
+  '--font-size-body-md':  '14px',
+  '--font-size-caption':  '12px',
+  '--font-size-mono':     '13px',
+  '--line-height-display': '1.1',
+  '--line-height-h1':      '1.2',
+  '--line-height-h2':      '1.25',
+  '--line-height-h3':      '1.3',
+  '--line-height-h4':      '1.4',
+  '--line-height-body':    '1.6',
+  '--line-height-caption': '1.5',
+  '--line-height-mono':    '1.5',
+  '--font-weight-bold':      '800',
+  '--font-weight-semibold':  '600',
+  '--font-weight-regular':   '400',
+
+  // Grid
+  '--bp-xs':  '0px',
+  '--bp-sm':  '480px',
+  '--bp-md':  '768px',
+  '--bp-lg':  '1024px',
+  '--bp-xl':  '1280px',
+  '--bp-xxl': '1440px',
+  '--grid-gutter-mobile':  '16px',
+  '--grid-gutter-tablet':  '24px',
+  '--grid-gutter-desktop': '24px',
+  '--grid-margin-mobile':  '16px',
+  '--grid-margin-tablet':  '24px',
+  '--grid-margin-desktop': '32px',
+  '--container-max-width': '1280px',
 } as const;
 
 // Mantido para compatibilidade com componentes existentes
