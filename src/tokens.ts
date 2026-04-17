@@ -62,6 +62,14 @@ export const tokens = {
     errorBg:        '#FDECEC', // --color-error-bg
     warning:        '#E6A23C', // --color-warning
     warningBg:      '#FFF4E5', // --color-warning-bg
+
+    // Componentes (light-mode — inputs, cards, surfaces claras)
+    white:          '#FFFFFF',
+    componentBg:    '#FFFFFF', // fundo de inputs, selects, cards
+    componentText:  '#1C274D', // texto escuro sobre fundo claro
+    componentMuted: '#3A3F4B', // texto secundário sobre fundo claro
+    borderLight:    '#D6DEF5', // borda suave sobre fundo claro
+    disabledBg:     '#F2F2F2', // fundo desabilitado
   },
 
   // ─── TIPOGRAFIA ──────────────────────────────────────────────────

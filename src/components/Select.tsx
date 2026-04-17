@@ -21,7 +21,7 @@ function Select({
         <label style={{
           fontSize: tokens.tipografia.escala.body.tamanho,
           fontFamily: tokens.tipografia.familia.primaria,
-          color: disabled ? tokens.cores.textSecondary : tokens.cores.textPrimary,
+          color: disabled ? tokens.cores.componentMuted : tokens.cores.componentText,
         }}>
           {label}
         </label>
@@ -33,11 +33,11 @@ function Select({
           padding: '10px 14px',
           paddingRight: 40,
           borderRadius: tokens.raio.md,
-          border: `1.5px solid ${tokens.cores.border}`,
+          border: `1.5px solid ${tokens.cores.borderLight}`,
           fontSize: tokens.tipografia.escala.bodyLg.tamanho,
           fontFamily: tokens.tipografia.familia.primaria,
-          color: disabled ? tokens.cores.textSecondary : tokens.cores.textPrimary,
-          backgroundColor: disabled ? tokens.cores.bgSecondary : tokens.cores.surface,
+          color: disabled ? tokens.cores.componentMuted : tokens.cores.componentText,
+          backgroundColor: disabled ? tokens.cores.disabledBg : tokens.cores.componentBg,
           outline: 'none',
           width: '100%',
           boxSizing: 'border-box' as const,
