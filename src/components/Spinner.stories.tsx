@@ -17,5 +17,8 @@ type Story = StoryObj<typeof Spinner>
 export const Brand:   Story = { args: { size: 'md', variant: 'brand' } }
 export const Small:   Story = { args: { size: 'sm', variant: 'brand' } }
 export const Large:   Story = { args: { size: 'lg', variant: 'brand' } }
-export const White:   Story = { args: { size: 'md', variant: 'white' } }
+export const White: Story = {
+  args: { size: 'md', variant: 'white' },
+  parameters: { backgrounds: { default: 'dark' } },
+}
 export const Neutral: Story = { args: { size: 'md', variant: 'neutral' } }

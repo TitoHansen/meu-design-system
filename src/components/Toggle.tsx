@@ -20,7 +20,7 @@ function Toggle({ label, checked = false, disabled = false, onChange }: TogglePr
       opacity: disabled ? 0.65 : 1,
       fontFamily: tokens.tipografia.familia.primaria,
       fontSize: tokens.tipografia.escala.body.tamanho,
-      color: tokens.cores.textPrimary,
+      color: tokens.cores.componentText,
     }}>
       <span style={{ position: 'relative', display: 'inline-block', flexShrink: 0 }}>
         <input
@@ -48,7 +48,7 @@ function Toggle({ label, checked = false, disabled = false, onChange }: TogglePr
             width: 20,
             height: 20,
             borderRadius: '50%',
-            backgroundColor: tokens.cores.textPrimary,
+            backgroundColor: tokens.cores.white,
             transition: `left ${tokens.motion.duracao.fast}ms ${tokens.motion.easing.standard}`,
             boxShadow: '0 1px 3px rgba(0,0,0,0.3)',
           }} />

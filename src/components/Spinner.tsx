@@ -13,7 +13,7 @@ const SIZE_PX: Record<NonNullable<SpinnerProps['size']>, number> = {
 
 const VARIANT_COLOR: Record<NonNullable<SpinnerProps['variant']>, string> = {
   brand:   tokens.cores.actionPrimary,
-  white:   tokens.cores.textPrimary,
+  white:   tokens.cores.white,
   neutral: tokens.cores.textSecondary,
 }
 
