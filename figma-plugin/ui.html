@@ -293,52 +293,64 @@
   // ── Tokens (espelho de src/tokens.ts) ──────────────────────────
   // Estrutura: cores no nível raiz → varName = 'color/' + key
   //            spacing e radius agrupados → varName = 'spacing/xs', 'radius/sm', etc.
+  // Tokens v2.0.0 — espelho de src/tokens.ts
+  // Sistema de cores baseado na bandeira do Brasil (Azul=Ação, Verde=Identidade)
   var TOKENS_LIGHT = {
-    brand:         { value: '#6366f1', type: 'color' },
-    brandDark:     { value: '#4f46e5', type: 'color' },
-    danger:        { value: '#e11d48', type: 'color' },
-    success:       { value: '#16a34a', type: 'color' },
-    neutral:       { value: '#6b7280', type: 'color' },
-    text:          { value: '#1f2937', type: 'color' },
-    textSecondary: { value: '#6b7280', type: 'color' },
-    textDisabled:  { value: '#9ca3af', type: 'color' },
-    surface:       { value: '#ffffff', type: 'color' },
-    surfaceLight:  { value: '#f9fafb', type: 'color' },
-    surfaceMed:    { value: '#f3f4f6', type: 'color' },
-    border:        { value: '#e5e7eb', type: 'color' },
-    borderInput:   { value: '#d1d5db', type: 'color' },
+    // Primitivos Blue
+    'blue-900':   { value: '#1C274D', type: 'color' },
+    'blue-700':   { value: '#2C3D73', type: 'color' },
+    'blue-500':   { value: '#4A5FA3', type: 'color' },
+    'blue-300':   { value: '#7F93D9', type: 'color' },
+    'blue-100':   { value: '#D6DEF5', type: 'color' },
+    // Primitivos Green
+    'green-900':  { value: '#174B1F', type: 'color' },
+    'green-700':  { value: '#24732F', type: 'color' },
+    'green-500':  { value: '#3FAF4F', type: 'color' },
+    'green-300':  { value: '#7DDB8A', type: 'color' },
+    'green-100':  { value: '#D9F5DD', type: 'color' },
+    // Primitivos Neutral
+    'neutral-900':{ value: '#08090D', type: 'color' },
+    'neutral-800':{ value: '#0F1117', type: 'color' },
+    'neutral-700':{ value: '#092640', type: 'color' },
+    'neutral-500':{ value: '#3A3F4B', type: 'color' },
+    'neutral-300':{ value: '#8C92A3', type: 'color' },
+    'neutral-100':{ value: '#F2F2F2', type: 'color' },
+    // Semânticos
+    actionPrimary:  { value: '#2C3D73', type: 'color' },
+    actionHover:    { value: '#4A5FA3', type: 'color' },
+    brandGreen:     { value: '#24732F', type: 'color' },
+    bgPrimary:      { value: '#08090D', type: 'color' },
+    bgSecondary:    { value: '#0F1117', type: 'color' },
+    surface:        { value: '#092640', type: 'color' },
+    textPrimary:    { value: '#F2F2F2', type: 'color' },
+    textSecondary:  { value: '#8C92A3', type: 'color' },
+    border:         { value: '#3A3F4B', type: 'color' },
+    success:        { value: '#3FAF4F', type: 'color' },
+    successBg:      { value: '#D9F5DD', type: 'color' },
+    error:          { value: '#D64545', type: 'color' },
+    errorBg:        { value: '#FDECEC', type: 'color' },
+    warning:        { value: '#E6A23C', type: 'color' },
+    warningBg:      { value: '#FFF4E5', type: 'color' },
     spacing: {
-      xs: { value: '4px',  type: 'spacing' },
-      sm: { value: '8px',  type: 'spacing' },
-      md: { value: '16px', type: 'spacing' },
-      lg: { value: '24px', type: 'spacing' },
-      xl: { value: '32px', type: 'spacing' },
+      1:  { value: '4px',  type: 'spacing' },
+      2:  { value: '8px',  type: 'spacing' },
+      3:  { value: '12px', type: 'spacing' },
+      4:  { value: '16px', type: 'spacing' },
+      5:  { value: '20px', type: 'spacing' },
+      6:  { value: '24px', type: 'spacing' },
+      8:  { value: '32px', type: 'spacing' },
+      10: { value: '40px', type: 'spacing' },
+      12: { value: '48px', type: 'spacing' },
+      16: { value: '64px', type: 'spacing' },
     },
     radius: {
-      sm:   { value: '4px',    type: 'borderRadius' },
-      md:   { value: '8px',    type: 'borderRadius' },
-      lg:   { value: '16px',   type: 'borderRadius' },
       full: { value: '9999px', type: 'borderRadius' },
     },
   };
 
-  var TOKENS_DARK = {
-    brand:         { value: '#818cf8', type: 'color' },
-    brandDark:     { value: '#6366f1', type: 'color' },
-    danger:        { value: '#fb7185', type: 'color' },
-    success:       { value: '#4ade80', type: 'color' },
-    neutral:       { value: '#9ca3af', type: 'color' },
-    text:          { value: '#f3f4f6', type: 'color' },
-    textSecondary: { value: '#9ca3af', type: 'color' },
-    textDisabled:  { value: '#6b7280', type: 'color' },
-    surface:       { value: '#16171d', type: 'color' },
-    surfaceLight:  { value: '#1f2028', type: 'color' },
-    surfaceMed:    { value: '#2e303a', type: 'color' },
-    border:        { value: '#2e303a', type: 'color' },
-    borderInput:   { value: '#3f4151', type: 'color' },
-    spacing: TOKENS_LIGHT.spacing,
-    radius:  TOKENS_LIGHT.radius,
-  };
+  // Sistema dark-first — os tokens de cor são os mesmos (dark por padrão)
+  // Spacing e radius são idênticos em ambos os modos
+  var TOKENS_DARK = TOKENS_LIGHT;
 
   // ── UI State ────────────────────────────────────────────────────
   var syncMode = 'both';

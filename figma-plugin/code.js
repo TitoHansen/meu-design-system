@@ -4,22 +4,35 @@
 figma.showUI(__html__, { width: 480, height: 620, title: "meu-design-system — Token Sync" });
 
 // ── Design Tokens (espelho de src/tokens.ts) ──────────────────────
+// Tokens espelhados de src/tokens.ts v2.0.0
 var COLORS = {
-  brand:         '#6366f1',
-  brandDark:     '#4f46e5',
-  danger:        '#e11d48',
-  success:       '#16a34a',
-  neutral:       '#6b7280',
-  text:          '#1f2937',
-  textSecondary: '#6b7280',
-  textDisabled:  '#9ca3af',
-  textOnBrand:   '#1a1a1a',
-  surface:       '#ffffff',
-  surfaceLight:  '#f9fafb',
-  surfaceMed:    '#f3f4f6',
-  border:        '#e5e7eb',
-  borderInput:   '#d1d5db',
-  offWhite:      '#f5f5f5',
+  // Ação (Azul)
+  actionPrimary:  '#2C3D73',
+  actionHover:    '#4A5FA3',
+  // Brand (Verde)
+  brandGreen:     '#24732F',
+  // Fundos
+  bgPrimary:      '#08090D',
+  bgSecondary:    '#0F1117',
+  surface:        '#092640',
+  // Texto
+  textPrimary:    '#F2F2F2',
+  textSecondary:  '#8C92A3',
+  // Borda
+  border:         '#3A3F4B',
+  // Semânticos
+  success:        '#3FAF4F',
+  successBg:      '#D9F5DD',
+  error:          '#D64545',
+  errorBg:        '#FDECEC',
+  warning:        '#E6A23C',
+  warningBg:      '#FFF4E5',
+  // Primitivos úteis
+  white:          '#F2F2F2',
+  blue300:        '#7F93D9',
+  blue100:        '#D6DEF5',
+  green300:       '#7DDB8A',
+  green100:       '#D9F5DD',
 };
 
 var RADIUS  = { sm: 4, md: 8, lg: 16, full: 999 };
@@ -28,17 +41,17 @@ var NS      = 'meu-design-system';
 
 // Mapeamento: variant → nome da variável no Figma
 var VARIANT_VAR = {
-  brand:   'color/brand',
-  danger:  'color/danger',
+  brand:   'color/actionPrimary',
+  danger:  'color/error',
   success: 'color/success',
-  neutral: 'color/neutral',
+  neutral: 'color/textSecondary',
 };
 
 var VARIANT_HEX = {
-  brand:   COLORS.brand,
-  danger:  COLORS.danger,
+  brand:   COLORS.actionPrimary,
+  danger:  COLORS.error,
   success: COLORS.success,
-  neutral: COLORS.neutral,
+  neutral: COLORS.textSecondary,
 };
 
 // ── Helpers ───────────────────────────────────────────────────────
