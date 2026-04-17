@@ -37,6 +37,28 @@ var COLORS = {
 
 var RADIUS  = { xs: 2, sm: 4, md: 8, lg: 12, xl: 16, '2xl': 24, full: 9999 };
 var FONT    = { caption: 12, mono: 13, body: 14, bodyLg: 16, h4: 18, h3: 22, h2: 28, h1: 36, display: 48 };
+
+// Sombras — dark-first (baixa opacidade, sem glow)
+// Uso: sm=inputs/buttons | md=cards | lg=dropdowns | xl=modais
+var SHADOWS = {
+  sm: [
+    { type: 'DROP_SHADOW', color: { r:0, g:0, b:0, a:0.25 }, offset: { x:0, y:1 }, radius: 2, spread: 0, visible: true, blendMode: 'NORMAL' },
+    { type: 'DROP_SHADOW', color: { r:0, g:0, b:0, a:0.15 }, offset: { x:0, y:1 }, radius: 1, spread: 0, visible: true, blendMode: 'NORMAL' },
+  ],
+  md: [
+    { type: 'DROP_SHADOW', color: { r:0, g:0, b:0, a:0.25 }, offset: { x:0, y:2 }, radius: 4,  spread: 0, visible: true, blendMode: 'NORMAL' },
+    { type: 'DROP_SHADOW', color: { r:0, g:0, b:0, a:0.20 }, offset: { x:0, y:4 }, radius: 8,  spread: 0, visible: true, blendMode: 'NORMAL' },
+  ],
+  lg: [
+    { type: 'DROP_SHADOW', color: { r:0, g:0, b:0, a:0.30 }, offset: { x:0, y:4  }, radius: 12, spread: 0, visible: true, blendMode: 'NORMAL' },
+    { type: 'DROP_SHADOW', color: { r:0, g:0, b:0, a:0.25 }, offset: { x:0, y:8  }, radius: 24, spread: 0, visible: true, blendMode: 'NORMAL' },
+  ],
+  xl: [
+    { type: 'DROP_SHADOW', color: { r:0, g:0, b:0, a:0.35 }, offset: { x:0, y:8  }, radius: 24, spread: 0, visible: true, blendMode: 'NORMAL' },
+    { type: 'DROP_SHADOW', color: { r:0, g:0, b:0, a:0.30 }, offset: { x:0, y:16 }, radius: 40, spread: 0, visible: true, blendMode: 'NORMAL' },
+  ],
+};
+
 var NS      = 'meu-design-system';
 
 // Mapeamento: variant → nome da variável no Figma
@@ -149,6 +171,7 @@ async function buildButton(cv, fv) {
     c.name = variant.charAt(0).toUpperCase() + variant.slice(1);
     autoLayout(c, 'HORIZONTAL', 10, 20, 0);
     c.cornerRadius = RADIUS.md;
+    c.effects = SHADOWS.sm;
     c.fills = [bindColor(cv[VARIANT_VAR[variant]], VARIANT_HEX[variant])];
 
     var txt = figma.createText();
@@ -242,6 +265,7 @@ async function buildCard(cv, fv) {
     c.primaryAxisAlignItems = 'MIN';
     c.counterAxisAlignItems = 'MIN';
     c.cornerRadius = RADIUS.lg;
+    c.effects = SHADOWS.md;
     c.fills   = [{ type: 'SOLID', color: hexToRgb(COLORS.surface), opacity: 1 }];
     c.strokes = [bindColor(cv['color/border'], COLORS.border)];
     c.strokeWeight = 1; c.strokeAlign = 'INSIDE';
@@ -383,6 +407,7 @@ async function buildInput(cv, fv) {
     field.paddingTop = 10; field.paddingBottom = 10;
     field.paddingLeft = 14; field.paddingRight = 14;
     field.cornerRadius = RADIUS.md;
+    field.effects = SHADOWS.sm;
     field.fills   = [bindColor(cv[d.bgVar], d.bgHex)];
     field.strokes = [bindColor(cv[d.borderVar], d.borderHex)];
     field.strokeWeight = 1.5; field.strokeAlign = 'INSIDE';
@@ -485,6 +510,7 @@ async function buildSelect(cv, fv) {
     field.primaryAxisAlignItems = 'CENTER';
     field.counterAxisAlignItems = 'CENTER';
     field.cornerRadius = RADIUS.md;
+    field.effects = SHADOWS.sm;
     field.fills   = [bindColor(cv[d.bgVar], d.bgHex)];
     field.strokes = [bindColor(cv[d.borderVar], d.borderHex)];
     field.strokeWeight = 1.5; field.strokeAlign = 'INSIDE';
