@@ -79,6 +79,7 @@ var VARIANT_VAR = {
   brand:   'color/actionPrimary',
   danger:  'color/error',
   success: 'color/success',
+  warning: 'color/warning',
   neutral: 'color/textSecondary',
 };
 
@@ -86,6 +87,7 @@ var VARIANT_HEX = {
   brand:   COLORS.actionPrimary,
   danger:  COLORS.error,
   success: COLORS.success,
+  warning: COLORS.warning,
   neutral: COLORS.textSecondary,
 };
 
@@ -175,7 +177,7 @@ function makeContainer(label) {
 async function buildButton(cv, fv) {
   await figma.loadFontAsync({ family: 'Inter', style: 'Regular' });
 
-  var variants = ['brand', 'danger', 'success', 'neutral'];
+  var variants = ['brand', 'danger', 'success', 'warning', 'neutral'];
   var container = makeContainer('Button');
 
   for (var i = 0; i < variants.length; i++) {
@@ -203,8 +205,8 @@ async function buildButton(cv, fv) {
 async function buildBadge(cv, fv) {
   await figma.loadFontAsync({ family: 'Inter', style: 'Medium' });
 
-  var LABELS = { brand: 'Novo', danger: 'Erro', success: 'Ativo', neutral: 'Rascunho' };
-  var variants = ['brand', 'danger', 'success', 'neutral'];
+  var LABELS = { brand: 'Novo', danger: 'Erro', success: 'Ativo', warning: 'Alerta', neutral: 'Rascunho' };
+  var variants = ['brand', 'danger', 'success', 'warning', 'neutral'];
   var container = makeContainer('Badge');
 
   for (var i = 0; i < variants.length; i++) {

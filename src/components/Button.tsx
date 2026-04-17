@@ -2,7 +2,7 @@ import { tokens } from '../tokens'
 
 interface ButtonProps {
   label: string
-  variant?: 'brand' | 'danger' | 'success' | 'neutral'
+  variant?: 'brand' | 'danger' | 'success' | 'warning' | 'neutral'
   onClick?: () => void
 }
 
@@ -10,6 +10,7 @@ const VARIANT_COLOR: Record<NonNullable<ButtonProps['variant']>, string> = {
   brand:   tokens.cores.actionPrimary,
   danger:  tokens.cores.error,
   success: tokens.cores.success,
+  warning: tokens.cores.warning,
   neutral: tokens.cores.textSecondary,
 }
 

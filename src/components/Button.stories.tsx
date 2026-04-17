@@ -9,7 +9,7 @@ const meta: Meta<typeof Button> = {
     variant: {
       description: 'Define a cor do botão',
       control: 'select',
-      options: ['brand', 'danger', 'success', 'neutral'],
+      options: ['brand', 'danger', 'success', 'warning', 'neutral'],
     },
     label: { description: 'Texto exibido no botão' },
   },
@@ -26,6 +26,9 @@ export const Danger: Story = {
 }
 export const Success: Story = {
   args: { label: 'Success', variant: 'success' },
+}
+export const Warning: Story = {
+  args: { label: 'Warning', variant: 'warning' },
 }
 export const Neutral: Story = {
   args: { label: 'Neutral', variant: 'neutral' },
