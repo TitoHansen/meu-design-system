@@ -2,7 +2,7 @@ import { tokens } from '../tokens'
 import Badge from './Badge'
 import Button from './Button'
 
-interface CardProps {
+export interface CardProps {
   title: string
   description: string
   badge?: string

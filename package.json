@@ -1,6 +1,7 @@
 {
- "name": "whansen-ds",
- "version": "0.3.0",
+ "name": "@titohansen/design-system",
+ "version": "1.0.0",
+ "description": "Design System — Azul=Ação, Verde=Identidade, Neutros=Estrutura",
  "type": "module",
  "main": "./dist/index.js",
  "types": "./dist/index.d.ts",
@@ -11,8 +12,17 @@
   }
  },
  "files": [
-  "dist"
+  "dist",
+  "README.md"
  ],
+ "publishConfig": {
+  "registry": "https://npm.pkg.github.com"
+ },
+ "repository": {
+  "type": "git",
+  "url": "https://github.com/TitoHansen/meu-design-system.git"
+ },
+ "keywords": ["design-system", "react", "tokens", "components"],
  "scripts": {
   "dev": "vite",
   "build": "tsc -b && vite build",
@@ -20,13 +30,10 @@
   "lint": "eslint .",
   "preview": "vite preview",
   "storybook": "storybook dev -p 6006",
-  "build-storybook": "storybook build"
+  "build-storybook": "storybook build",
+  "prepublishOnly": "npm run build:lib"
  },
  "peerDependencies": {
-  "react": ">=18",
-  "react-dom": ">=18"
- },
- "dependencies": {
   "react": ">=18",
   "react-dom": ">=18"
  },

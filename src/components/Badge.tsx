@@ -1,6 +1,6 @@
 import { tokens } from '../tokens'
 
-interface BadgeProps {
+export interface BadgeProps {
   label: string
   variant?: 'brand' | 'danger' | 'success' | 'warning' | 'neutral'
 }

@@ -1,6 +1,6 @@
 import { tokens } from '../tokens'
 
-interface ButtonProps {
+export interface ButtonProps {
   label: string
   variant?: 'brand' | 'danger' | 'success' | 'warning' | 'neutral'
   onClick?: () => void

@@ -1,6 +1,6 @@
 import { tokens } from '../tokens'
 
-interface SelectProps {
+export interface SelectProps {
   label?: string
   placeholder?: string
   options?: string[]
