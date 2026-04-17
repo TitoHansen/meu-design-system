@@ -9,7 +9,7 @@ const meta: Meta<typeof Badge> = {
     variant: {
       description: 'Define a cor do badge',
       control: 'select',
-      options: ['brand', 'danger', 'success', 'neutral'],
+      options: ['brand', 'danger', 'success', 'warning', 'neutral'],
     },
     label: { description: 'Texto exibido no badge' },
   },
@@ -21,4 +21,5 @@ type Story = StoryObj<typeof Badge>
 export const Brand: Story = { args: { label: 'Novo', variant: 'brand' } }
 export const Danger: Story = { args: { label: 'Erro', variant: 'danger' } }
 export const Success: Story = { args: { label: 'Ativo', variant: 'success' } }
+export const Warning: Story = { args: { label: 'Alerta', variant: 'warning' } }
 export const Neutral: Story = { args: { label: 'Rascunho', variant: 'neutral' } }

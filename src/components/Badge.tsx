@@ -2,13 +2,14 @@ import { tokens } from '../tokens'
 
 interface BadgeProps {
   label: string
-  variant?: 'brand' | 'danger' | 'success' | 'neutral'
+  variant?: 'brand' | 'danger' | 'success' | 'warning' | 'neutral'
 }
 
 const VARIANT_COLOR: Record<NonNullable<BadgeProps['variant']>, string> = {
   brand:   tokens.cores.actionPrimary,
   danger:  tokens.cores.error,
   success: tokens.cores.success,
+  warning: tokens.cores.warning,
   neutral: tokens.cores.textSecondary,
 }
 
