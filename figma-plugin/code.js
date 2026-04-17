@@ -175,7 +175,7 @@ function makeContainer(label) {
 // ── Button ───────────────────────────────────────────────────────
 // Espelho de Button.tsx: bg = variant color, text = #f5f5f5, padding 10×20, radius md
 async function buildButton(cv, fv) {
-  await figma.loadFontAsync({ family: 'Inter', style: 'Regular' });
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
 
   var variants = ['brand', 'danger', 'success', 'warning', 'neutral'];
   var container = makeContainer('Button');
@@ -190,7 +190,7 @@ async function buildButton(cv, fv) {
     c.fills = [bindColor(cv[VARIANT_VAR[variant]], VARIANT_HEX[variant])];
 
     var txt = figma.createText();
-    txt.fontName   = { family: 'Inter', style: 'Regular' };
+    txt.fontName   = { family: 'Mulish', style: 'Regular' };
     txt.fontSize   = FONT.sm;
     txt.characters = c.name;
     txt.fills      = [{ type: 'SOLID', color: hexToRgb(COLORS.white), opacity: 1 }];
@@ -203,7 +203,7 @@ async function buildButton(cv, fv) {
 // ── Badge ────────────────────────────────────────────────────────
 // Espelho de Badge.tsx: bg = color + '20' (12% opacity), text = cor plena, peso 500, padding 4×10, radius full
 async function buildBadge(cv, fv) {
-  await figma.loadFontAsync({ family: 'Inter', style: 'Medium' });
+  await figma.loadFontAsync({ family: 'Mulish', style: 'SemiBold' });
 
   var LABELS = { brand: 'Novo', danger: 'Erro', success: 'Ativo', warning: 'Alerta', neutral: 'Rascunho' };
   var variants = ['brand', 'danger', 'success', 'warning', 'neutral'];
@@ -219,7 +219,7 @@ async function buildBadge(cv, fv) {
     c.fills = [solidWithOpacity(VARIANT_HEX[variant], 0.12)];
 
     var txt = figma.createText();
-    txt.fontName   = { family: 'Inter', style: 'Medium' };
+    txt.fontName   = { family: 'Mulish', style: 'SemiBold' };
     txt.fontSize   = FONT.sm;
     txt.characters = LABELS[variant];
     txt.fills      = [bindColor(cv[VARIANT_VAR[variant]], VARIANT_HEX[variant])];
@@ -233,9 +233,9 @@ async function buildBadge(cv, fv) {
 // Espelho de Card.tsx: border 1px #e5e7eb, radius lg, padding 24, gap 12
 // Composição: Badge opcional → Título (lg, bold) → Descrição (sm, regular) → Button opcional
 async function buildCard(cv, fv) {
-  await figma.loadFontAsync({ family: 'Inter', style: 'Bold' });
-  await figma.loadFontAsync({ family: 'Inter', style: 'Regular' });
-  await figma.loadFontAsync({ family: 'Inter', style: 'Medium' });
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Bold' });
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
+  await figma.loadFontAsync({ family: 'Mulish', style: 'SemiBold' });
 
   var defs = [
     {
@@ -293,7 +293,7 @@ async function buildCard(cv, fv) {
       badgeFrame.fills = [solidWithOpacity(VARIANT_HEX[d.badgeVariant], 0.12)];
 
       var badgeTxt = figma.createText();
-      badgeTxt.fontName   = { family: 'Inter', style: 'Medium' };
+      badgeTxt.fontName   = { family: 'Mulish', style: 'SemiBold' };
       badgeTxt.fontSize   = FONT.sm;
       badgeTxt.characters = d.badgeLabel;
       badgeTxt.fills      = [bindColor(cv[VARIANT_VAR[d.badgeVariant]], VARIANT_HEX[d.badgeVariant])];
@@ -303,7 +303,7 @@ async function buildCard(cv, fv) {
 
     // Título
     var title = figma.createText();
-    title.fontName   = { family: 'Inter', style: 'Bold' };
+    title.fontName   = { family: 'Mulish', style: 'Bold' };
     title.fontSize   = FONT.lg;
     title.characters = d.title;
     title.fills      = [{ type: 'SOLID', color: hexToRgb(COLORS.textDark), opacity: 1 }];
@@ -312,7 +312,7 @@ async function buildCard(cv, fv) {
 
     // Descrição
     var desc = figma.createText();
-    desc.fontName   = { family: 'Inter', style: 'Regular' };
+    desc.fontName   = { family: 'Mulish', style: 'Regular' };
     desc.fontSize   = FONT.sm;
     desc.characters = d.desc;
     desc.fills      = [{ type: 'SOLID', color: hexToRgb(COLORS.textMuted), opacity: 1 }];
@@ -328,7 +328,7 @@ async function buildCard(cv, fv) {
       btn.fills = [bindColor(cv[VARIANT_VAR[d.btnVariant]], VARIANT_HEX[d.btnVariant])];
 
       var btnTxt = figma.createText();
-      btnTxt.fontName   = { family: 'Inter', style: 'Regular' };
+      btnTxt.fontName   = { family: 'Mulish', style: 'Regular' };
       btnTxt.fontSize   = FONT.sm;
       btnTxt.characters = d.btnLabel;
       btnTxt.fills      = [{ type: 'SOLID', color: hexToRgb(COLORS.white), opacity: 1 }];
@@ -346,7 +346,7 @@ async function buildCard(cv, fv) {
 // Espelho de Input.tsx: label + field (gap 6), padding 10×14, radius md
 // Default: border 1.5px #d1d5db | Disabled: border #e5e7eb, bg #f9fafb
 async function buildInput(cv, fv) {
-  await figma.loadFontAsync({ family: 'Inter', style: 'Regular' });
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
 
   var defs = [
     {
@@ -407,7 +407,7 @@ async function buildInput(cv, fv) {
 
     // Label
     var lbl = figma.createText();
-    lbl.fontName   = { family: 'Inter', style: 'Regular' };
+    lbl.fontName   = { family: 'Mulish', style: 'Regular' };
     lbl.fontSize   = FONT.sm;
     lbl.characters = d.label;
     lbl.fills      = [{ type: 'SOLID', color: hexToRgb(d.labelHex), opacity: 1 }];
@@ -428,7 +428,7 @@ async function buildInput(cv, fv) {
     field.strokeWeight = 1.5; field.strokeAlign = 'INSIDE';
 
     var placeholder = figma.createText();
-    placeholder.fontName   = { family: 'Inter', style: 'Regular' };
+    placeholder.fontName   = { family: 'Mulish', style: 'Regular' };
     placeholder.fontSize   = FONT.md;
     placeholder.characters = d.placeholder;
     placeholder.fills      = [{ type: 'SOLID', color: hexToRgb(d.textHex), opacity: 1 }];
@@ -446,45 +446,16 @@ async function buildInput(cv, fv) {
 // Espelho de Select.tsx: label + field com chevron à direita, padding 10×14, radius md
 // Estados: Default (placeholder) · Selected (valor escolhido) · Disabled
 async function buildSelect(cv, fv) {
-  await figma.loadFontAsync({ family: 'Inter', style: 'Regular' });
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
+  await figma.loadFontAsync({ family: 'Mulish', style: 'SemiBold' });
+
+  var OPTIONS = ['Opção 1', 'Opção 2', 'Opção 3', 'Opção 4'];
 
   var defs = [
-    {
-      name:      'Default',
-      label:     'Categoria',
-      value:     'Selecione...',
-      borderHex: COLORS.border,
-      borderVar: 'color/border',
-      bgHex:     COLORS.inputBg,
-      bgVar:     'color/surface',
-      labelHex:  COLORS.textDark,
-      valueHex:  COLORS.textMuted,
-      disabled:  false,
-    },
-    {
-      name:      'Selected',
-      label:     'Categoria',
-      value:     'Opção 1',
-      borderHex: COLORS.actionPrimary,
-      borderVar: 'color/actionPrimary',
-      bgHex:     COLORS.inputBg,
-      bgVar:     'color/surface',
-      labelHex:  COLORS.textDark,
-      valueHex:  COLORS.textDark,
-      disabled:  false,
-    },
-    {
-      name:      'Disabled',
-      label:     'Campo bloqueado',
-      value:     'Indisponível',
-      borderHex: COLORS.border,
-      borderVar: 'color/border',
-      bgHex:     COLORS.disabledBg,
-      bgVar:     'color/bgSecondary',
-      labelHex:  COLORS.textMuted,
-      valueHex:  COLORS.textMuted,
-      disabled:  true,
-    },
+    { name: 'Default',  label: 'Categoria',     value: 'Selecione...', borderHex: COLORS.border,        borderVar: 'color/border',        bgHex: COLORS.inputBg,    labelHex: COLORS.textDark, valueHex: COLORS.textMuted, disabled: false, open: false },
+    { name: 'Selected', label: 'Categoria',     value: 'Opção 1',      borderHex: COLORS.actionPrimary, borderVar: 'color/actionPrimary', bgHex: COLORS.inputBg,    labelHex: COLORS.textDark, valueHex: COLORS.textDark,  disabled: false, open: false },
+    { name: 'Open',     label: 'Categoria',     value: 'Selecione...', borderHex: COLORS.actionPrimary, borderVar: 'color/actionPrimary', bgHex: COLORS.inputBg,    labelHex: COLORS.textDark, valueHex: COLORS.textMuted, disabled: false, open: true  },
+    { name: 'Disabled', label: 'Campo bloqueado', value: 'Indisponível', borderHex: COLORS.border,      borderVar: 'color/border',        bgHex: COLORS.disabledBg, labelHex: COLORS.textMuted, valueHex: COLORS.textMuted, disabled: true, open: false },
   ];
 
   var container = makeContainer('Select');
@@ -500,55 +471,109 @@ async function buildSelect(cv, fv) {
     c.primaryAxisSizingMode = 'AUTO';
     c.counterAxisSizingMode = 'FIXED';
     c.resize(280, 100);
-    c.itemSpacing = 6;
+    c.itemSpacing = 0;
     c.primaryAxisAlignItems = 'MIN';
     c.counterAxisAlignItems = 'MIN';
     c.fills = [];
+    c.clipsContent = false;
+
+    // Wrapper label + field
+    var wrapper = figma.createFrame();
+    wrapper.layoutMode = 'VERTICAL';
+    wrapper.primaryAxisSizingMode = 'AUTO';
+    wrapper.counterAxisSizingMode = 'AUTO';
+    wrapper.itemSpacing = 6;
+    wrapper.fills = [];
 
     // Label
     var lbl = figma.createText();
-    lbl.fontName   = { family: 'Inter', style: 'Regular' };
+    lbl.fontName   = { family: 'Mulish', style: 'Regular' };
     lbl.fontSize   = FONT.sm;
     lbl.characters = d.label;
     lbl.fills      = [{ type: 'SOLID', color: hexToRgb(d.labelHex), opacity: 1 }];
-    c.appendChild(lbl);
-    lbl.layoutSizingHorizontal = 'FILL';
+    wrapper.appendChild(lbl);
 
-    // Field
+    // Field (trigger)
     var field = figma.createFrame();
     field.layoutMode = 'HORIZONTAL';
-    field.primaryAxisSizingMode = 'AUTO';
+    field.primaryAxisSizingMode = 'FIXED';
     field.counterAxisSizingMode = 'AUTO';
+    field.resize(280, 40);
     field.paddingTop = 10; field.paddingBottom = 10;
     field.paddingLeft = 14; field.paddingRight = 14;
     field.itemSpacing = 8;
     field.primaryAxisAlignItems = 'CENTER';
     field.counterAxisAlignItems = 'CENTER';
-    field.cornerRadius = RADIUS.md;
+    field.cornerRadius = d.open ? RADIUS.md : RADIUS.md;
     field.effects = SHADOWS.sm;
-    field.fills   = [bindColor(cv[d.bgVar], d.bgHex)];
-    field.strokes = [bindColor(cv[d.borderVar], d.borderHex)];
+    field.fills   = [{ type: 'SOLID', color: hexToRgb(d.bgHex), opacity: 1 }];
+    field.strokes = [{ type: 'SOLID', color: hexToRgb(d.borderHex), opacity: 1 }];
     field.strokeWeight = 1.5; field.strokeAlign = 'INSIDE';
 
-    // Texto do valor
     var valueTxt = figma.createText();
-    valueTxt.fontName   = { family: 'Inter', style: 'Regular' };
+    valueTxt.fontName   = { family: 'Mulish', style: 'Regular' };
     valueTxt.fontSize   = FONT.md;
     valueTxt.characters = d.value;
     valueTxt.fills      = [{ type: 'SOLID', color: hexToRgb(d.valueHex), opacity: 1 }];
     field.appendChild(valueTxt);
     valueTxt.layoutGrow = 1;
 
-    // Chevron (▾)
+    // Chevron — ▴ quando aberto, ▾ quando fechado
     var chevron = figma.createText();
-    chevron.fontName   = { family: 'Inter', style: 'Regular' };
+    chevron.fontName   = { family: 'Mulish', style: 'Regular' };
     chevron.fontSize   = FONT.md;
-    chevron.characters = '▾';
-    chevron.fills      = [bindColor(cv['color/neutral'], COLORS.neutral)];
+    chevron.characters = d.open ? '▴' : '▾';
+    chevron.fills      = [{ type: 'SOLID', color: hexToRgb(COLORS.textMuted), opacity: 1 }];
     field.appendChild(chevron);
 
-    c.appendChild(field);
-    field.layoutSizingHorizontal = 'FILL';
+    wrapper.appendChild(field);
+    c.appendChild(wrapper);
+    wrapper.layoutSizingHorizontal = 'FILL';
+
+    // Dropdown panel — só no estado Open
+    if (d.open) {
+      var panel = figma.createFrame();
+      panel.layoutMode = 'VERTICAL';
+      panel.primaryAxisSizingMode = 'AUTO';
+      panel.counterAxisSizingMode = 'FIXED';
+      panel.resize(280, 40);
+      panel.paddingTop = 4; panel.paddingBottom = 4;
+      panel.itemSpacing = 0;
+      panel.cornerRadius = RADIUS.md;
+      panel.effects = SHADOWS.lg;
+      panel.fills   = [{ type: 'SOLID', color: hexToRgb(COLORS.cardBg), opacity: 1 }];
+      panel.strokes = [{ type: 'SOLID', color: hexToRgb(COLORS.border), opacity: 1 }];
+      panel.strokeWeight = 1; panel.strokeAlign = 'OUTSIDE';
+
+      for (var j = 0; j < OPTIONS.length; j++) {
+        var optRow = figma.createFrame();
+        optRow.layoutMode = 'HORIZONTAL';
+        optRow.primaryAxisSizingMode = 'FIXED';
+        optRow.counterAxisSizingMode = 'AUTO';
+        optRow.resize(280, 36);
+        optRow.paddingTop = 10; optRow.paddingBottom = 10;
+        optRow.paddingLeft = 14; optRow.paddingRight = 14;
+        optRow.primaryAxisAlignItems = 'CENTER';
+        // Primeira opção em hover (destaque azul suave)
+        optRow.fills = j === 0
+          ? [{ type: 'SOLID', color: hexToRgb(COLORS.blue100), opacity: 1 }]
+          : [{ type: 'SOLID', color: { r:0, g:0, b:0 }, opacity: 0 }];
+
+        var optTxt = figma.createText();
+        optTxt.fontName   = j === 0
+          ? { family: 'Mulish', style: 'SemiBold' }
+          : { family: 'Mulish', style: 'Regular' };
+        optTxt.fontSize   = FONT.md;
+        optTxt.characters = OPTIONS[j];
+        optTxt.fills      = [{ type: 'SOLID', color: hexToRgb(j === 0 ? COLORS.actionPrimary : COLORS.textDark), opacity: 1 }];
+        optRow.appendChild(optTxt);
+        panel.appendChild(optRow);
+        optRow.layoutSizingHorizontal = 'FILL';
+      }
+
+      c.appendChild(panel);
+      panel.layoutSizingHorizontal = 'FILL';
+    }
 
     if (d.disabled) c.opacity = 0.65;
     container.appendChild(c);
@@ -595,20 +620,22 @@ figma.ui.onmessage = async function(msg) {
     // 2. Text Styles
     if (opts.textStyles !== false) {
       try {
+        // Mulish: Regular=400, SemiBold=600, Bold=700, ExtraBold=800
         var fontDefs = [
-          { name: NS + '/display', size: FONT.display, weight: 800, lh: 110 },
-          { name: NS + '/h1',      size: FONT.h1,      weight: 700, lh: 120 },
-          { name: NS + '/h2',      size: FONT.h2,      weight: 700, lh: 125 },
-          { name: NS + '/h3',      size: FONT.h3,      weight: 600, lh: 130 },
-          { name: NS + '/h4',      size: FONT.h4,      weight: 600, lh: 140 },
-          { name: NS + '/body-lg', size: FONT.bodyLg,  weight: 400, lh: 160 },
-          { name: NS + '/body',    size: FONT.body,    weight: 400, lh: 160 },
-          { name: NS + '/caption', size: FONT.caption, weight: 400, lh: 150 },
-          { name: NS + '/mono',    size: FONT.mono,    weight: 400, lh: 150 },
+          { name: NS + '/display', size: FONT.display, style: 'ExtraBold', lh: 110 },
+          { name: NS + '/h1',      size: FONT.h1,      style: 'Bold',      lh: 120 },
+          { name: NS + '/h2',      size: FONT.h2,      style: 'Bold',      lh: 125 },
+          { name: NS + '/h3',      size: FONT.h3,      style: 'SemiBold',  lh: 130 },
+          { name: NS + '/h4',      size: FONT.h4,      style: 'SemiBold',  lh: 140 },
+          { name: NS + '/body-lg', size: FONT.bodyLg,  style: 'Regular',   lh: 160 },
+          { name: NS + '/body',    size: FONT.body,    style: 'Regular',   lh: 160 },
+          { name: NS + '/caption', size: FONT.caption, style: 'Regular',   lh: 150 },
+          { name: NS + '/mono',    size: FONT.mono,    style: 'Regular',   lh: 150 },
         ];
-        await figma.loadFontAsync({ family: 'Inter', style: 'Regular' });
-        await figma.loadFontAsync({ family: 'Inter', style: 'Bold' });
-        await figma.loadFontAsync({ family: 'Inter', style: 'SemiBold' });
+        await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
+        await figma.loadFontAsync({ family: 'Mulish', style: 'Bold' });
+        await figma.loadFontAsync({ family: 'Mulish', style: 'SemiBold' });
+        await figma.loadFontAsync({ family: 'Mulish', style: 'ExtraBold' });
         var existTexts = await figma.getLocalTextStylesAsync();
         var textMap = {};
         for (var i = 0; i < existTexts.length; i++) textMap[existTexts[i].name] = existTexts[i];
@@ -619,7 +646,7 @@ figma.ui.onmessage = async function(msg) {
             var ts = textMap[fd.name] || figma.createTextStyle();
             ts.name       = fd.name;
             ts.fontSize   = fd.size;
-            ts.fontName   = { family: 'Inter', style: 'Regular' };
+            ts.fontName   = { family: 'Mulish', style: fd.style };
             ts.lineHeight = { unit: 'PERCENT', value: fd.lh };
             results.texts++;
           } catch(e) { results.errors.push('TextStyle ' + fd.name + ': ' + String(e)); }
