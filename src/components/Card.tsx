@@ -21,32 +21,34 @@ function Card({
 }: CardProps) {
   return (
     <div style={{
-      border: '1px solid #e5e7eb',
-      borderRadius: tokens.radius.lg,
-      padding: '24px',
+      border: `1px solid ${tokens.cores.border}`,
+      borderRadius: tokens.raio.lg,
+      padding: tokens.espacamento[6].valor,
       display: 'flex',
       flexDirection: 'column',
-      gap: '12px',
-      backgroundColor: 'white',
-      maxWidth: '320px',
+      gap: tokens.espacamento[3].valor,
+      backgroundColor: tokens.cores.surface,
+      maxWidth: 320,
     }}>
       {badge && <Badge label={badge} variant={badgeVariant} />}
 
       <h3 style={{
         margin: 0,
-        fontSize: tokens.fontSizes.lg,
-        fontFamily: 'Inter, sans-serif',
-        color: '#1a1a1a',
+        fontSize: tokens.tipografia.escala.h4.tamanho,
+        fontWeight: tokens.tipografia.escala.h4.peso,
+        lineHeight: tokens.tipografia.escala.h4.lineHeight,
+        fontFamily: tokens.tipografia.familia.primaria,
+        color: tokens.cores.textPrimary,
       }}>
         {title}
       </h3>
 
       <p style={{
         margin: 0,
-        fontSize: tokens.fontSizes.sm,
-        fontFamily: 'Inter, sans-serif',
-        color: tokens.colors.neutral,
-        lineHeight: '1.5',
+        fontSize: tokens.tipografia.escala.body.tamanho,
+        fontFamily: tokens.tipografia.familia.primaria,
+        color: tokens.cores.textSecondary,
+        lineHeight: tokens.tipografia.escala.body.lineHeight,
       }}>
         {description}
       </p>
