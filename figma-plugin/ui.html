@@ -147,6 +147,47 @@
 
   .preview-swatches { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
   .swatch { width: 20px; height: 20px; border-radius: 4px; border: 1px solid rgba(255,255,255,.08); }
+
+  /* ── Buscar ── */
+  .search-box {
+    display: flex; gap: 6px; align-items: center;
+    background: #12151c; border: 1px solid #2a2f3a; border-radius: 7px; padding: 8px 12px;
+  }
+  .search-box input {
+    flex: 1; background: none; border: none; outline: none;
+    font-family: inherit; font-size: 12px; color: #e0e0e0;
+  }
+  .search-box input::placeholder { color: #444; }
+  .search-icon { font-size: 14px; color: #555; }
+
+  .guide-found {
+    border: 1px solid rgba(99,102,241,.4); border-radius: 8px; padding: 12px;
+    background: rgba(99,102,241,.06); display: flex; flex-direction: column; gap: 10px;
+  }
+  .guide-found-header { display: flex; align-items: center; gap: 8px; }
+  .guide-found-icon { font-size: 22px; }
+  .guide-found-name { font-size: 13px; font-weight: 700; color: #fff; }
+  .guide-found-tag { font-size: 9px; background: #4f46e5; color: #fff; border-radius: 10px; padding: 1px 7px; font-weight: 700; }
+
+  .guide-missing {
+    border: 1px solid rgba(234,179,8,.25); border-radius: 8px; padding: 12px;
+    background: rgba(234,179,8,.04); display: flex; flex-direction: column; gap: 10px;
+  }
+  .guide-missing-header { display: flex; align-items: center; gap: 8px; }
+  .guide-missing-icon { font-size: 20px; }
+  .guide-missing-title { font-size: 12px; font-weight: 700; color: #fbbf24; }
+  .guide-missing-sub { font-size: 10px; color: #888; }
+
+  .guide-rules { display: flex; flex-direction: column; gap: 6px; }
+  .guide-rule {
+    background: #12151c; border: 1px solid #2a2f3a; border-radius: 6px; padding: 8px 10px;
+  }
+  .guide-rule-title { font-size: 10px; font-weight: 700; color: #818cf8; margin-bottom: 4px; text-transform: uppercase; letter-spacing: .05em; }
+  .guide-rule-body { font-size: 10px; color: #aaa; line-height: 1.6; }
+  .guide-rule-body code { background: #1e2130; color: #a5b4fc; padding: 1px 5px; border-radius: 3px; font-family: 'DM Mono', monospace; font-size: 9px; }
+
+  .guide-empty { text-align: center; padding: 24px 0; color: #444; font-size: 11px; }
+  .guide-suggestion { font-size: 10px; color: #555; margin-top: 2px; }
 </style>
 </head>
 <body>
@@ -161,7 +202,8 @@
 
   <div class="tabs">
     <button class="tab active" onclick="switchTab('tokens', this)">🎨 Tokens</button>
-    <button class="tab"        onclick="switchTab('components', this)">🧩 Componentes <span class="count-badge">5</span></button>
+    <button class="tab"        onclick="switchTab('components', this)">🧩 Componentes <span class="count-badge">10</span></button>
+    <button class="tab"        onclick="switchTab('buscar', this)">🔍 Buscar</button>
   </div>
 
   <!-- ══════════ Panel: Tokens ══════════ -->
@@ -329,6 +371,17 @@
     <p class="tip">💡 Sincronize os tokens primeiro para que os componentes fiquem vinculados às Variables.</p>
   </div>
 
+  <!-- ══════════ Panel: Buscar ══════════ -->
+  <div class="panel" id="panel-buscar">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input id="search-input" type="text" placeholder="Ex: modal, tabela, tooltip…" oninput="onSearch(this.value)" autocomplete="off" />
+    </div>
+    <div id="search-result">
+      <div class="guide-empty">Digite o nome de um componente para ver se ele existe no DS ou receber diretrizes para criá-lo.</div>
+    </div>
+  </div>
+
 <script>
   // ── Tokens (espelho de src/tokens.ts) ──────────────────────────
   // Estrutura: cores no nível raiz → varName = 'color/' + key
@@ -422,10 +475,9 @@
   function switchTab(name, btn) {
     document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
     document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
-    document.querySelectorAll('.tab').forEach(function(b){
-      if (b.textContent.indexOf(name === 'tokens' ? 'Tokens' : 'Componentes') >= 0) b.classList.add('active');
-    });
+    if (btn) btn.classList.add('active');
     document.getElementById('panel-' + name).classList.add('active');
+    if (name === 'buscar') setTimeout(function(){ document.getElementById('search-input').focus(); }, 50);
   }
 
   function showStatus(id, msg, type) {
@@ -462,6 +514,102 @@
     }
     showStatus('comp-status', '⏳ Criando ' + selected.length + ' componente(s) no Figma…', 'loading');
     parent.postMessage({ pluginMessage: { type: 'build-components', selected: selected } }, '*');
+  }
+
+  // ── Buscar componente ──────────────────────────────────────────
+  var DS_COMPONENTS = {
+    button:   { icon:'🔘', label:'Button',   meta:'Primary · Secondary · Danger · Warning', desc:'Ações principais e secundárias da interface.' },
+    badge:    { icon:'🏷️', label:'Badge',    meta:'Brand · Success · Danger · Warning · Neutral', desc:'Rótulos de status e categorização.' },
+    card:     { icon:'🃏', label:'Card',     meta:'Com badge · Com botão · Simples', desc:'Container de conteúdo com borda e sombra.' },
+    input:    { icon:'📝', label:'Input',    meta:'Default · Password · Disabled', desc:'Campo de texto para formulários.' },
+    select:   { icon:'🔽', label:'Select',   meta:'Default · Selected · Disabled', desc:'Seletor de opções em dropdown.' },
+    spinner:  { icon:'⏳', label:'Spinner',  meta:'Brand · White · Neutral', desc:'Indicador de carregamento animado.' },
+    checkbox: { icon:'☑️', label:'Checkbox', meta:'Unchecked · Checked · Disabled', desc:'Seleção binária com label.' },
+    toggle:   { icon:'🔛', label:'Toggle',   meta:'Off · On · Disabled', desc:'Interruptor on/off para configurações.' },
+    toast:    { icon:'🔔', label:'Toast',    meta:'Success · Error · Warning · Info', desc:'Notificação temporária de feedback.' },
+    avatar:   { icon:'👤', label:'Avatar',   meta:'Brand · Success · Neutral · Initials', desc:'Representação visual de usuário.' },
+  };
+
+  var GUIDELINES = {
+    cores: {
+      title: 'Cores',
+      body: 'Use sempre tokens semânticos, nunca hexadecimais diretos.\n• Fundo de componente: <code>componentBg (#FFFFFF)</code>\n• Texto principal: <code>componentText (#1C274D)</code>\n• Texto secundário: <code>componentMuted (#3A3F4B)</code>\n• Ação/destaque: <code>actionPrimary (#2C3D73)</code>\n• Borda: <code>borderLight (#D6DEF5)</code>'
+    },
+    tipografia: {
+      title: 'Tipografia',
+      body: 'Fonte: <code>Mulish</code> (primária) · <code>DM Mono</code> (código).\n• Label/meta: <code>body 14px / weight 400</code>\n• Título: <code>h4 18px / weight 700</code>\n• Subtítulo: <code>bodyLg 16px / weight 600</code>'
+    },
+    espacamento: {
+      title: 'Espaçamento',
+      body: 'Use a escala de 4pt: <code>4 · 8 · 12 · 16 · 24 · 32px</code>.\n• Padding interno: mínimo <code>8px</code>\n• Gap entre elementos: <code>8–12px</code>\n• Margem entre seções: <code>16–24px</code>'
+    },
+    raio: {
+      title: 'Border Radius',
+      body: '• Inputs e selects: <code>radius.md (8px)</code>\n• Cards e modais: <code>radius.lg (12px)</code>\n• Badges e chips: <code>radius.full (9999px)</code>\n• Botões: <code>radius.md (8px)</code>'
+    },
+    estados: {
+      title: 'Estados obrigatórios',
+      body: 'Todo componente interativo deve ter:\n• <code>Default</code> — estado neutro\n• <code>Hover</code> — feedback de cursor\n• <code>Disabled</code> — opacity 0.5, cursor not-allowed\n• <code>Focus</code> — outline 2px <code>actionPrimary</code>'
+    },
+    acessibilidade: {
+      title: 'Acessibilidade',
+      body: '• Contraste mínimo 4.5:1 (WCAG AA)\n• Todo componente interativo com <code>role</code> e <code>aria-label</code>\n• Suporte a navegação por teclado\n• Área clicável mínima de <code>44×44px</code>'
+    },
+  };
+
+  function onSearch(val) {
+    var q = val.trim().toLowerCase();
+    var el = document.getElementById('search-result');
+    if (!q) {
+      el.innerHTML = '<div class="guide-empty">Digite o nome de um componente para ver se ele existe no DS ou receber diretrizes para criá-lo.</div>';
+      return;
+    }
+    // Busca no DS
+    var found = null;
+    Object.keys(DS_COMPONENTS).forEach(function(key) {
+      var c = DS_COMPONENTS[key];
+      if (key.indexOf(q) !== -1 || c.label.toLowerCase().indexOf(q) !== -1) found = { key: key, data: c };
+    });
+
+    if (found) {
+      el.innerHTML =
+        '<div class="guide-found">' +
+          '<div class="guide-found-header">' +
+            '<span class="guide-found-icon">' + found.data.icon + '</span>' +
+            '<div>' +
+              '<div class="guide-found-name">' + found.data.label + ' <span class="guide-found-tag">No DS ✓</span></div>' +
+              '<div style="font-size:9px;color:#666;margin-top:2px">' + found.data.meta + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div style="font-size:10px;color:#aaa;line-height:1.5">' + found.data.desc + '</div>' +
+          '<button class="primary" style="font-size:11px;padding:8px" onclick="goCreateComp(\'' + found.key + '\')">🧩 Criar no Figma</button>' +
+        '</div>';
+    } else {
+      var rules = Object.values(GUIDELINES).map(function(g) {
+        return '<div class="guide-rule"><div class="guide-rule-title">' + g.title + '</div><div class="guide-rule-body">' + g.body.replace(/\n/g,'<br>') + '</div></div>';
+      }).join('');
+      el.innerHTML =
+        '<div class="guide-missing">' +
+          '<div class="guide-missing-header">' +
+            '<span class="guide-missing-icon">⚠️</span>' +
+            '<div>' +
+              '<div class="guide-missing-title">"' + val.trim() + '" não existe no DS</div>' +
+              '<div class="guide-missing-sub">Siga as diretrizes abaixo para criar esse componente</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="guide-rules">' + rules + '</div>';
+    }
+  }
+
+  function goCreateComp(key) {
+    switchTab('components', document.querySelectorAll('.tab')[1]);
+    document.querySelectorAll('.comp-card').forEach(function(c) {
+      if (c.dataset.comp === key) {
+        c.classList.add('selected');
+        c.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
   }
 
   window.onmessage = function(event) {
