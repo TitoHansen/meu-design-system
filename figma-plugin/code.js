@@ -35,8 +35,8 @@ var COLORS = {
   green100:       '#D9F5DD',
 };
 
-var RADIUS  = { sm: 4, md: 8, lg: 16, full: 999 };
-var FONT    = { xs: 11, sm: 14, md: 16, lg: 20, xl: 24 };
+var RADIUS  = { xs: 2, sm: 4, md: 8, lg: 12, xl: 16, '2xl': 24, full: 9999 };
+var FONT    = { caption: 12, mono: 13, body: 14, bodyLg: 16, h4: 18, h3: 22, h2: 28, h1: 36, display: 48 };
 var NS      = 'meu-design-system';
 
 // Mapeamento: variant → nome da variável no Figma
@@ -136,7 +136,7 @@ function makeContainer(label) {
 // ════════════════════════════════════════════════════════════════
 
 // ── Button ───────────────────────────────────────────────────────
-// Espelho de Button.tsx: bg = variant color, text = #f5f5f5, padding 10×20, radius lg
+// Espelho de Button.tsx: bg = variant color, text = #f5f5f5, padding 10×20, radius md
 async function buildButton(cv, fv) {
   await figma.loadFontAsync({ family: 'Inter', style: 'Regular' });
 
@@ -148,7 +148,7 @@ async function buildButton(cv, fv) {
     var c = figma.createComponent();
     c.name = variant.charAt(0).toUpperCase() + variant.slice(1);
     autoLayout(c, 'HORIZONTAL', 10, 20, 0);
-    c.cornerRadius = RADIUS.lg;
+    c.cornerRadius = RADIUS.md;
     c.fills = [bindColor(cv[VARIANT_VAR[variant]], VARIANT_HEX[variant])];
 
     var txt = figma.createText();
@@ -163,7 +163,7 @@ async function buildButton(cv, fv) {
 }
 
 // ── Badge ────────────────────────────────────────────────────────
-// Espelho de Badge.tsx: bg = color + '20' (12% opacity), text = cor plena, peso 500, padding 4×10, radius lg
+// Espelho de Badge.tsx: bg = color + '20' (12% opacity), text = cor plena, peso 500, padding 4×10, radius full
 async function buildBadge(cv, fv) {
   await figma.loadFontAsync({ family: 'Inter', style: 'Medium' });
 
@@ -176,7 +176,7 @@ async function buildBadge(cv, fv) {
     var c = figma.createComponent();
     c.name = variant.charAt(0).toUpperCase() + variant.slice(1);
     autoLayout(c, 'HORIZONTAL', 4, 10, 0);
-    c.cornerRadius = RADIUS.lg;
+    c.cornerRadius = RADIUS.full;
     // '#6366f120' em CSS = 12.5% opacidade — representado como opacity no Figma
     c.fills = [solidWithOpacity(VARIANT_HEX[variant], 0.12)];
 
@@ -250,7 +250,7 @@ async function buildCard(cv, fv) {
     if (d.badgeLabel) {
       var badgeFrame = figma.createFrame();
       autoLayout(badgeFrame, 'HORIZONTAL', 4, 10, 0);
-      badgeFrame.cornerRadius = RADIUS.lg;
+      badgeFrame.cornerRadius = RADIUS.full;
       badgeFrame.fills = [solidWithOpacity(VARIANT_HEX[d.badgeVariant], 0.12)];
 
       var badgeTxt = figma.createText();
@@ -285,7 +285,7 @@ async function buildCard(cv, fv) {
     if (d.btnLabel) {
       var btn = figma.createFrame();
       autoLayout(btn, 'HORIZONTAL', 10, 20, 0);
-      btn.cornerRadius = RADIUS.lg;
+      btn.cornerRadius = RADIUS.md;
       btn.fills = [bindColor(cv[VARIANT_VAR[d.btnVariant]], VARIANT_HEX[d.btnVariant])];
 
       var btnTxt = figma.createText();

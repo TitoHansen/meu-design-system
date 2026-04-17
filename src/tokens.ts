@@ -70,17 +70,17 @@ export const tokens = {
       primaria: 'Mulish',  // headings, body, labels
       mono:     'DM Mono', // código, captions técnicas
     },
-    // ⚠️ INCOMPLETO — tamanhos exatos (px), line-height e pesos
-    // não estavam legíveis nos anexos. Preencher quando disponível.
+    // ⚠️ line-height não estava nos anexos — valores abaixo são inferidos (1.2 headings / 1.5 body)
     escala: {
-      display:  { tamanho: null, peso: null, lineHeight: null },
-      h1:       { tamanho: null, peso: null, lineHeight: null },
-      h2:       { tamanho: null, peso: null, lineHeight: null },
-      h3:       { tamanho: null, peso: null, lineHeight: null },
-      h4:       { tamanho: null, peso: null, lineHeight: null },
-      bodyLg:   { tamanho: null, peso: null, lineHeight: null },
-      body:     { tamanho: null, peso: null, lineHeight: null },
-      caption:  { tamanho: null, peso: null, lineHeight: null },
+      display:  { tamanho: 48, peso: 800, lineHeight: null },
+      h1:       { tamanho: 36, peso: 700, lineHeight: null },
+      h2:       { tamanho: 28, peso: 700, lineHeight: null },
+      h3:       { tamanho: 22, peso: 600, lineHeight: null },
+      h4:       { tamanho: 18, peso: 600, lineHeight: null },
+      bodyLg:   { tamanho: 16, peso: 400, lineHeight: null },
+      body:     { tamanho: 14, peso: 400, lineHeight: null },
+      caption:  { tamanho: 12, peso: 400, lineHeight: null },
+      mono:     { tamanho: 13, peso: 400, lineHeight: null },
     },
   },
 
@@ -100,18 +100,19 @@ export const tokens = {
   },
 
   // ─── BORDER RADIUS ───────────────────────────────────────────────
-  // Recomendação dos anexos:
-  // --radius-sm → botões e inputs
+  // Uso recomendado:
+  // --radius-md → botões e inputs
   // --radius-lg → cards e panels
   // --radius-full → badges e chips
-  // ⚠️ INCOMPLETO — valores exatos (px) não estavam legíveis. Preencher.
   raio: {
-    none: 0,
-    sm:   null, // --radius-sm (botões, inputs)
-    md:   null,
-    lg:   null, // --radius-lg (cards, panels)
-    xl:   null,
-    full: 9999, // --radius-full (badges, chips)
+    none:  0,
+    xs:    2,    // --radius-xs
+    sm:    4,    // --radius-sm
+    md:    8,    // --radius-md (botões, inputs)
+    lg:    12,   // --radius-lg (cards, panels)
+    xl:    16,   // --radius-xl
+    '2xl': 24,   // --radius-2xl
+    full:  9999, // --radius-full (badges, chips)
   },
 
   // ─── SOMBRAS ─────────────────────────────────────────────────────
@@ -124,19 +125,19 @@ export const tokens = {
   },
 
   // ─── MOTION ──────────────────────────────────────────────────────
-  // ⚠️ INCOMPLETO — valores de duração (ms) e curvas easing não legíveis.
   motion: {
     duracao: {
-      instantaneo:  null, // ms
-      rapido:       null,
-      padrao:       null,
-      lento:        null,
+      instant:    80,  // --duration-instant  — hover states, foco
+      fast:       150, // --duration-fast     — dropdowns, tooltips
+      normal:     250, // --duration-normal   — maioria das transições de UI
+      slow:       400, // --duration-slow     — modais, drawers, page transitions
+      deliberate: 600, // --duration-deliberate — celebrações, onboarding, loading
     },
     easing: {
-      padrao:   null, // cubic-bezier(...)
-      entrada:  null,
-      saida:    null,
-      elastico: null,
+      standard: 'cubic-bezier(0.4, 0, 0.2, 1)',  // --ease-standard — maioria das animações
+      enter:    'cubic-bezier(0, 0, 0.2, 1)',     // --ease-enter    — elementos entrando
+      exit:     'cubic-bezier(0.4, 0, 1, 1)',     // --ease-exit     — elementos saindo
+      spring:   'cubic-bezier(0.34, 1.56, 0.64, 1)', // --ease-spring — elástico
     },
   },
 

@@ -41,7 +41,7 @@ export const spec = {
     alturaMinima:   40,    // px
     paddingVertical: tokens.espacamento[3].valor,   // 12px (compacto) ou sp-4 (padrão)
     paddingHorizontal: tokens.espacamento[5].valor, // 20px — sp-5
-    radius: 'sm',          // --radius-sm
+    radius: 'md',          // --radius-md (botões usam md conforme spec)
     fonte: {
       familia: tokens.tipografia.familia.primaria,
       peso:    700,         // Bold
@@ -96,7 +96,7 @@ export const spec = {
     altura:            40,  // px
     paddingVertical:   10,  // px
     paddingHorizontal: 14,  // px
-    radius:            'sm', // --radius-sm
+    radius:            'md', // --radius-md (inputs usam md conforme spec)
     borda:             '1.5px solid',
     fonte: {
       familia: tokens.tipografia.familia.primaria,
@@ -141,7 +141,7 @@ export const checklist = [
   '[ ] Tem estado disabled implementado',
   '[ ] Tem estado focus visível (acessibilidade de teclado)',
   '[ ] Fonte é Mulish (ou DM Mono para código)',
-  '[ ] Radius segue a regra: sm=botões/inputs, lg=cards, full=badges',
+  '[ ] Radius segue a regra: md=botões/inputs, lg=cards, full=badges',
   '[ ] Espaçamentos são múltiplos de 4px',
   '[ ] Testado no Storybook',
   '[ ] Builder adicionado ao figma-plugin/code.js',
