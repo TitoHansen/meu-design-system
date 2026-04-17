@@ -1,6 +1,14 @@
-import type { Preview } from '@storybook/react-vite';
+import type { Preview } from '@storybook/react-vite'
+import { tokens } from '../src/tokens'
 
 const preview: Preview = {
+  decorators: [
+    (Story) => {
+      document.body.style.fontFamily = tokens.tipografia.familia.primaria
+      return Story()
+    },
+  ],
+
   tags: ['autodocs'],
   parameters: {
     options: {
