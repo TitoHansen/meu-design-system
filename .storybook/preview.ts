@@ -9,13 +9,12 @@ const preview: Preview = {
       },
     },
 
-    // Canvas usa fundo escuro por padrão (sistema dark-first)
     backgrounds: {
-      default: 'dark',
+      default: 'light',
       values: [
-        { name: 'dark',    value: '#08090D' }, // --color-bg-primary
-        { name: 'surface', value: '#092640' }, // --color-surface
-        { name: 'light',   value: '#FFFFFF' }, // referência light
+        { name: 'light',   value: '#FFFFFF' },
+        { name: 'surface', value: '#F2F2F2' },
+        { name: 'dark',    value: '#08090D' },
       ],
     },
 
