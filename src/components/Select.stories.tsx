@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Select from './Select'
 
 const meta: Meta<typeof Select> = {
-  title: 'Components/Select',
+  title: 'DS/Select',
   component: Select,
   args: {
     options: ['Opção 1', 'Opção 2', 'Opção 3'],
