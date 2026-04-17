@@ -36,7 +36,12 @@ var COLORS = {
 };
 
 var RADIUS  = { xs: 2, sm: 4, md: 8, lg: 12, xl: 16, '2xl': 24, full: 9999 };
-var FONT    = { caption: 12, mono: 13, body: 14, bodyLg: 16, h4: 18, h3: 22, h2: 28, h1: 36, display: 48 };
+var FONT    = {
+  // Escala semântica
+  caption: 12, mono: 13, body: 14, bodyLg: 16, h4: 18, h3: 22, h2: 28, h1: 36, display: 48,
+  // Aliases usados pelos builders
+  xs: 12, sm: 14, md: 16, lg: 18, xl: 22,
+};
 
 // Sombras — dark-first (baixa opacidade, sem glow)
 // Uso: sm=inputs/buttons | md=cards | lg=dropdowns | xl=modais
@@ -581,13 +586,19 @@ figma.ui.onmessage = async function(msg) {
     if (opts.textStyles !== false) {
       try {
         var fontDefs = [
-          { name: NS + '/text/xs', size: FONT.xs },
-          { name: NS + '/text/sm', size: FONT.sm },
-          { name: NS + '/text/md', size: FONT.md },
-          { name: NS + '/text/lg', size: FONT.lg },
-          { name: NS + '/text/xl', size: FONT.xl },
+          { name: NS + '/display', size: FONT.display, weight: 800, lh: 110 },
+          { name: NS + '/h1',      size: FONT.h1,      weight: 700, lh: 120 },
+          { name: NS + '/h2',      size: FONT.h2,      weight: 700, lh: 125 },
+          { name: NS + '/h3',      size: FONT.h3,      weight: 600, lh: 130 },
+          { name: NS + '/h4',      size: FONT.h4,      weight: 600, lh: 140 },
+          { name: NS + '/body-lg', size: FONT.bodyLg,  weight: 400, lh: 160 },
+          { name: NS + '/body',    size: FONT.body,    weight: 400, lh: 160 },
+          { name: NS + '/caption', size: FONT.caption, weight: 400, lh: 150 },
+          { name: NS + '/mono',    size: FONT.mono,    weight: 400, lh: 150 },
         ];
         await figma.loadFontAsync({ family: 'Inter', style: 'Regular' });
+        await figma.loadFontAsync({ family: 'Inter', style: 'Bold' });
+        await figma.loadFontAsync({ family: 'Inter', style: 'SemiBold' });
         var existTexts = await figma.getLocalTextStylesAsync();
         var textMap = {};
         for (var i = 0; i < existTexts.length; i++) textMap[existTexts[i].name] = existTexts[i];
@@ -599,7 +610,7 @@ figma.ui.onmessage = async function(msg) {
             ts.name       = fd.name;
             ts.fontSize   = fd.size;
             ts.fontName   = { family: 'Inter', style: 'Regular' };
-            ts.lineHeight = { unit: 'PERCENT', value: 150 };
+            ts.lineHeight = { unit: 'PERCENT', value: fd.lh };
             results.texts++;
           } catch(e) { results.errors.push('TextStyle ' + fd.name + ': ' + String(e)); }
         }
