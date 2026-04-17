@@ -638,6 +638,21 @@ async function buildCheckbox(cv, fv) {
     box.fills   = d.checked ? [{ type: 'SOLID', color: hexToRgb(COLORS.actionPrimary), opacity: 1 }] : [{ type: 'SOLID', color: { r:1,g:1,b:1 }, opacity: 1 }];
     box.strokes = [{ type: 'SOLID', color: hexToRgb(d.checked ? COLORS.actionPrimary : COLORS.borderStrong), opacity: 1 }];
     box.strokeWeight = 2; box.strokeAlign = 'INSIDE';
+    box.clipsContent = false;
+
+    if (d.checked) {
+      var check = figma.createVector();
+      check.vectorPaths = [{ windingRule: 'NONE', data: 'M 2 9 L 6 13 L 14 5' }];
+      check.strokes = [{ type: 'SOLID', color: { r:1, g:1, b:1 }, opacity: 1 }];
+      check.strokeWeight = 2;
+      check.strokeCap = 'ROUND';
+      check.strokeJoin = 'ROUND';
+      check.fills = [];
+      check.resize(12, 10);
+      check.x = 3;
+      check.y = 4;
+      box.appendChild(check);
+    }
     c.appendChild(box);
 
     // Label
