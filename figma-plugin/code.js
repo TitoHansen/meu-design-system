@@ -581,6 +581,236 @@ async function buildSelect(cv, fv) {
   return container;
 }
 
+// ── Spinner ──────────────────────────────────────────────────────
+async function buildSpinner(cv, fv) {
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
+
+  var sizes    = [{ name: 'SM', px: 16, stroke: 2 }, { name: 'MD', px: 24, stroke: 3 }, { name: 'LG', px: 40, stroke: 4 }];
+  var variants = [{ name: 'Brand', color: COLORS.actionPrimary }, { name: 'Neutral', color: COLORS.textSecondary }];
+  var container = makeContainer('Spinner');
+
+  for (var v = 0; v < variants.length; v++) {
+    for (var s = 0; s < sizes.length; s++) {
+      var sz = sizes[s]; var vt = variants[v];
+      var c = figma.createComponent();
+      c.name = vt.name + ' / ' + sz.name;
+      c.resize(sz.px, sz.px);
+      c.cornerRadius = sz.px / 2;
+      c.fills = [{ type: 'SOLID', color: hexToRgb(vt.color), opacity: 0.12 }];
+      c.strokes = [{ type: 'SOLID', color: hexToRgb(vt.color), opacity: 1 }];
+      c.strokeWeight = sz.stroke;
+      c.strokeAlign = 'INSIDE';
+      c.dashPattern = [sz.px * 0.6, sz.px * 2];
+      container.appendChild(c);
+    }
+  }
+  return container;
+}
+
+// ── Checkbox ─────────────────────────────────────────────────────
+async function buildCheckbox(cv, fv) {
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
+
+  var defs = [
+    { name: 'Default',          checked: false, disabled: false },
+    { name: 'Checked',          checked: true,  disabled: false },
+    { name: 'Disabled',         checked: false, disabled: true  },
+    { name: 'Disabled Checked', checked: true,  disabled: true  },
+  ];
+
+  var container = makeContainer('Checkbox');
+  container.layoutMode = 'VERTICAL';
+  container.counterAxisAlignItems = 'MIN';
+  container.itemSpacing = 16;
+
+  for (var i = 0; i < defs.length; i++) {
+    var d = defs[i];
+    var c = figma.createComponent();
+    c.name = d.name;
+    autoLayout(c, 'HORIZONTAL', 0, 0, 8);
+    c.fills = [];
+    if (d.disabled) c.opacity = 0.65;
+
+    // Box
+    var box = figma.createFrame();
+    box.resize(18, 18);
+    box.cornerRadius = RADIUS.xs;
+    box.fills   = d.checked ? [{ type: 'SOLID', color: hexToRgb(COLORS.actionPrimary), opacity: 1 }] : [{ type: 'SOLID', color: { r:1,g:1,b:1 }, opacity: 1 }];
+    box.strokes = [{ type: 'SOLID', color: hexToRgb(d.checked ? COLORS.actionPrimary : COLORS.borderStrong), opacity: 1 }];
+    box.strokeWeight = 2; box.strokeAlign = 'INSIDE';
+    c.appendChild(box);
+
+    // Label
+    var lbl = figma.createText();
+    lbl.fontName = { family: 'Mulish', style: 'Regular' };
+    lbl.fontSize = FONT.sm;
+    lbl.characters = d.checked ? 'Opção selecionada' : 'Opção disponível';
+    lbl.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textDark), opacity: 1 }];
+    c.appendChild(lbl);
+
+    container.appendChild(c);
+  }
+  return container;
+}
+
+// ── Toggle ───────────────────────────────────────────────────────
+async function buildToggle(cv, fv) {
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
+
+  var defs = [
+    { name: 'Off',      checked: false, disabled: false },
+    { name: 'On',       checked: true,  disabled: false },
+    { name: 'Disabled', checked: false, disabled: true  },
+  ];
+
+  var container = makeContainer('Toggle');
+  container.layoutMode = 'VERTICAL';
+  container.counterAxisAlignItems = 'MIN';
+  container.itemSpacing = 16;
+
+  for (var i = 0; i < defs.length; i++) {
+    var d = defs[i];
+    var c = figma.createComponent();
+    c.name = d.name;
+    autoLayout(c, 'HORIZONTAL', 0, 0, 8);
+    c.fills = [];
+    if (d.disabled) c.opacity = 0.65;
+
+    // Track
+    var track = figma.createFrame();
+    track.resize(44, 24);
+    track.cornerRadius = RADIUS.full;
+    track.fills = [{ type: 'SOLID', color: hexToRgb(d.checked ? COLORS.actionPrimary : COLORS.borderStrong), opacity: 1 }];
+
+    // Thumb
+    var thumb = figma.createFrame();
+    thumb.resize(20, 20);
+    thumb.cornerRadius = RADIUS.full;
+    thumb.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.white), opacity: 1 }];
+    thumb.x = d.checked ? 22 : 2;
+    thumb.y = 2;
+    track.appendChild(thumb);
+    c.appendChild(track);
+
+    // Label
+    var lbl = figma.createText();
+    lbl.fontName = { family: 'Mulish', style: 'Regular' };
+    lbl.fontSize = FONT.sm;
+    lbl.characters = d.checked ? 'Ativado' : 'Desativado';
+    lbl.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textDark), opacity: 1 }];
+    c.appendChild(lbl);
+
+    container.appendChild(c);
+  }
+  return container;
+}
+
+// ── Toast ────────────────────────────────────────────────────────
+async function buildToast(cv, fv) {
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Bold' });
+
+  var defs = [
+    { name: 'Success', bg: COLORS.successBg, border: COLORS.success, icon: '✓', iconBg: COLORS.success,         msg: 'Operação realizada com sucesso!' },
+    { name: 'Error',   bg: COLORS.errorBg,   border: COLORS.error,   icon: '✕', iconBg: COLORS.error,           msg: 'Ocorreu um erro. Tente novamente.' },
+    { name: 'Warning', bg: COLORS.warningBg, border: COLORS.warning, icon: '!', iconBg: COLORS.warning,         msg: 'Atenção: esta ação não pode ser desfeita.' },
+    { name: 'Info',    bg: COLORS.blue100,   border: COLORS.actionPrimary, icon: 'i', iconBg: COLORS.actionPrimary, msg: 'Seu relatório está sendo processado.' },
+  ];
+
+  var container = makeContainer('Toast');
+  container.layoutMode = 'VERTICAL';
+  container.counterAxisAlignItems = 'MIN';
+  container.itemSpacing = 12;
+
+  for (var i = 0; i < defs.length; i++) {
+    var d = defs[i];
+    var c = figma.createComponent();
+    c.name = d.name;
+    c.layoutMode = 'HORIZONTAL';
+    c.primaryAxisSizingMode = 'FIXED';
+    c.counterAxisSizingMode = 'AUTO';
+    c.resize(380, 40);
+    c.paddingTop = 12; c.paddingBottom = 12;
+    c.paddingLeft = 16; c.paddingRight = 16;
+    c.itemSpacing = 12;
+    c.cornerRadius = RADIUS.md;
+    c.primaryAxisAlignItems = 'CENTER';
+    c.counterAxisAlignItems = 'CENTER';
+    c.fills   = [{ type: 'SOLID', color: hexToRgb(d.bg), opacity: 1 }];
+    c.strokes = [{ type: 'SOLID', color: hexToRgb(d.border), opacity: 1 }];
+    c.strokeWeight = 1; c.strokeAlign = 'INSIDE';
+    c.effects = SHADOWS.sm;
+
+    // Ícone circular
+    var iconFrame = figma.createFrame();
+    iconFrame.resize(20, 20);
+    iconFrame.cornerRadius = RADIUS.full;
+    iconFrame.fills = [{ type: 'SOLID', color: hexToRgb(d.iconBg), opacity: 1 }];
+    iconFrame.layoutMode = 'HORIZONTAL';
+    iconFrame.primaryAxisSizingMode = 'FIXED';
+    iconFrame.counterAxisSizingMode = 'FIXED';
+    iconFrame.primaryAxisAlignItems = 'CENTER';
+    iconFrame.counterAxisAlignItems = 'CENTER';
+
+    var iconTxt = figma.createText();
+    iconTxt.fontName = { family: 'Mulish', style: 'Bold' };
+    iconTxt.fontSize = 10;
+    iconTxt.characters = d.icon;
+    iconTxt.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.white), opacity: 1 }];
+    iconFrame.appendChild(iconTxt);
+    c.appendChild(iconFrame);
+
+    // Mensagem
+    var msg = figma.createText();
+    msg.fontName = { family: 'Mulish', style: 'Regular' };
+    msg.fontSize = FONT.sm;
+    msg.characters = d.msg;
+    msg.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textDark), opacity: 1 }];
+    c.appendChild(msg);
+    msg.layoutGrow = 1;
+
+    container.appendChild(c);
+  }
+  return container;
+}
+
+// ── Avatar ───────────────────────────────────────────────────────
+async function buildAvatar(cv, fv) {
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Bold' });
+
+  var sizes    = [{ name: 'SM', px: 32, fs: 12 }, { name: 'MD', px: 40, fs: 14 }, { name: 'LG', px: 56, fs: 20 }, { name: 'XL', px: 72, fs: 26 }];
+  var variants = [{ name: 'Brand', color: COLORS.actionPrimary }, { name: 'Success', color: COLORS.success }, { name: 'Neutral', color: COLORS.textSecondary }];
+  var initials = ['TH', 'AM', 'CS', 'MS'];
+
+  var container = makeContainer('Avatar');
+  container.itemSpacing = 24;
+
+  for (var v = 0; v < variants.length; v++) {
+    for (var s = 0; s < sizes.length; s++) {
+      var sz = sizes[s]; var vt = variants[v];
+      var c = figma.createComponent();
+      c.name = vt.name + ' / ' + sz.name;
+      c.resize(sz.px, sz.px);
+      c.cornerRadius = sz.px / 2;
+      c.fills = [{ type: 'SOLID', color: hexToRgb(vt.color), opacity: 1 }];
+      c.layoutMode = 'HORIZONTAL';
+      c.primaryAxisSizingMode = 'FIXED';
+      c.counterAxisSizingMode = 'FIXED';
+      c.primaryAxisAlignItems = 'CENTER';
+      c.counterAxisAlignItems = 'CENTER';
+
+      var txt = figma.createText();
+      txt.fontName = { family: 'Mulish', style: 'Bold' };
+      txt.fontSize = sz.fs;
+      txt.characters = initials[s];
+      txt.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textPrimary), opacity: 1 }];
+      c.appendChild(txt);
+      container.appendChild(c);
+    }
+  }
+  return container;
+}
+
 // ════════════════════════════════════════════════════════════════
 // HANDLER
 // ════════════════════════════════════════════════════════════════
@@ -751,11 +981,16 @@ figma.ui.onmessage = async function(msg) {
       var fv = buildVarMap(fvArr);
 
       var BUILDERS = {
-        button: buildButton,
-        badge:  buildBadge,
-        card:   buildCard,
-        input:  buildInput,
-        select: buildSelect,
+        button:   buildButton,
+        badge:    buildBadge,
+        card:     buildCard,
+        input:    buildInput,
+        select:   buildSelect,
+        spinner:  buildSpinner,
+        checkbox: buildCheckbox,
+        toggle:   buildToggle,
+        toast:    buildToast,
+        avatar:   buildAvatar,
       };
 
       var offsetY  = 0;
