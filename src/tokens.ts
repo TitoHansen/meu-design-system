@@ -115,12 +115,21 @@ export const tokens = {
   },
 
   // ─── SOMBRAS ─────────────────────────────────────────────────────
-  // ⚠️ INCOMPLETO — valores CSS exatos não estavam legíveis nos anexos.
+  // Dark-first: opacidade baixa para evitar efeito "glow"
+  // Uso: sm → inputs/buttons | md → cards | lg → dropdowns | xl → modais
   sombras: {
-    sm:  null,
-    md:  null,
-    lg:  null,
-    xl:  null,
+    dark: {
+      sm: '0px 1px 2px rgba(0,0,0,0.25), 0px 1px 1px rgba(0,0,0,0.15)',
+      md: '0px 2px 4px rgba(0,0,0,0.25), 0px 4px 8px rgba(0,0,0,0.20)',
+      lg: '0px 4px 12px rgba(0,0,0,0.30), 0px 8px 24px rgba(0,0,0,0.25)',
+      xl: '0px 8px 24px rgba(0,0,0,0.35), 0px 16px 40px rgba(0,0,0,0.30)',
+    },
+    light: {
+      sm: '0px 1px 2px rgba(0,0,0,0.08)',
+      md: '0px 2px 6px rgba(0,0,0,0.10)',
+      lg: '0px 6px 16px rgba(0,0,0,0.12)',
+      xl: '0px 12px 32px rgba(0,0,0,0.14)',
+    },
   },
 
   // ─── MOTION ──────────────────────────────────────────────────────
@@ -225,6 +234,12 @@ export const cssVars = {
   '--grid-margin-tablet':  '24px',
   '--grid-margin-desktop': '32px',
   '--container-max-width': '1280px',
+
+  // Sombras (dark mode — padrão do sistema)
+  '--shadow-sm': '0px 1px 2px rgba(0,0,0,0.25), 0px 1px 1px rgba(0,0,0,0.15)',
+  '--shadow-md': '0px 2px 4px rgba(0,0,0,0.25), 0px 4px 8px rgba(0,0,0,0.20)',
+  '--shadow-lg': '0px 4px 12px rgba(0,0,0,0.30), 0px 8px 24px rgba(0,0,0,0.25)',
+  '--shadow-xl': '0px 8px 24px rgba(0,0,0,0.35), 0px 16px 40px rgba(0,0,0,0.30)',
 } as const;
 
 // Mantido para compatibilidade com componentes existentes

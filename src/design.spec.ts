@@ -82,7 +82,7 @@ export const spec = {
     radius:        'lg',   // --radius-lg
     larguraMaxima: 320,    // px
     borda:         '1px solid --color-border-default',
-    sombra:        null,   // ⚠️ Preencher após sombras definidas
+    sombra:        '--shadow-md', // cards usam elevation layer 2
     regras: [
       'Fundo sempre --color-surface',
       'Título: Mulish Bold, tamanho lg',
