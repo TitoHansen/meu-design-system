@@ -7,7 +7,7 @@ const withTheme: Decorator = (Story, context) => {
   const theme = (context.globals.theme ?? 'light') as 'light' | 'dark'
   document.body.style.fontFamily = tokens.tipografia.familia.primaria
   return (
-    <ThemeProvider defaultTheme={theme}>
+    <ThemeProvider key={theme} defaultTheme={theme}>
       <Story />
     </ThemeProvider>
   )

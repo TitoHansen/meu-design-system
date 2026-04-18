@@ -41,11 +41,6 @@ export function ThemeProvider({ defaultTheme = 'light', children }: ThemeProvide
     tag.textContent = buildStyleContent()
   }, [])
 
-  // Sync when defaultTheme prop changes (used by Storybook toolbar)
-  useEffect(() => {
-    setThemeState(defaultTheme)
-  }, [defaultTheme])
-
   const setTheme = useCallback((t: Theme) => setThemeState(t), [])
   const toggleTheme = useCallback(() => setThemeState((p) => (p === 'light' ? 'dark' : 'light')), [])
 

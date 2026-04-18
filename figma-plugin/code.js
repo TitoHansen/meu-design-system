@@ -43,6 +43,22 @@ var COLORS = {
   green100:       '#D9F5DD',
 };
 
+// Paletas de tema — sobrescrevem COLORS antes de cada builder
+var COLORS_LIGHT = {
+  cardBg:    '#FFFFFF', inputBg:  '#FFFFFF', disabledBg: '#F2F2F2',
+  textDark:  '#1C274D', textMuted: '#3A3F4B',
+  border:    '#D6DEF5', borderStrong: '#D6DEF5',
+};
+var COLORS_DARK = {
+  cardBg:    '#092640', inputBg:  '#092640', disabledBg: '#0F1117',
+  textDark:  '#F2F2F2', textMuted: '#8C92A3',
+  border:    '#3A3F4B', borderStrong: '#3A3F4B',
+};
+
+function applyPalette(palette) {
+  Object.keys(palette).forEach(function(k) { COLORS[k] = palette[k]; });
+}
+
 var RADIUS  = { xs: 2, sm: 4, md: 8, lg: 12, xl: 16, '2xl': 24, full: 9999 };
 var FONT    = {
   // Escala semântica
@@ -1015,11 +1031,38 @@ figma.ui.onmessage = async function(msg) {
         try {
           var builder = BUILDERS[name];
           if (!builder) continue;
-          var container = await builder(cv, fv);
-          if (container) {
-            container.x = 100;
-            container.y = offsetY + 100;
-            offsetY += container.height + 60;
+
+          // Versão Light
+          applyPalette(COLORS_LIGHT);
+          var lightContainer = await builder(cv, fv);
+
+          // Versão Dark
+          applyPalette(COLORS_DARK);
+          var darkContainer = await builder(cv, fv);
+
+          // Restaura light como padrão
+          applyPalette(COLORS_LIGHT);
+
+          if (lightContainer && darkContainer) {
+            // Frame wrapper com label de tema
+            var wrapper = figma.createFrame();
+            wrapper.name = name.charAt(0).toUpperCase() + name.slice(1);
+            wrapper.layoutMode = 'HORIZONTAL';
+            wrapper.counterAxisSizingMode = 'AUTO';
+            wrapper.primaryAxisSizingMode = 'AUTO';
+            wrapper.itemSpacing = 60;
+            wrapper.paddingTop = 32; wrapper.paddingBottom = 32;
+            wrapper.paddingLeft = 32; wrapper.paddingRight = 32;
+            wrapper.fills = [];
+
+            lightContainer.name = '☀️ Light';
+            darkContainer.name  = '🌙 Dark';
+            wrapper.appendChild(lightContainer);
+            wrapper.appendChild(darkContainer);
+
+            wrapper.x = 100;
+            wrapper.y = offsetY + 100;
+            offsetY += wrapper.height + 80;
             results.built.push(name);
           }
         } catch(e) { results.errors.push(name + ': ' + String(e)); }
