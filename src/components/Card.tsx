@@ -21,13 +21,13 @@ function Card({
 }: CardProps) {
   return (
     <div style={{
-      border: `1px solid ${tokens.cores.borderLight}`,
+      border: '1px solid var(--ds-border)',
       borderRadius: tokens.raio.lg,
       padding: tokens.espacamento[6].valor,
       display: 'flex',
       flexDirection: 'column',
       gap: tokens.espacamento[3].valor,
-      backgroundColor: tokens.cores.componentBg,
+      backgroundColor: 'var(--ds-component-bg)',
       maxWidth: 320,
     }}>
       {badge && <Badge label={badge} variant={badgeVariant} />}
@@ -38,7 +38,7 @@ function Card({
         fontWeight: tokens.tipografia.escala.h4.peso,
         lineHeight: tokens.tipografia.escala.h4.lineHeight,
         fontFamily: tokens.tipografia.familia.primaria,
-        color: tokens.cores.componentText,
+        color: 'var(--ds-component-text)',
       }}>
         {title}
       </h3>
@@ -47,7 +47,7 @@ function Card({
         margin: 0,
         fontSize: tokens.tipografia.escala.body.tamanho,
         fontFamily: tokens.tipografia.familia.primaria,
-        color: tokens.cores.componentMuted,
+        color: 'var(--ds-component-muted)',
         lineHeight: tokens.tipografia.escala.body.lineHeight,
       }}>
         {description}

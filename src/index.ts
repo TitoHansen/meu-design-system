@@ -24,3 +24,7 @@ export type { AvatarProps }   from './components/Avatar'
 
 // Tokens — fonte da verdade
 export { tokens, cssVars, tokens_legado } from './tokens'
+
+// Tema
+export { ThemeProvider, ThemeContext, useTheme } from './theme'
+export type { Theme, ThemeContextValue } from './theme'

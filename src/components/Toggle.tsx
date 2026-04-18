@@ -8,7 +8,7 @@ export interface ToggleProps {
 }
 
 function Toggle({ label, checked = false, disabled = false, onChange }: ToggleProps) {
-  const trackColor = checked ? tokens.cores.actionPrimary : tokens.cores.border
+  const trackColor = checked ? tokens.cores.actionPrimary : 'var(--ds-track-inactive)'
   const thumbPos   = checked ? 22 : 2
 
   return (
@@ -20,7 +20,7 @@ function Toggle({ label, checked = false, disabled = false, onChange }: TogglePr
       opacity: disabled ? 0.65 : 1,
       fontFamily: tokens.tipografia.familia.primaria,
       fontSize: tokens.tipografia.escala.body.tamanho,
-      color: tokens.cores.componentText,
+      color: 'var(--ds-component-text)',
     }}>
       <span style={{ position: 'relative', display: 'inline-block', flexShrink: 0 }}>
         <input

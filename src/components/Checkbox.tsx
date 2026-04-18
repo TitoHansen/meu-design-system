@@ -8,7 +8,7 @@ export interface CheckboxProps {
 }
 
 function Checkbox({ label, checked = false, disabled = false, onChange }: CheckboxProps) {
-  const borderColor = checked ? tokens.cores.actionPrimary : tokens.cores.borderLight
+  const borderColor = checked ? tokens.cores.actionPrimary : 'var(--ds-border)'
   const bgColor     = checked ? tokens.cores.actionPrimary : 'transparent'
 
   return (
@@ -20,7 +20,7 @@ function Checkbox({ label, checked = false, disabled = false, onChange }: Checkb
       opacity: disabled ? 0.65 : 1,
       fontFamily: tokens.tipografia.familia.primaria,
       fontSize: tokens.tipografia.escala.body.tamanho,
-      color: tokens.cores.componentText,
+      color: 'var(--ds-component-text)',
     }}>
       <span style={{ position: 'relative', display: 'inline-flex', flexShrink: 0 }}>
         <input

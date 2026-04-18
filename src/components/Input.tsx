@@ -21,7 +21,7 @@ function Input({
         <label style={{
           fontSize: tokens.tipografia.escala.body.tamanho,
           fontFamily: tokens.tipografia.familia.primaria,
-          color: disabled ? tokens.cores.componentMuted : tokens.cores.componentText,
+          color: 'var(--ds-component-text)',
         }}>
           {label}
         </label>
@@ -34,11 +34,11 @@ function Input({
         style={{
           padding: '10px 14px',
           borderRadius: tokens.raio.md,
-          border: `1.5px solid ${tokens.cores.borderLight}`,
+          border: '1.5px solid var(--ds-border)',
           fontSize: tokens.tipografia.escala.bodyLg.tamanho,
           fontFamily: tokens.tipografia.familia.primaria,
-          color: disabled ? tokens.cores.componentMuted : tokens.cores.componentText,
-          backgroundColor: disabled ? tokens.cores.disabledBg : tokens.cores.componentBg,
+          color: 'var(--ds-component-text)',
+          backgroundColor: disabled ? 'var(--ds-disabled-bg)' : 'var(--ds-component-bg)',
           outline: 'none',
           width: '100%',
           boxSizing: 'border-box' as const,
