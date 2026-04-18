@@ -22,6 +22,19 @@ function buildStyleContent(): string {
   }).join('\n')
 }
 
+// Injeta as CSS vars imediatamente ao carregar o módulo (síncrono)
+// Evita flash de bordas/cores no primeiro render
+if (typeof document !== 'undefined') {
+  const id = 'ds-theme-vars'
+  let tag = document.getElementById(id) as HTMLStyleElement | null
+  if (!tag) {
+    tag = document.createElement('style')
+    tag.id = id
+    document.head.appendChild(tag)
+  }
+  tag.textContent = buildStyleContent()
+}
+
 interface ThemeProviderProps {
   defaultTheme?: Theme
   children: React.ReactNode
