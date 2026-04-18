@@ -842,6 +842,308 @@ async function buildAvatar(cv, fv) {
   return container;
 }
 
+// ── Modal ────────────────────────────────────────────────────────
+async function buildModal(cv, fv) {
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Bold' });
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
+
+  var defs = [
+    { name: 'Default', title: 'Confirmar operação', body: 'Deseja prosseguir com esta operação?\nEla não poderá ser desfeita.' },
+    { name: 'Small',   title: 'Atenção',             body: 'Modal compacto para confirmações rápidas.' },
+  ];
+
+  var container = makeContainer('Modal');
+  container.layoutMode = 'VERTICAL';
+  container.itemSpacing = 24;
+  container.counterAxisAlignItems = 'MIN';
+
+  for (var i = 0; i < defs.length; i++) {
+    var d = defs[i];
+    var c = figma.createComponent();
+    c.name = d.name;
+    c.layoutMode = 'VERTICAL';
+    c.primaryAxisSizingMode = 'AUTO';
+    c.counterAxisSizingMode = 'FIXED';
+    c.resize(480, 100);
+    c.paddingTop = 0; c.paddingBottom = 0;
+    c.paddingLeft = 0; c.paddingRight = 0;
+    c.itemSpacing = 0;
+    c.cornerRadius = RADIUS.xl;
+    c.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.cardBg), opacity: 1 }];
+    c.strokes = [{ type: 'SOLID', color: hexToRgb(COLORS.border), opacity: 1 }];
+    c.strokeWeight = 1; c.strokeAlign = 'INSIDE';
+    c.effects = SHADOWS.lg;
+
+    // Header
+    var header = figma.createFrame();
+    autoLayout(header, 'HORIZONTAL', 16, 24, 8);
+    header.layoutSizingHorizontal = 'FILL';
+    header.primaryAxisAlignItems = 'SPACE_BETWEEN';
+    header.counterAxisAlignItems = 'CENTER';
+    header.fills = [];
+    header.strokes = [{ type: 'SOLID', color: hexToRgb(COLORS.border), opacity: 1 }];
+    header.strokeWeight = 1; header.strokeAlign = 'INSIDE';
+    var hTitle = figma.createText();
+    hTitle.fontName = { family: 'Mulish', style: 'Bold' };
+    hTitle.fontSize = FONT.lg; hTitle.characters = d.title;
+    hTitle.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textDark), opacity: 1 }];
+    var hClose = figma.createText();
+    hClose.fontName = { family: 'Mulish', style: 'Bold' };
+    hClose.fontSize = FONT.lg; hClose.characters = '×';
+    hClose.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textMuted), opacity: 1 }];
+    header.appendChild(hTitle); header.appendChild(hClose);
+    c.appendChild(header);
+
+    // Body
+    var body = figma.createFrame();
+    autoLayout(body, 'VERTICAL', 24, 24, 8);
+    body.layoutSizingHorizontal = 'FILL';
+    body.fills = [];
+    var bodyTxt = figma.createText();
+    bodyTxt.fontName = { family: 'Mulish', style: 'Regular' };
+    bodyTxt.fontSize = FONT.sm; bodyTxt.characters = d.body;
+    bodyTxt.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textMuted), opacity: 1 }];
+    body.appendChild(bodyTxt);
+    c.appendChild(body);
+
+    container.appendChild(c);
+  }
+  return container;
+}
+
+// ── Table ─────────────────────────────────────────────────────────
+async function buildTable(cv, fv) {
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Bold' });
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
+
+  var container = makeContainer('Table');
+  var c = figma.createComponent();
+  c.name = 'Default';
+  c.layoutMode = 'VERTICAL';
+  c.primaryAxisSizingMode = 'AUTO';
+  c.counterAxisSizingMode = 'AUTO';
+  c.itemSpacing = 0;
+  c.cornerRadius = RADIUS.lg;
+  c.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.cardBg), opacity: 1 }];
+  c.strokes = [{ type: 'SOLID', color: hexToRgb(COLORS.border), opacity: 1 }];
+  c.strokeWeight = 1; c.strokeAlign = 'INSIDE';
+  c.clipsContent = true;
+
+  var cols = ['Título', 'Tipo', 'Valor', 'Status'];
+  var rows2 = [
+    ['Tesouro Selic 2029',  'Pós-fixado', 'R$ 1.200', 'Ativo'],
+    ['Tesouro IPCA+ 2035',  'Híbrido',    'R$ 3.500', 'Ativo'],
+    ['Tesouro Prefixado',   'Prefixado',  'R$ 800',   'Vencido'],
+  ];
+
+  // Header row
+  var hRow = figma.createFrame();
+  autoLayout(hRow, 'HORIZONTAL', 12, 0, 0);
+  hRow.layoutSizingHorizontal = 'HUG';
+  hRow.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.cardBg), opacity: 1 }];
+  hRow.strokes = [{ type: 'SOLID', color: hexToRgb(COLORS.border), opacity: 1 }];
+  hRow.strokeWeight = 2; hRow.strokeAlign = 'INSIDE';
+  for (var j = 0; j < cols.length; j++) {
+    var cell = figma.createFrame();
+    autoLayout(cell, 'HORIZONTAL', 12, 16, 0);
+    cell.resize(120, 40);
+    cell.fills = [];
+    var ct = figma.createText();
+    ct.fontName = { family: 'Mulish', style: 'Bold' };
+    ct.fontSize = FONT.sm; ct.characters = cols[j];
+    ct.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textDark), opacity: 1 }];
+    cell.appendChild(ct); hRow.appendChild(cell);
+  }
+  c.appendChild(hRow);
+
+  // Data rows
+  for (var ri = 0; ri < rows2.length; ri++) {
+    var dRow = figma.createFrame();
+    autoLayout(dRow, 'HORIZONTAL', 12, 0, 0);
+    dRow.layoutSizingHorizontal = 'HUG';
+    dRow.fills = [{ type: 'SOLID', color: ri % 2 === 1 ? hexToRgb('#F8F9FA') : hexToRgb(COLORS.cardBg), opacity: 1 }];
+    if (ri < rows2.length - 1) {
+      dRow.strokes = [{ type: 'SOLID', color: hexToRgb(COLORS.border), opacity: 1 }];
+      dRow.strokeWeight = 1; dRow.strokeAlign = 'INSIDE';
+    }
+    for (var j = 0; j < rows2[ri].length; j++) {
+      var cell = figma.createFrame();
+      autoLayout(cell, 'HORIZONTAL', 12, 16, 0);
+      cell.resize(120, 40);
+      cell.fills = [];
+      var ct = figma.createText();
+      ct.fontName = { family: 'Mulish', style: 'Regular' };
+      ct.fontSize = FONT.sm; ct.characters = rows2[ri][j];
+      ct.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textMuted), opacity: 1 }];
+      cell.appendChild(ct); dRow.appendChild(cell);
+    }
+    c.appendChild(dRow);
+  }
+  container.appendChild(c);
+  return container;
+}
+
+// ── Tabs ──────────────────────────────────────────────────────────
+async function buildTabs(cv, fv) {
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Bold' });
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
+
+  var tabs = ['Visão Geral', 'Histórico', 'Documentos'];
+  var container = makeContainer('Tabs');
+  var c = figma.createComponent();
+  c.name = 'Default';
+  c.layoutMode = 'VERTICAL';
+  c.primaryAxisSizingMode = 'AUTO';
+  c.counterAxisSizingMode = 'FIXED';
+  c.resize(480, 100);
+  c.itemSpacing = 0;
+  c.fills = [];
+
+  // Tab list
+  var tabList = figma.createFrame();
+  autoLayout(tabList, 'HORIZONTAL', 0, 0, 0);
+  tabList.layoutSizingHorizontal = 'FILL';
+  tabList.fills = [];
+  tabList.strokes = [{ type: 'SOLID', color: hexToRgb(COLORS.border), opacity: 1 }];
+  tabList.strokeWeight = 2; tabList.strokeAlign = 'INSIDE';
+
+  for (var i = 0; i < tabs.length; i++) {
+    var tab = figma.createFrame();
+    autoLayout(tab, 'HORIZONTAL', 12, 16, 0);
+    tab.fills = [];
+    if (i === 0) {
+      tab.strokes = [{ type: 'SOLID', color: hexToRgb(COLORS.actionPrimary), opacity: 1 }];
+      tab.strokeWeight = 2; tab.strokeAlign = 'INSIDE';
+    }
+    var tabTxt = figma.createText();
+    tabTxt.fontName = { family: 'Mulish', style: i === 0 ? 'Bold' : 'Regular' };
+    tabTxt.fontSize = FONT.sm;
+    tabTxt.characters = tabs[i];
+    tabTxt.fills = [{ type: 'SOLID', color: hexToRgb(i === 0 ? COLORS.actionPrimary : COLORS.textMuted), opacity: 1 }];
+    tab.appendChild(tabTxt); tabList.appendChild(tab);
+  }
+  c.appendChild(tabList);
+
+  // Panel
+  var panel = figma.createFrame();
+  autoLayout(panel, 'VERTICAL', 16, 0, 0);
+  panel.layoutSizingHorizontal = 'FILL';
+  panel.fills = [];
+  var panelTxt = figma.createText();
+  panelTxt.fontName = { family: 'Mulish', style: 'Regular' };
+  panelTxt.fontSize = FONT.sm;
+  panelTxt.characters = 'Resumo da carteira com posição atual e rentabilidade.';
+  panelTxt.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textMuted), opacity: 1 }];
+  panel.appendChild(panelTxt);
+  c.appendChild(panel);
+
+  container.appendChild(c);
+  return container;
+}
+
+// ── Tooltip ───────────────────────────────────────────────────────
+async function buildTooltip(cv, fv) {
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Bold' });
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
+
+  var defs = [
+    { name: 'Top',    txt: 'Informação adicional' },
+    { name: 'Bottom', txt: 'Tooltip abaixo'       },
+  ];
+
+  var container = makeContainer('Tooltip');
+  container.layoutMode = 'HORIZONTAL';
+  container.itemSpacing = 48;
+  container.counterAxisAlignItems = 'CENTER';
+
+  for (var i = 0; i < defs.length; i++) {
+    var d = defs[i];
+    var c = figma.createComponent();
+    c.name = d.name;
+    c.layoutMode = 'VERTICAL';
+    c.primaryAxisSizingMode = 'AUTO';
+    c.counterAxisSizingMode = 'AUTO';
+    c.primaryAxisAlignItems = 'CENTER';
+    c.counterAxisAlignItems = 'CENTER';
+    c.itemSpacing = 8;
+    c.fills = [];
+
+    // Tooltip bubble
+    var bubble = figma.createFrame();
+    autoLayout(bubble, 'HORIZONTAL', 6, 12, 0);
+    bubble.cornerRadius = RADIUS.sm;
+    bubble.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.bgPrimary), opacity: 1 }];
+    bubble.effects = SHADOWS.sm;
+    var bubbleTxt = figma.createText();
+    bubbleTxt.fontName = { family: 'Mulish', style: 'Bold' };
+    bubbleTxt.fontSize = FONT.xs;
+    bubbleTxt.characters = d.txt;
+    bubbleTxt.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textPrimary), opacity: 1 }];
+    bubble.appendChild(bubbleTxt);
+    c.appendChild(bubble);
+
+    // Trigger (botão de referência)
+    var trigger = figma.createFrame();
+    autoLayout(trigger, 'HORIZONTAL', 10, 20, 0);
+    trigger.cornerRadius = RADIUS.md;
+    trigger.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.actionPrimary), opacity: 1 }];
+    var triggerTxt = figma.createText();
+    triggerTxt.fontName = { family: 'Mulish', style: 'Regular' };
+    triggerTxt.fontSize = FONT.sm; triggerTxt.characters = 'Passe o mouse';
+    triggerTxt.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.white), opacity: 1 }];
+    trigger.appendChild(triggerTxt);
+    c.appendChild(trigger);
+
+    container.appendChild(c);
+  }
+  return container;
+}
+
+// ── Breadcrumb ────────────────────────────────────────────────────
+async function buildBreadcrumb(cv, fv) {
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Bold' });
+  await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
+
+  var defs = [
+    { name: 'Default', items: ['Início', 'Carteira', 'Tesouro Direto'] },
+    { name: 'Deep',    items: ['Início', 'Produtos', 'Renda Fixa', 'Tesouro IPCA+'] },
+  ];
+
+  var container = makeContainer('Breadcrumb');
+  container.layoutMode = 'VERTICAL';
+  container.itemSpacing = 20;
+  container.counterAxisAlignItems = 'MIN';
+
+  for (var i = 0; i < defs.length; i++) {
+    var d = defs[i];
+    var c = figma.createComponent();
+    c.name = d.name;
+    autoLayout(c, 'HORIZONTAL', 0, 0, 8);
+    c.counterAxisAlignItems = 'CENTER';
+    c.fills = [];
+
+    for (var j = 0; j < d.items.length; j++) {
+      var isLast = j === d.items.length - 1;
+      var lbl = figma.createText();
+      lbl.fontName = { family: 'Mulish', style: isLast ? 'Bold' : 'Regular' };
+      lbl.fontSize = FONT.sm;
+      lbl.characters = d.items[j];
+      lbl.fills = [{ type: 'SOLID', color: hexToRgb(isLast ? COLORS.textDark : COLORS.actionPrimary), opacity: 1 }];
+      c.appendChild(lbl);
+
+      if (!isLast) {
+        var sep = figma.createText();
+        sep.fontName = { family: 'Mulish', style: 'Regular' };
+        sep.fontSize = FONT.sm; sep.characters = '/';
+        sep.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textMuted), opacity: 1 }];
+        c.appendChild(sep);
+      }
+    }
+    container.appendChild(c);
+  }
+  return container;
+}
+
 // ════════════════════════════════════════════════════════════════
 // HANDLER
 // ════════════════════════════════════════════════════════════════
@@ -1020,8 +1322,13 @@ figma.ui.onmessage = async function(msg) {
         spinner:  buildSpinner,
         checkbox: buildCheckbox,
         toggle:   buildToggle,
-        toast:    buildToast,
-        avatar:   buildAvatar,
+        toast:      buildToast,
+        avatar:     buildAvatar,
+        modal:      buildModal,
+        table:      buildTable,
+        tabs:       buildTabs,
+        tooltip:    buildTooltip,
+        breadcrumb: buildBreadcrumb,
       };
 
       var offsetY  = 0;

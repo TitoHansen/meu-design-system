@@ -196,13 +196,13 @@
     <div class="logo-dot">M</div>
     <div>
       <div class="logo-title">meu-design-system</div>
-      <div class="logo-sub">Token Sync · Light + Dark · 10 componentes</div>
+      <div class="logo-sub">Token Sync · Light + Dark · 15 componentes</div>
     </div>
   </div>
 
   <div class="tabs">
     <button class="tab active" onclick="switchTab('tokens', this)">🎨 Tokens</button>
-    <button class="tab"        onclick="switchTab('components', this)">🧩 Componentes <span class="count-badge">10</span></button>
+    <button class="tab"        onclick="switchTab('components', this)">🧩 Componentes <span class="count-badge">15</span></button>
     <button class="tab"        onclick="switchTab('buscar', this)">🔍 Buscar</button>
   </div>
 
@@ -356,6 +356,46 @@
           <div class="comp-info">
             <div class="comp-name">Avatar</div>
             <div class="comp-meta">Initials · Brand · Success · Neutral</div>
+          </div>
+          <div class="comp-check">✓</div>
+        </div>
+        <div class="comp-card selected" data-comp="modal" onclick="toggleComp(this)">
+          <div class="comp-icon">🪟</div>
+          <div class="comp-info">
+            <div class="comp-name">Modal</div>
+            <div class="comp-meta">Default · Small</div>
+          </div>
+          <div class="comp-check">✓</div>
+        </div>
+        <div class="comp-card selected" data-comp="table" onclick="toggleComp(this)">
+          <div class="comp-icon">📊</div>
+          <div class="comp-info">
+            <div class="comp-name">Table</div>
+            <div class="comp-meta">Header · Rows · Striped</div>
+          </div>
+          <div class="comp-check">✓</div>
+        </div>
+        <div class="comp-card selected" data-comp="tabs" onclick="toggleComp(this)">
+          <div class="comp-icon">🗂️</div>
+          <div class="comp-info">
+            <div class="comp-name">Tabs</div>
+            <div class="comp-meta">Active · Inactive · Panel</div>
+          </div>
+          <div class="comp-check">✓</div>
+        </div>
+        <div class="comp-card selected" data-comp="tooltip" onclick="toggleComp(this)">
+          <div class="comp-icon">💬</div>
+          <div class="comp-info">
+            <div class="comp-name">Tooltip</div>
+            <div class="comp-meta">Top · Bottom · Left · Right</div>
+          </div>
+          <div class="comp-check">✓</div>
+        </div>
+        <div class="comp-card selected" data-comp="breadcrumb" onclick="toggleComp(this)">
+          <div class="comp-icon">🧭</div>
+          <div class="comp-info">
+            <div class="comp-name">Breadcrumb</div>
+            <div class="comp-meta">Default · Deep · Separador</div>
           </div>
           <div class="comp-check">✓</div>
         </div>
@@ -527,7 +567,12 @@
     checkbox: { icon:'☑️', label:'Checkbox', meta:'Unchecked · Checked · Disabled', desc:'Seleção binária com label.' },
     toggle:   { icon:'🔛', label:'Toggle',   meta:'Off · On · Disabled', desc:'Interruptor on/off para configurações.' },
     toast:    { icon:'🔔', label:'Toast',    meta:'Success · Error · Warning · Info', desc:'Notificação temporária de feedback.' },
-    avatar:   { icon:'👤', label:'Avatar',   meta:'Brand · Success · Neutral · Initials', desc:'Representação visual de usuário.' },
+    avatar:     { icon:'👤', label:'Avatar',     meta:'Brand · Success · Neutral · Initials', desc:'Representação visual de usuário.' },
+    modal:      { icon:'🪟', label:'Modal',      meta:'Default · Small · Large',              desc:'Diálogo sobreposto para ações e confirmações.' },
+    table:      { icon:'📊', label:'Table',      meta:'Default · Striped · Com legenda',      desc:'Exibição de dados tabulares com cabeçalho.' },
+    tabs:       { icon:'🗂️', label:'Tabs',       meta:'Active · Inactive · Panel',            desc:'Navegação entre seções de conteúdo.' },
+    tooltip:    { icon:'💬', label:'Tooltip',    meta:'Top · Bottom · Left · Right',          desc:'Informação contextual ao passar o mouse.' },
+    breadcrumb: { icon:'🧭', label:'Breadcrumb', meta:'Default · Deep · Separador custom',    desc:'Trilha de navegação hierárquica.' },
   };
 
   var GUIDELINES = {
