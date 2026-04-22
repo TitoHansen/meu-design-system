@@ -843,18 +843,21 @@ async function buildAvatar(cv, fv) {
 }
 
 // ── IconCard (Button Card) ────────────────────────────────────────
-// Spec: 144×144, vertical SPACE_BETWEEN, padding 10, radius 24
-// Estrutura: icon (24×24, 3 linhas brancas) + label container (FILL)
+// Spec: 150×150, vertical SPACE_BETWEEN, padding 16, radius 16
+// bg card: #F2F2F2 (cinza claro) | Brand frame: 32×32, radius 8
+// Estrutura: Brand(32×32 colorido → icon 22×22 branco) + labelWrap(FILL)
+// Label: textMuted, Bold 16/24
 async function buildIconCard(cv, fv) {
   await figma.loadFontAsync({ family: 'Mulish', style: 'Bold' });
-  await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
 
   var variants = [
-    { name: 'Brand',   bg: COLORS.actionPrimary },
-    { name: 'Hover',   bg: COLORS.actionHover   },
-    { name: 'Success', bg: COLORS.brandGreen    },
-    { name: 'Surface', bg: COLORS.surface       },
+    { name: 'Brand',   iconBg: COLORS.actionPrimary },
+    { name: 'Success', iconBg: COLORS.brandGreen    },
+    { name: 'Warning', iconBg: COLORS.warning       },
+    { name: 'Neutral', iconBg: COLORS.textSecondary },
   ];
+
+  var cardBg = COLORS.disabledBg;   // #F2F2F2 — fundo claro do card
 
   var container = makeContainer('IconCard');
   container.itemSpacing = 24;
@@ -866,57 +869,69 @@ async function buildIconCard(cv, fv) {
     c.layoutMode = 'VERTICAL';
     c.primaryAxisSizingMode = 'FIXED';
     c.counterAxisSizingMode = 'FIXED';
-    c.resize(144, 144);
-    c.paddingTop = 10; c.paddingBottom = 10;
-    c.paddingLeft = 10; c.paddingRight = 10;
+    c.resize(150, 150);
+    c.paddingTop = 16; c.paddingBottom = 16;
+    c.paddingLeft = 16; c.paddingRight = 16;
     c.primaryAxisAlignItems = 'SPACE_BETWEEN';
     c.counterAxisAlignItems = 'MIN';
-    c.cornerRadius = RADIUS['2xl'];  // 24
-    c.fills   = [{ type: 'SOLID', color: hexToRgb(v.bg), opacity: 1 }];
-    c.effects = SHADOWS.md;
+    c.cornerRadius = RADIUS.xl;  // 16px
+    c.fills   = [{ type: 'SOLID', color: hexToRgb(cardBg), opacity: 1 }];
+    c.effects = SHADOWS.sm;
     c.clipsContent = true;
 
-    // ── Icon area (24×24) — hamburguer com 3 rectângulos brancos ──
-    var iconWrap = figma.createFrame();
-    iconWrap.resize(24, 24);
-    iconWrap.layoutMode = 'VERTICAL';
-    iconWrap.primaryAxisSizingMode = 'FIXED';
-    iconWrap.counterAxisSizingMode = 'FIXED';
-    iconWrap.primaryAxisAlignItems = 'CENTER';
-    iconWrap.counterAxisAlignItems = 'MIN';
-    iconWrap.itemSpacing = 4;
-    iconWrap.fills = [];
+    // ── Brand frame (32×32, radius 8, bg colorido) ──
+    var brand = figma.createFrame();
+    brand.layoutMode = 'HORIZONTAL';
+    brand.primaryAxisSizingMode = 'FIXED';
+    brand.counterAxisSizingMode = 'FIXED';
+    brand.resize(32, 32);
+    brand.primaryAxisAlignItems = 'CENTER';
+    brand.counterAxisAlignItems = 'CENTER';
+    brand.cornerRadius = RADIUS.sm;   // 8px
+    brand.fills = [{ type: 'SOLID', color: hexToRgb(v.iconBg), opacity: 1 }];
 
+    // Ícone interno (22×22) — 3 barras brancas empilhadas (list/menu)
+    var iconInner = figma.createFrame();
+    iconInner.resize(22, 22);
+    iconInner.layoutMode = 'VERTICAL';
+    iconInner.primaryAxisSizingMode = 'FIXED';
+    iconInner.counterAxisSizingMode = 'FIXED';
+    iconInner.primaryAxisAlignItems = 'SPACE_BETWEEN';
+    iconInner.counterAxisAlignItems = 'MIN';
+    iconInner.paddingTop = 4; iconInner.paddingBottom = 4;
+    iconInner.fills = [];
+
+    var barWidths = [18, 14, 18];
     for (var ln = 0; ln < 3; ln++) {
       var bar = figma.createRectangle();
-      bar.resize(ln === 1 ? 12 : 16, 2);   // linha do meio menor — visual escalonado
+      bar.resize(barWidths[ln], 2);
       bar.cornerRadius = 1;
       bar.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.white), opacity: 1 }];
-      iconWrap.appendChild(bar);
+      iconInner.appendChild(bar);
     }
-    c.appendChild(iconWrap);
+    brand.appendChild(iconInner);
+    c.appendChild(brand);
 
-    // ── Label container (horizontal FILL, centro) ──
+    // ── label medium container (horizontal, FILL, middle center, HUG) ──
     var labelWrap = figma.createFrame();
     labelWrap.layoutMode = 'HORIZONTAL';
     labelWrap.primaryAxisSizingMode = 'AUTO';
     labelWrap.counterAxisSizingMode = 'AUTO';
-    labelWrap.primaryAxisAlignItems = 'MIN';
-    labelWrap.counterAxisAlignItems = 'MIN';
-    labelWrap.itemSpacing = 0;
+    labelWrap.primaryAxisAlignItems = 'CENTER';
+    labelWrap.counterAxisAlignItems = 'CENTER';
     labelWrap.fills = [];
 
     var labelTxt = figma.createText();
     labelTxt.fontName   = { family: 'Mulish', style: 'Bold' };
-    labelTxt.fontSize   = 14;
-    labelTxt.lineHeight = { unit: 'PIXELS', value: 20 };
-    labelTxt.characters = 'Titulo\nSubtitulo';
-    labelTxt.fills      = [{ type: 'SOLID', color: hexToRgb(COLORS.white), opacity: 1 }];
+    labelTxt.fontSize   = 16;
+    labelTxt.lineHeight = { unit: 'PIXELS', value: 24 };
+    labelTxt.characters = 'Label';
+    labelTxt.fills      = [{ type: 'SOLID', color: hexToRgb(COLORS.textMuted), opacity: 1 }];
     labelTxt.textAutoResize = 'WIDTH_AND_HEIGHT';
     labelWrap.appendChild(labelTxt);
     c.appendChild(labelWrap);
 
-    // FILL deve ser definido APÓS append ao pai
+    // FILL APÓS append ao pai
     labelWrap.layoutSizingHorizontal = 'FILL';
 
     container.appendChild(c);
