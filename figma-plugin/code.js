@@ -257,22 +257,22 @@ async function buildCard(cv, fv) {
     {
       name: 'Default',
       badgeLabel: 'Novo',   badgeVariant: 'brand',
-      title: 'Título do card',
-      desc:  'Descrição do conteúdo do card com informações relevantes para o usuário.',
+      title: 'Titulo do card',
+      desc:  'Descricao do conteudo do card com informacoes relevantes para o usuario.',
       btnLabel: 'Saiba mais', btnVariant: 'brand',
     },
     {
       name: 'Danger',
       badgeLabel: 'Erro',   badgeVariant: 'danger',
-      title: 'Ação necessária',
-      desc:  'Ocorreu um problema que precisa da sua atenção imediata.',
+      title: 'Acao necessaria',
+      desc:  'Ocorreu um problema que precisa da sua atencao imediata.',
       btnLabel: 'Resolver', btnVariant: 'danger',
     },
     {
       name: 'Sem Badge',
       badgeLabel: null,
       title: 'Card simples',
-      desc:  'Um card sem badge e sem botão de ação.',
+      desc:  'Um card sem badge e sem botao de acao.',
       btnLabel: null,
     },
   ];
@@ -465,13 +465,13 @@ async function buildSelect(cv, fv) {
   await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
   await figma.loadFontAsync({ family: 'Mulish', style: 'SemiBold' });
 
-  var OPTIONS = ['Opção 1', 'Opção 2', 'Opção 3', 'Opção 4'];
+  var OPTIONS = ['Opcao 1', 'Opcao 2', 'Opcao 3', 'Opcao 4'];
 
   var defs = [
     { name: 'Default',  label: 'Categoria',     value: 'Selecione...', borderHex: COLORS.border,        borderVar: 'color/border',        bgHex: COLORS.inputBg,    labelHex: COLORS.textDark, valueHex: COLORS.textMuted, disabled: false, open: false },
-    { name: 'Selected', label: 'Categoria',     value: 'Opção 1',      borderHex: COLORS.actionPrimary, borderVar: 'color/actionPrimary', bgHex: COLORS.inputBg,    labelHex: COLORS.textDark, valueHex: COLORS.textDark,  disabled: false, open: false },
+    { name: 'Selected', label: 'Categoria',     value: 'Opcao 1',      borderHex: COLORS.actionPrimary, borderVar: 'color/actionPrimary', bgHex: COLORS.inputBg,    labelHex: COLORS.textDark, valueHex: COLORS.textDark,  disabled: false, open: false },
     { name: 'Open',     label: 'Categoria',     value: 'Selecione...', borderHex: COLORS.actionPrimary, borderVar: 'color/actionPrimary', bgHex: COLORS.inputBg,    labelHex: COLORS.textDark, valueHex: COLORS.textMuted, disabled: false, open: true  },
-    { name: 'Disabled', label: 'Campo bloqueado', value: 'Indisponível', borderHex: COLORS.border,      borderVar: 'color/border',        bgHex: COLORS.disabledBg, labelHex: COLORS.textMuted, valueHex: COLORS.textMuted, disabled: true, open: false },
+    { name: 'Disabled', label: 'Campo bloqueado', value: 'Indisponivel', borderHex: COLORS.border,      borderVar: 'color/border',        bgHex: COLORS.disabledBg, labelHex: COLORS.textMuted, valueHex: COLORS.textMuted, disabled: true, open: false },
   ];
 
   var container = makeContainer('Select');
@@ -675,7 +675,7 @@ async function buildCheckbox(cv, fv) {
     var lbl = figma.createText();
     lbl.fontName = { family: 'Mulish', style: 'Regular' };
     lbl.fontSize = FONT.sm;
-    lbl.characters = d.checked ? 'Opção selecionada' : 'Opção disponível';
+    lbl.characters = d.checked ? 'Opcao selecionada' : 'Opcao disponivel';
     lbl.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textDark), opacity: 1 }];
     c.appendChild(lbl);
 
@@ -742,10 +742,10 @@ async function buildToast(cv, fv) {
   await figma.loadFontAsync({ family: 'Mulish', style: 'Bold' });
 
   var defs = [
-    { name: 'Success', bg: COLORS.successBg, border: COLORS.success, icon: '✓', iconBg: COLORS.success,         msg: 'Operação realizada com sucesso!' },
-    { name: 'Error',   bg: COLORS.errorBg,   border: COLORS.error,   icon: '✕', iconBg: COLORS.error,           msg: 'Ocorreu um erro. Tente novamente.' },
-    { name: 'Warning', bg: COLORS.warningBg, border: COLORS.warning, icon: '!', iconBg: COLORS.warning,         msg: 'Atenção: esta ação não pode ser desfeita.' },
-    { name: 'Info',    bg: COLORS.blue100,   border: COLORS.actionPrimary, icon: 'i', iconBg: COLORS.actionPrimary, msg: 'Seu relatório está sendo processado.' },
+    { name: 'Success', bg: COLORS.successBg, border: COLORS.success, icon: '+', iconBg: COLORS.success,         msg: 'Operacao realizada com sucesso!' },
+    { name: 'Error',   bg: COLORS.errorBg,   border: COLORS.error,   icon: 'x', iconBg: COLORS.error,           msg: 'Ocorreu um erro. Tente novamente.' },
+    { name: 'Warning', bg: COLORS.warningBg, border: COLORS.warning, icon: '!', iconBg: COLORS.warning,         msg: 'Atencao: esta acao nao pode ser desfeita.' },
+    { name: 'Info',    bg: COLORS.blue100,   border: COLORS.actionPrimary, icon: 'i', iconBg: COLORS.actionPrimary, msg: 'Seu relatorio esta sendo processado.' },
   ];
 
   var container = makeContainer('Toast');
@@ -949,17 +949,17 @@ async function buildTable(cv, fv) {
   c.strokeWeight = 1; c.strokeAlign = 'INSIDE';
   c.clipsContent = true;
 
-  var cols = ['Título', 'Tipo', 'Valor', 'Status'];
+  var cols = ['Titulo', 'Tipo', 'Valor', 'Status'];
   var rows2 = [
-    ['Tesouro Selic 2029',  'Pós-fixado', 'R$ 1.200', 'Ativo'],
-    ['Tesouro IPCA+ 2035',  'Híbrido',    'R$ 3.500', 'Ativo'],
+    ['Tesouro Selic 2029',  'Pos-fixado', 'R$ 1.200', 'Ativo'],
+    ['Tesouro IPCA+ 2035',  'Hibrido',    'R$ 3.500', 'Ativo'],
     ['Tesouro Prefixado',   'Prefixado',  'R$ 800',   'Vencido'],
   ];
 
   // Header row
   var hRow = figma.createFrame();
   autoLayout(hRow, 'HORIZONTAL', 12, 0, 0);
-  hRow.layoutSizingHorizontal = 'HUG';
+  hRow.primaryAxisSizingMode = 'AUTO';
   hRow.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.cardBg), opacity: 1 }];
   hRow.strokes = [{ type: 'SOLID', color: hexToRgb(COLORS.border), opacity: 1 }];
   hRow.strokeWeight = 2; hRow.strokeAlign = 'INSIDE';
@@ -980,7 +980,7 @@ async function buildTable(cv, fv) {
   for (var ri = 0; ri < rows2.length; ri++) {
     var dRow = figma.createFrame();
     autoLayout(dRow, 'HORIZONTAL', 12, 0, 0);
-    dRow.layoutSizingHorizontal = 'HUG';
+    dRow.primaryAxisSizingMode = 'AUTO';
     dRow.fills = [{ type: 'SOLID', color: ri % 2 === 1 ? hexToRgb('#F8F9FA') : hexToRgb(COLORS.cardBg), opacity: 1 }];
     if (ri < rows2.length - 1) {
       dRow.strokes = [{ type: 'SOLID', color: hexToRgb(COLORS.border), opacity: 1 }];
@@ -1008,28 +1008,41 @@ async function buildTabs(cv, fv) {
   await figma.loadFontAsync({ family: 'Mulish', style: 'Bold' });
   await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
 
-  var tabs = ['Visão Geral', 'Histórico', 'Documentos'];
+  var tabLabels = ['Visao Geral', 'Historico', 'Documentos'];
+  var W = 480;
   var container = makeContainer('Tabs');
   var c = figma.createComponent();
   c.name = 'Default';
   c.layoutMode = 'VERTICAL';
   c.primaryAxisSizingMode = 'AUTO';
   c.counterAxisSizingMode = 'FIXED';
-  c.resize(480, 100);
+  c.resize(W, 100);
+  c.paddingTop = 0; c.paddingBottom = 0;
+  c.paddingLeft = 0; c.paddingRight = 0;
   c.itemSpacing = 0;
   c.fills = [];
 
-  // Tab list
+  // Tab list — fixed width, horizontal
   var tabList = figma.createFrame();
-  autoLayout(tabList, 'HORIZONTAL', 0, 0, 0);
-  tabList.layoutSizingHorizontal = 'FILL';
+  tabList.layoutMode = 'HORIZONTAL';
+  tabList.primaryAxisSizingMode = 'FIXED';
+  tabList.counterAxisSizingMode = 'AUTO';
+  tabList.resize(W, 44);
+  tabList.paddingTop = 0; tabList.paddingBottom = 0;
+  tabList.paddingLeft = 0; tabList.paddingRight = 0;
+  tabList.itemSpacing = 0;
   tabList.fills = [];
   tabList.strokes = [{ type: 'SOLID', color: hexToRgb(COLORS.border), opacity: 1 }];
   tabList.strokeWeight = 2; tabList.strokeAlign = 'INSIDE';
 
-  for (var i = 0; i < tabs.length; i++) {
+  for (var i = 0; i < tabLabels.length; i++) {
     var tab = figma.createFrame();
-    autoLayout(tab, 'HORIZONTAL', 12, 16, 0);
+    tab.layoutMode = 'HORIZONTAL';
+    tab.primaryAxisSizingMode = 'AUTO';
+    tab.counterAxisSizingMode = 'AUTO';
+    tab.paddingTop = 12; tab.paddingBottom = 12;
+    tab.paddingLeft = 16; tab.paddingRight = 16;
+    tab.itemSpacing = 0;
     tab.fills = [];
     if (i === 0) {
       tab.strokes = [{ type: 'SOLID', color: hexToRgb(COLORS.actionPrimary), opacity: 1 }];
@@ -1038,22 +1051,29 @@ async function buildTabs(cv, fv) {
     var tabTxt = figma.createText();
     tabTxt.fontName = { family: 'Mulish', style: i === 0 ? 'Bold' : 'Regular' };
     tabTxt.fontSize = FONT.sm;
-    tabTxt.characters = tabs[i];
+    tabTxt.characters = tabLabels[i];
     tabTxt.fills = [{ type: 'SOLID', color: hexToRgb(i === 0 ? COLORS.actionPrimary : COLORS.textMuted), opacity: 1 }];
-    tab.appendChild(tabTxt); tabList.appendChild(tab);
+    tab.appendChild(tabTxt);
+    tabList.appendChild(tab);
   }
   c.appendChild(tabList);
 
-  // Panel
+  // Panel content — fixed width
   var panel = figma.createFrame();
-  autoLayout(panel, 'VERTICAL', 16, 0, 0);
-  panel.layoutSizingHorizontal = 'FILL';
+  panel.layoutMode = 'VERTICAL';
+  panel.primaryAxisSizingMode = 'AUTO';
+  panel.counterAxisSizingMode = 'FIXED';
+  panel.resize(W, 100);
+  panel.paddingTop = 16; panel.paddingBottom = 16;
+  panel.paddingLeft = 0; panel.paddingRight = 0;
+  panel.itemSpacing = 8;
   panel.fills = [];
   var panelTxt = figma.createText();
   panelTxt.fontName = { family: 'Mulish', style: 'Regular' };
   panelTxt.fontSize = FONT.sm;
-  panelTxt.characters = 'Resumo da carteira com posição atual e rentabilidade.';
+  panelTxt.characters = 'Resumo da carteira com posicao atual e rentabilidade.';
   panelTxt.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textMuted), opacity: 1 }];
+  panelTxt.textAutoResize = 'WIDTH_AND_HEIGHT';
   panel.appendChild(panelTxt);
   c.appendChild(panel);
 
@@ -1067,8 +1087,8 @@ async function buildTooltip(cv, fv) {
   await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
 
   var defs = [
-    { name: 'Top',    txt: 'Informação adicional' },
-    { name: 'Bottom', txt: 'Tooltip abaixo'       },
+    { name: 'Top',    txt: 'Informacao adicional' },
+    { name: 'Bottom', txt: 'Tooltip abaixo'      },
   ];
 
   var container = makeContainer('Tooltip');
@@ -1125,8 +1145,8 @@ async function buildBreadcrumb(cv, fv) {
   await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
 
   var defs = [
-    { name: 'Default', items: ['Início', 'Carteira', 'Tesouro Direto'] },
-    { name: 'Deep',    items: ['Início', 'Produtos', 'Renda Fixa', 'Tesouro IPCA+'] },
+    { name: 'Default', items: ['Inicio', 'Carteira', 'Tesouro Direto'] },
+    { name: 'Deep',    items: ['Inicio', 'Produtos', 'Renda Fixa', 'Tesouro IPCA+'] },
   ];
 
   var container = makeContainer('Breadcrumb');
