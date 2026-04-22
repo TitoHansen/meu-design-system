@@ -14,6 +14,7 @@ export { default as Table }      from './components/Table'
 export { default as Tabs }       from './components/Tabs'
 export { default as Tooltip }    from './components/Tooltip'
 export { default as Breadcrumb } from './components/Breadcrumb'
+export { default as IconCard }   from './components/IconCard'
 
 // Tipos de props
 export type { ButtonProps }   from './components/Button'
@@ -31,6 +32,7 @@ export type { TableProps, TableColumn } from './components/Table'
 export type { TabsProps, TabItem }      from './components/Tabs'
 export type { TooltipProps }     from './components/Tooltip'
 export type { BreadcrumbProps, BreadcrumbItem } from './components/Breadcrumb'
+export type { IconCardProps, IconCardVariant }   from './components/IconCard'
 
 // Tokens — fonte da verdade
 export { tokens, cssVars, tokens_legado } from './tokens'
