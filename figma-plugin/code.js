@@ -917,7 +917,7 @@ async function buildIconCard(cv, fv) {
     labelWrap.layoutMode = 'HORIZONTAL';
     labelWrap.primaryAxisSizingMode = 'AUTO';
     labelWrap.counterAxisSizingMode = 'AUTO';
-    labelWrap.primaryAxisAlignItems = 'CENTER';
+    labelWrap.primaryAxisAlignItems = 'MIN';
     labelWrap.counterAxisAlignItems = 'CENTER';
     labelWrap.fills = [];
 
