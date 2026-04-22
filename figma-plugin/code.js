@@ -848,8 +848,8 @@ async function buildModal(cv, fv) {
   await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
 
   var defs = [
-    { name: 'Default', title: 'Confirmar operação', body: 'Deseja prosseguir com esta operação?\nEla não poderá ser desfeita.' },
-    { name: 'Small',   title: 'Atenção',             body: 'Modal compacto para confirmações rápidas.' },
+    { name: 'Default', title: 'Confirmar operacao', body: 'Deseja prosseguir com esta operacao? Ela nao podera ser desfeita.' },
+    { name: 'Small',   title: 'Atencao',            body: 'Modal compacto para confirmacoes rapidas.' },
   ];
 
   var container = makeContainer('Modal');
@@ -863,8 +863,7 @@ async function buildModal(cv, fv) {
     c.name = d.name;
     c.layoutMode = 'VERTICAL';
     c.primaryAxisSizingMode = 'AUTO';
-    c.counterAxisSizingMode = 'FIXED';
-    c.resize(480, 100);
+    c.counterAxisSizingMode = 'AUTO';
     c.paddingTop = 0; c.paddingBottom = 0;
     c.paddingLeft = 0; c.paddingRight = 0;
     c.itemSpacing = 0;
@@ -874,35 +873,56 @@ async function buildModal(cv, fv) {
     c.strokeWeight = 1; c.strokeAlign = 'INSIDE';
     c.effects = SHADOWS.lg;
 
-    // Header
+    // Header — frame horizontal, padding 16/24, título + ×
     var header = figma.createFrame();
-    autoLayout(header, 'HORIZONTAL', 16, 24, 8);
-    header.layoutSizingHorizontal = 'FILL';
+    header.layoutMode = 'HORIZONTAL';
+    header.primaryAxisSizingMode = 'FIXED';
+    header.counterAxisSizingMode = 'AUTO';
+    header.resize(480, 56);
+    header.paddingTop = 16; header.paddingBottom = 16;
+    header.paddingLeft = 24; header.paddingRight = 24;
+    header.itemSpacing = 8;
     header.primaryAxisAlignItems = 'SPACE_BETWEEN';
     header.counterAxisAlignItems = 'CENTER';
     header.fills = [];
     header.strokes = [{ type: 'SOLID', color: hexToRgb(COLORS.border), opacity: 1 }];
     header.strokeWeight = 1; header.strokeAlign = 'INSIDE';
+
     var hTitle = figma.createText();
     hTitle.fontName = { family: 'Mulish', style: 'Bold' };
-    hTitle.fontSize = FONT.lg; hTitle.characters = d.title;
+    hTitle.fontSize = FONT.lg;
+    hTitle.characters = d.title;
     hTitle.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textDark), opacity: 1 }];
+    hTitle.layoutGrow = 1;
+
     var hClose = figma.createText();
     hClose.fontName = { family: 'Mulish', style: 'Bold' };
-    hClose.fontSize = FONT.lg; hClose.characters = '×';
+    hClose.fontSize = FONT.lg;
+    hClose.characters = 'x';
     hClose.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textMuted), opacity: 1 }];
-    header.appendChild(hTitle); header.appendChild(hClose);
+
+    header.appendChild(hTitle);
+    header.appendChild(hClose);
     c.appendChild(header);
 
-    // Body
+    // Body — frame vertical, padding 24, texto
     var body = figma.createFrame();
-    autoLayout(body, 'VERTICAL', 24, 24, 8);
-    body.layoutSizingHorizontal = 'FILL';
+    body.layoutMode = 'VERTICAL';
+    body.primaryAxisSizingMode = 'AUTO';
+    body.counterAxisSizingMode = 'FIXED';
+    body.resize(480, 100);
+    body.paddingTop = 24; body.paddingBottom = 24;
+    body.paddingLeft = 24; body.paddingRight = 24;
+    body.itemSpacing = 12;
     body.fills = [];
+
     var bodyTxt = figma.createText();
     bodyTxt.fontName = { family: 'Mulish', style: 'Regular' };
-    bodyTxt.fontSize = FONT.sm; bodyTxt.characters = d.body;
+    bodyTxt.fontSize = FONT.sm;
+    bodyTxt.characters = d.body;
     bodyTxt.fills = [{ type: 'SOLID', color: hexToRgb(COLORS.textMuted), opacity: 1 }];
+    bodyTxt.textAutoResize = 'WIDTH_AND_HEIGHT';
+
     body.appendChild(bodyTxt);
     c.appendChild(body);
 
