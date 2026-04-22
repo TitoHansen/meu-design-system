@@ -1332,6 +1332,9 @@ figma.ui.onmessage = async function(msg) {
           { name: NS + '/caption', size: FONT.caption, style: 'Regular',   lh: 150 },
           { name: NS + '/mono',    size: FONT.mono,    style: 'Regular',   lh: 150 },
         ];
+        // Load all fonts that may exist on pre-existing styles (Inter is Figma's default)
+        await figma.loadFontAsync({ family: 'Inter', style: 'Regular' });
+        await figma.loadFontAsync({ family: 'Inter', style: 'Bold' });
         await figma.loadFontAsync({ family: 'Mulish', style: 'Regular' });
         await figma.loadFontAsync({ family: 'Mulish', style: 'Bold' });
         await figma.loadFontAsync({ family: 'Mulish', style: 'SemiBold' });
@@ -1345,8 +1348,9 @@ figma.ui.onmessage = async function(msg) {
           try {
             var ts = textMap[fd.name] || figma.createTextStyle();
             ts.name       = fd.name;
-            ts.fontSize   = fd.size;
+            // Set fontName before fontSize so Figma doesn't need the old font loaded
             ts.fontName   = { family: 'Mulish', style: fd.style };
+            ts.fontSize   = fd.size;
             ts.lineHeight = { unit: 'PERCENT', value: fd.lh };
             results.texts++;
           } catch(e) { results.errors.push('TextStyle ' + fd.name + ': ' + String(e)); }
