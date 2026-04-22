@@ -7,8 +7,8 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
     font-size: 12px;
-    background: #1a1d23;
-    color: #e0e0e0;
+    background: #ffffff;
+    color: #111827;
     padding: 16px;
     display: flex;
     flex-direction: column;
@@ -18,176 +18,205 @@
 
   .logo-row {
     display: flex; align-items: center; gap: 8px;
-    padding-bottom: 12px; border-bottom: 1px solid #2a2f3a;
+    padding-bottom: 12px; border-bottom: 1px solid #E8EAED;
   }
   .logo-dot {
-    width: 30px; height: 30px;
-    background: linear-gradient(135deg, #4f46e5, #6366f1);
-    border-radius: 7px;
+    width: 28px; height: 28px;
+    background: #2C3D73;
+    border-radius: 6px;
     display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 14px; color: #fff; flex-shrink: 0;
+    font-weight: 700; font-size: 13px; color: #fff; flex-shrink: 0;
   }
-  .logo-title { font-size: 13px; font-weight: 700; color: #fff; }
-  .logo-sub   { font-size: 10px; color: #666; margin-top: 1px; }
+  .logo-title { font-size: 12px; font-weight: 700; color: #111827; }
+  .logo-sub   { font-size: 10px; color: #9CA3AF; margin-top: 1px; }
 
-  .tabs { display: flex; gap: 0; border-bottom: 1px solid #2a2f3a; }
+  .tabs { display: flex; gap: 0; border-bottom: 1px solid #E8EAED; }
   .tab {
-    flex: 1; padding: 8px 12px; background: none; border: none;
-    border-bottom: 2px solid transparent; color: #666;
-    font-size: 12px; font-weight: 600; cursor: pointer;
+    flex: 1; padding: 8px 10px; background: none; border: none;
+    border-bottom: 2px solid transparent; color: #9CA3AF;
+    font-size: 11px; font-weight: 600; cursor: pointer;
     font-family: inherit; transition: all .15s; margin-bottom: -1px;
   }
-  .tab:hover { color: #bbb; }
-  .tab.active { color: #818cf8; border-bottom-color: #6366f1; }
+  .tab:hover { color: #374151; }
+  .tab.active { color: #2C3D73; border-bottom-color: #2C3D73; }
 
-  .panel { display: none; flex-direction: column; gap: 12px; }
+  .panel { display: none; flex-direction: column; gap: 10px; }
   .panel.active { display: flex; }
 
   .token-info-card {
-    background: transparent; border: 1px solid #2a2f3a; border-radius: 8px; padding: 12px;
-    display: flex; flex-direction: column; gap: 8px;
+    background: #F7F8FA; border: 1px solid #E8EAED; border-radius: 8px; padding: 12px;
+    display: flex; flex-direction: column; gap: 7px;
   }
   .token-info-row {
     display: flex; justify-content: space-between; align-items: center;
   }
-  .token-info-label { font-size: 11px; color: #888; }
-  .token-info-value { font-size: 11px; font-weight: 700; color: #fff; }
+  .token-info-label { font-size: 11px; color: #9CA3AF; }
+  .token-info-value { font-size: 11px; font-weight: 600; color: #111827; }
 
   .mode-toggle-row {
     display: flex; align-items: center; gap: 8px;
-    border: 1px solid #2a2f3a; border-radius: 8px; padding: 10px 12px;
+    border: 1px solid #E8EAED; border-radius: 8px; padding: 9px 12px;
+    background: #F7F8FA;
   }
-  .mode-toggle-label { font-size: 11px; color: #aaa; flex: 1; }
-  .mode-btns { display: flex; gap: 4px; }
+  .mode-toggle-label { font-size: 11px; color: #6B7280; flex: 1; }
+  .mode-btns { display: flex; gap: 3px; }
   .mode-btn {
-    padding: 4px 12px; border-radius: 5px; border: 1px solid #2a2f3a;
-    background: none; color: #666; font-size: 11px; font-weight: 600;
+    padding: 3px 10px; border-radius: 4px; border: 1px solid #E8EAED;
+    background: #fff; color: #6B7280; font-size: 11px; font-weight: 600;
     cursor: pointer; font-family: inherit; transition: all .15s;
   }
-  .mode-btn.active { background: #4f46e5; border-color: #6366f1; color: #fff; }
-  .mode-btn:hover:not(.active) { border-color: #444; color: #bbb; }
+  .mode-btn.active { background: #2C3D73; border-color: #2C3D73; color: #fff; }
+  .mode-btn:hover:not(.active) { border-color: #D1D5DB; color: #374151; }
 
-  .sync-options { display: flex; flex-direction: column; gap: 6px; }
+  .sync-options { display: flex; flex-direction: column; gap: 5px; }
+  .sync-options > label:first-child { font-size: 11px; font-weight: 600; color: #6B7280; }
   .sync-opt {
     display: flex; align-items: center; gap: 8px;
-    border: 1px solid #2a2f3a; border-radius: 7px; padding: 9px 12px;
-    cursor: pointer; transition: border-color .15s;
+    border: 1px solid #E8EAED; border-radius: 7px; padding: 8px 12px;
+    cursor: pointer; transition: border-color .15s; background: #fff;
   }
-  .sync-opt:hover { border-color: #6366f1; }
-  .sync-opt input[type="checkbox"] { accent-color: #6366f1; width: 13px; height: 13px; cursor: pointer; }
-  .sync-opt-label { font-size: 11px; color: #ccc; flex: 1; }
-  .sync-opt-count { font-size: 10px; color: #555; background: #2a2f3a; border-radius: 10px; padding: 1px 8px; }
+  .sync-opt:hover { border-color: #2C3D73; }
+  .sync-opt input[type="checkbox"] { accent-color: #2C3D73; width: 13px; height: 13px; cursor: pointer; }
+  .sync-opt-label { font-size: 11px; color: #374151; flex: 1; }
+  .sync-opt-count { font-size: 10px; color: #9CA3AF; background: #F3F4F6; border-radius: 10px; padding: 1px 8px; }
 
-  label { font-size: 11px; font-weight: 600; color: #888; margin-bottom: 4px; display: block; }
-  .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  label { font-size: 11px; font-weight: 600; color: #6B7280; margin-bottom: 4px; display: block; }
+  .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
   .comp-card {
-    background: transparent; border: 1px solid #2a2f3a; border-radius: 7px;
-    padding: 9px 10px; cursor: pointer; transition: all .15s; user-select: none;
-    display: flex; align-items: center; gap: 8px;
+    background: #fff; border: 1px solid #E8EAED; border-radius: 7px;
+    padding: 8px 10px; cursor: pointer; transition: all .15s; user-select: none;
+    display: flex; align-items: center; gap: 6px;
   }
-  .comp-card:hover   { border-color: #6366f1; background: #1e1b38; }
-  .comp-card.selected{ border-color: #6366f1; background: #1c1a35; }
-  .comp-icon  { font-size: 18px; flex-shrink: 0; }
-  .comp-name  { font-size: 11px; font-weight: 700; color: #fff; }
-  .comp-meta  { font-size: 9px; color: #555; margin-top: 1px; line-height: 1.3; }
+  .comp-card:hover   { border-color: #2C3D73; }
+  .comp-card.selected{ border-color: #2C3D73; background: #F0F3FB; }
+
+  .comp-name  { font-size: 11px; font-weight: 700; color: #111827; }
+  .comp-meta  { font-size: 9px; color: #9CA3AF; margin-top: 1px; line-height: 1.3; }
   .comp-check {
-    margin-left: auto; width: 15px; height: 15px;
-    border: 1.5px solid #3a3f4a; border-radius: 3px; flex-shrink: 0;
+    margin-left: auto; width: 14px; height: 14px;
+    border: 1.5px solid #D1D5DB; border-radius: 3px; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
     font-size: 9px; transition: all .15s;
   }
-  .comp-card.selected .comp-check { background: #4f46e5; border-color: #6366f1; color: #fff; }
+  .comp-card.selected .comp-check { background: #2C3D73; border-color: #2C3D73; color: #fff; }
 
   .select-all-row {
-    display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;
   }
   .link-btn {
-    background: none; border: none; color: #818cf8; font-size: 11px;
+    background: none; border: none; color: #2C3D73; font-size: 11px;
     cursor: pointer; font-family: inherit; padding: 0;
   }
   .link-btn:hover { text-decoration: underline; }
 
   .section-label {
-    font-size: 9px; font-weight: 700; color: #444; text-transform: uppercase;
-    letter-spacing: .06em; margin-top: 8px; margin-bottom: 4px;
+    font-size: 9px; font-weight: 700; color: #D1D5DB; text-transform: uppercase;
+    letter-spacing: .07em; margin-top: 6px; margin-bottom: 4px;
   }
 
-  .btn-row { display: flex; gap: 8px; }
+  .btn-row { display: flex; gap: 6px; }
   button.primary {
-    flex: 1; padding: 10px 14px; background: #4f46e5; color: #fff;
+    flex: 1; padding: 9px 14px; background: #2C3D73; color: #fff;
     border: none; border-radius: 6px; font-size: 12px; font-weight: 700;
-    cursor: pointer; transition: opacity .15s; font-family: inherit;
+    cursor: pointer; transition: background .15s; font-family: inherit;
   }
-  button.primary:hover { background: #6366f1; }
+  button.primary:hover { background: #4A5FA3; }
   button.secondary {
-    padding: 10px 14px; background: none; color: #888;
-    border: 1px solid #2a2f3a; border-radius: 6px; font-size: 12px;
+    padding: 9px 14px; background: none; color: #6B7280;
+    border: 1px solid #E8EAED; border-radius: 6px; font-size: 12px;
     font-weight: 600; cursor: pointer; font-family: inherit;
   }
-  button.secondary:hover { color: #ccc; border-color: #555; }
+  button.secondary:hover { color: #374151; border-color: #D1D5DB; }
 
   .status {
     padding: 10px 12px; border-radius: 6px; font-size: 11px;
     line-height: 1.7; display: none; white-space: pre-wrap;
   }
   .status.show    { display: block; }
-  .status.success { background: rgba(22,163,74,.08);  border: 1px solid rgba(22,163,74,.2);  color: #86efac; }
-  .status.error   { background: rgba(225,29,72,.08);  border: 1px solid rgba(225,29,72,.2);  color: #fda4af; }
-  .status.loading { background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.2); color: #a5b4fc; }
+  .status.success { background: #F0FDF4; border: 1px solid #BBF7D0; color: #15803D; }
+  .status.error   { background: #FFF7ED; border: 1px solid #FED7AA; color: #C2410C; }
+  .status.loading { background: #EFF6FF; border: 1px solid #BFDBFE; color: #1D4ED8; }
 
-  .tip { font-size: 10px; color: #444; line-height: 1.5; }
-  .tip strong { color: #666; }
+  .tip { font-size: 10px; color: #9CA3AF; line-height: 1.5; }
+  .tip strong { color: #6B7280; }
 
-  .divider { border: none; border-top: 1px solid #2a2f3a; margin: 2px 0; }
+  .divider { border: none; border-top: 1px solid #E8EAED; margin: 2px 0; }
 
   .count-badge {
-    font-size: 9px; background: #4f46e5; color: #fff; border-radius: 10px;
+    font-size: 9px; background: #E8EAED; color: #6B7280; border-radius: 10px;
     padding: 1px 6px; margin-left: 4px; font-weight: 700;
   }
 
   .preview-swatches { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
-  .swatch { width: 20px; height: 20px; border-radius: 4px; border: 1px solid rgba(255,255,255,.08); }
+  .swatch { width: 18px; height: 18px; border-radius: 4px; border: 1px solid rgba(0,0,0,.08); }
 
-  /* ── Buscar ── */
   .search-box {
     display: flex; gap: 6px; align-items: center;
-    background: #12151c; border: 1px solid #2a2f3a; border-radius: 7px; padding: 8px 12px;
+    background: #F7F8FA; border: 1px solid #E8EAED; border-radius: 7px; padding: 8px 12px;
   }
   .search-box input {
     flex: 1; background: none; border: none; outline: none;
-    font-family: inherit; font-size: 12px; color: #e0e0e0;
+    font-family: inherit; font-size: 12px; color: #111827;
   }
-  .search-box input::placeholder { color: #444; }
-  .search-icon { font-size: 14px; color: #555; }
+  .search-box input::placeholder { color: #C4C9D4; }
+  .search-icon { font-size: 13px; color: #C4C9D4; }
 
+  /* ── Found ── */
   .guide-found {
-    border: 1px solid rgba(99,102,241,.4); border-radius: 8px; padding: 12px;
-    background: rgba(99,102,241,.06); display: flex; flex-direction: column; gap: 10px;
+    border: 1px solid #BFDBFE; border-radius: 8px; padding: 12px;
+    background: #EFF6FF; display: flex; flex-direction: column; gap: 10px;
   }
   .guide-found-header { display: flex; align-items: center; gap: 8px; }
-  .guide-found-icon { font-size: 22px; }
-  .guide-found-name { font-size: 13px; font-weight: 700; color: #fff; }
-  .guide-found-tag { font-size: 9px; background: #4f46e5; color: #fff; border-radius: 10px; padding: 1px 7px; font-weight: 700; }
+  .guide-found-name { font-size: 13px; font-weight: 700; color: #111827; }
+  .guide-found-tag { font-size: 9px; background: #2C3D73; color: #fff; border-radius: 10px; padding: 1px 7px; font-weight: 700; }
 
-  .guide-missing {
-    border: 1px solid rgba(234,179,8,.25); border-radius: 8px; padding: 12px;
-    background: rgba(234,179,8,.04); display: flex; flex-direction: column; gap: 10px;
+  /* ── Missing ── */
+  .guide-empty { text-align: center; padding: 24px 0; color: #C4C9D4; font-size: 11px; }
+  .missing-wrap { display: flex; flex-direction: column; gap: 7px; }
+  .missing-hdr { background: #FFF7ED; border: 1px solid #FED7AA; border-radius: 8px; padding: 10px 12px; }
+  .missing-title { font-size: 12px; font-weight: 700; color: #92400E; }
+  .missing-sub { font-size: 10px; color: #B45309; margin-top: 2px; }
+
+  /* ── Info blocks ── */
+  .info-block { background: #fff; border: 1px solid #E8EAED; border-radius: 8px; overflow: hidden; }
+  .info-block-title {
+    font-size: 9px; font-weight: 700; color: #9CA3AF; text-transform: uppercase;
+    letter-spacing: .07em; padding: 7px 12px 6px; border-bottom: 1px solid #F3F4F6;
   }
-  .guide-missing-header { display: flex; align-items: center; gap: 8px; }
-  .guide-missing-icon { font-size: 20px; }
-  .guide-missing-title { font-size: 12px; font-weight: 700; color: #fbbf24; }
-  .guide-missing-sub { font-size: 10px; color: #888; }
-
-  .guide-rules { display: flex; flex-direction: column; gap: 6px; }
-  .guide-rule {
-    background: #12151c; border: 1px solid #2a2f3a; border-radius: 6px; padding: 8px 10px;
+  .info-block-body { padding: 10px 12px; }
+  .code-block {
+    background: #F7F8FA; border-radius: 5px; padding: 8px 10px;
+    font-family: 'DM Mono', 'Courier New', monospace; font-size: 10px;
+    color: #374151; line-height: 1.8; white-space: pre; overflow-x: auto;
   }
-  .guide-rule-title { font-size: 10px; font-weight: 700; color: #818cf8; margin-bottom: 4px; text-transform: uppercase; letter-spacing: .05em; }
-  .guide-rule-body { font-size: 10px; color: #aaa; line-height: 1.6; }
-  .guide-rule-body code { background: #1e2130; color: #a5b4fc; padding: 1px 5px; border-radius: 3px; font-family: 'DM Mono', monospace; font-size: 9px; }
+  .ck { color: #2C3D73; } .cv { color: #15803D; }
 
-  .guide-empty { text-align: center; padding: 24px 0; color: #444; font-size: 11px; }
-  .guide-suggestion { font-size: 10px; color: #555; margin-top: 2px; }
+  /* ── Wireframe ── */
+  .wf-wrap {
+    background: #F7F8FA; border: 1.5px dashed #D1D5DB; border-radius: 8px;
+    padding: 16px; display: flex; align-items: center; justify-content: center; min-height: 80px;
+  }
+  .wf-btn { background: #D1D5DB; border-radius: 6px; height: 32px; padding: 0 16px; display: inline-flex; align-items: center; font-size: 10px; color: #9CA3AF; font-weight: 600; }
+  .wf-btn-o { background: none; border: 1.5px solid #D1D5DB; border-radius: 6px; height: 32px; padding: 0 16px; display: inline-flex; align-items: center; font-size: 10px; color: #C4C9D4; font-weight: 600; }
+  .wf-input { border: 1.5px solid #D1D5DB; border-radius: 6px; height: 36px; padding: 0 12px; display: flex; align-items: center; font-size: 10px; color: #C4C9D4; width: 100%; }
+  .wf-lbl { height: 9px; background: #E5E7EB; border-radius: 3px; width: 56px; margin-bottom: 6px; }
+  .wf-ln { height: 8px; background: #E5E7EB; border-radius: 3px; margin-bottom: 5px; }
+  .wf-card { background: #fff; border: 1.5px solid #D1D5DB; border-radius: 8px; padding: 14px; width: 100%; }
+  .wf-row { display: flex; gap: 8px; align-items: center; }
+  .wf-col { display: flex; flex-direction: column; width: 100%; }
+  .wf-badge { background: #E5E7EB; border-radius: 20px; height: 18px; width: 48px; flex-shrink: 0; }
+  .wf-avatar { background: #D1D5DB; border-radius: 50%; width: 32px; height: 32px; flex-shrink: 0; }
+  .wf-icon { background: #E5E7EB; border-radius: 4px; width: 20px; height: 20px; flex-shrink: 0; }
+  .wf-sep { border: none; border-top: 1px solid #E5E7EB; margin: 8px 0; }
+  .wf-tr { display: flex; gap: 0; border-bottom: 1px solid #E5E7EB; padding: 6px 0; }
+  .wf-td { flex: 1; height: 8px; background: #E5E7EB; border-radius: 2px; margin: 0 4px; }
+  .wf-td.h { background: #D1D5DB; }
+
+  /* ── Accessibility ── */
+  .a11y-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 7px; }
+  .a11y-chip { font-size: 9px; background: #F0F3FB; color: #2C3D73; border: 1px solid #D6DEF5; border-radius: 4px; padding: 2px 7px; font-weight: 600; }
+  .a11y-chip.g { background: #F0FDF4; color: #15803D; border-color: #BBF7D0; }
+  .a11y-note { font-size: 10px; color: #6B7280; line-height: 1.6; }
 </style>
 </head>
 <body>
@@ -201,9 +230,9 @@
   </div>
 
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('tokens', this)">🎨 Tokens</button>
-    <button class="tab"        onclick="switchTab('components', this)">🧩 Componentes <span class="count-badge">15</span></button>
-    <button class="tab"        onclick="switchTab('buscar', this)">🔍 Buscar</button>
+    <button class="tab active" onclick="switchTab('tokens', this)">Tokens</button>
+    <button class="tab"        onclick="switchTab('components', this)">Componentes <span class="count-badge">16</span></button>
+    <button class="tab"        onclick="switchTab('buscar', this)">Buscar</button>
   </div>
 
   <!-- ══════════ Panel: Tokens ══════════ -->
@@ -239,29 +268,29 @@
     </div>
 
     <div class="sync-options">
-      <label style="margin-bottom:0">O que sincronizar:</label>
+      <label style="margin-bottom:2px">O que sincronizar:</label>
       <label class="sync-opt">
         <input type="checkbox" id="opt-paint-styles" checked>
-        <span class="sync-opt-label">🎨 Paint Styles</span>
+        <span class="sync-opt-label">Paint Styles</span>
         <span class="sync-opt-count" id="cnt-paint">13</span>
       </label>
       <label class="sync-opt">
         <input type="checkbox" id="opt-variables" checked>
-        <span class="sync-opt-label">⚡ Variables (cor + spacing + radius)</span>
+        <span class="sync-opt-label">Variables (cor + spacing + radius)</span>
         <span class="sync-opt-count" id="cnt-vars">22</span>
       </label>
       <label class="sync-opt">
         <input type="checkbox" id="opt-text-styles" checked>
-        <span class="sync-opt-label">✏️ Text Styles</span>
+        <span class="sync-opt-label">Text Styles</span>
         <span class="sync-opt-count">5</span>
       </label>
     </div>
 
     <div class="btn-row">
-      <button class="primary" onclick="syncTokens()">⚡ Sincronizar Tokens</button>
+      <button class="primary" onclick="syncTokens()">Sincronizar Tokens</button>
     </div>
     <div class="status" id="token-status"></div>
-    <p class="tip">💡 Tokens espelhados de <strong>src/tokens.ts</strong>. Sincronize antes de criar componentes.</p>
+    <p class="tip">Tokens espelhados de <strong>src/tokens.ts</strong>. Sincronize antes de criar componentes.</p>
   </div>
 
   <!-- ══════════ Panel: Componentes ══════════ -->
@@ -280,7 +309,6 @@
       <div class="section-label">Componentes</div>
       <div class="comp-grid">
         <div class="comp-card selected" data-comp="button" onclick="toggleComp(this)">
-          <div class="comp-icon">🔘</div>
           <div class="comp-info">
             <div class="comp-name">Button</div>
             <div class="comp-meta">Brand · Danger · Success · Neutral</div>
@@ -288,7 +316,6 @@
           <div class="comp-check">✓</div>
         </div>
         <div class="comp-card selected" data-comp="badge" onclick="toggleComp(this)">
-          <div class="comp-icon">🏷</div>
           <div class="comp-info">
             <div class="comp-name">Badge</div>
             <div class="comp-meta">Brand · Danger · Success · Neutral</div>
@@ -296,7 +323,6 @@
           <div class="comp-check">✓</div>
         </div>
         <div class="comp-card selected" data-comp="card" onclick="toggleComp(this)">
-          <div class="comp-icon">🃏</div>
           <div class="comp-info">
             <div class="comp-name">Card</div>
             <div class="comp-meta">Default · Danger · Sem Badge</div>
@@ -304,7 +330,6 @@
           <div class="comp-check">✓</div>
         </div>
         <div class="comp-card selected" data-comp="input" onclick="toggleComp(this)">
-          <div class="comp-icon">📝</div>
           <div class="comp-info">
             <div class="comp-name">Input</div>
             <div class="comp-meta">Default · Password · Disabled</div>
@@ -312,7 +337,6 @@
           <div class="comp-check">✓</div>
         </div>
         <div class="comp-card selected" data-comp="select" onclick="toggleComp(this)">
-          <div class="comp-icon">🔽</div>
           <div class="comp-info">
             <div class="comp-name">Select</div>
             <div class="comp-meta">Default · Selected · Disabled</div>
@@ -320,7 +344,6 @@
           <div class="comp-check">✓</div>
         </div>
         <div class="comp-card selected" data-comp="spinner" onclick="toggleComp(this)">
-          <div class="comp-icon">⏳</div>
           <div class="comp-info">
             <div class="comp-name">Spinner</div>
             <div class="comp-meta">Brand · White · Neutral</div>
@@ -328,7 +351,6 @@
           <div class="comp-check">✓</div>
         </div>
         <div class="comp-card selected" data-comp="checkbox" onclick="toggleComp(this)">
-          <div class="comp-icon">☑️</div>
           <div class="comp-info">
             <div class="comp-name">Checkbox</div>
             <div class="comp-meta">Unchecked · Checked · Disabled</div>
@@ -336,7 +358,6 @@
           <div class="comp-check">✓</div>
         </div>
         <div class="comp-card selected" data-comp="toggle" onclick="toggleComp(this)">
-          <div class="comp-icon">🔛</div>
           <div class="comp-info">
             <div class="comp-name">Toggle</div>
             <div class="comp-meta">Off · On · Disabled</div>
@@ -344,7 +365,6 @@
           <div class="comp-check">✓</div>
         </div>
         <div class="comp-card selected" data-comp="toast" onclick="toggleComp(this)">
-          <div class="comp-icon">🔔</div>
           <div class="comp-info">
             <div class="comp-name">Toast</div>
             <div class="comp-meta">Success · Error · Warning · Info</div>
@@ -352,7 +372,6 @@
           <div class="comp-check">✓</div>
         </div>
         <div class="comp-card selected" data-comp="avatar" onclick="toggleComp(this)">
-          <div class="comp-icon">👤</div>
           <div class="comp-info">
             <div class="comp-name">Avatar</div>
             <div class="comp-meta">Initials · Brand · Success · Neutral</div>
@@ -360,7 +379,6 @@
           <div class="comp-check">✓</div>
         </div>
         <div class="comp-card selected" data-comp="modal" onclick="toggleComp(this)">
-          <div class="comp-icon">🪟</div>
           <div class="comp-info">
             <div class="comp-name">Modal</div>
             <div class="comp-meta">Default · Small</div>
@@ -368,7 +386,6 @@
           <div class="comp-check">✓</div>
         </div>
         <div class="comp-card selected" data-comp="table" onclick="toggleComp(this)">
-          <div class="comp-icon">📊</div>
           <div class="comp-info">
             <div class="comp-name">Table</div>
             <div class="comp-meta">Header · Rows · Striped</div>
@@ -376,7 +393,6 @@
           <div class="comp-check">✓</div>
         </div>
         <div class="comp-card selected" data-comp="tabs" onclick="toggleComp(this)">
-          <div class="comp-icon">🗂️</div>
           <div class="comp-info">
             <div class="comp-name">Tabs</div>
             <div class="comp-meta">Active · Inactive · Panel</div>
@@ -384,7 +400,6 @@
           <div class="comp-check">✓</div>
         </div>
         <div class="comp-card selected" data-comp="tooltip" onclick="toggleComp(this)">
-          <div class="comp-icon">💬</div>
           <div class="comp-info">
             <div class="comp-name">Tooltip</div>
             <div class="comp-meta">Top · Bottom · Left · Right</div>
@@ -392,16 +407,13 @@
           <div class="comp-check">✓</div>
         </div>
         <div class="comp-card selected" data-comp="breadcrumb" onclick="toggleComp(this)">
-          <div class="comp-icon">🧭</div>
           <div class="comp-info">
             <div class="comp-name">Breadcrumb</div>
             <div class="comp-meta">Default · Deep · Separador</div>
           </div>
           <div class="comp-check">✓</div>
         </div>
-
         <div class="comp-card selected" data-comp="iconcard" onclick="toggleComp(this)">
-          <div class="comp-icon">🃏</div>
           <div class="comp-info">
             <div class="comp-name">IconCard</div>
             <div class="comp-meta">Brand · Success · Warning · Neutral</div>
@@ -413,17 +425,17 @@
 
     <hr class="divider">
     <div class="btn-row">
-      <button class="primary" onclick="buildComponents()">🧩 Criar no Figma</button>
+      <button class="primary" onclick="buildComponents()">Criar no Figma</button>
       <button class="secondary" onclick="switchTab('tokens', document.querySelector('.tab'))">← Tokens</button>
     </div>
     <div class="status" id="comp-status"></div>
-    <p class="tip">💡 Sincronize os tokens primeiro para que os componentes fiquem vinculados às Variables.</p>
+    <p class="tip">Sincronize os tokens primeiro para que os componentes fiquem vinculados às Variables.</p>
   </div>
 
   <!-- ══════════ Panel: Buscar ══════════ -->
   <div class="panel" id="panel-buscar">
     <div class="search-box">
-      <span class="search-icon">🔍</span>
+      <span class="search-icon">⌕</span>
       <input id="search-input" type="text" placeholder="Ex: modal, tabela, tooltip…" oninput="onSearch(this.value)" autocomplete="off" />
     </div>
     <div id="search-result">
@@ -432,32 +444,23 @@
   </div>
 
 <script>
-  // ── Tokens (espelho de src/tokens.ts) ──────────────────────────
-  // Estrutura: cores no nível raiz → varName = 'color/' + key
-  //            spacing e radius agrupados → varName = 'spacing/xs', 'radius/sm', etc.
-  // Tokens v2.0.0 — espelho de src/tokens.ts
-  // Sistema de cores baseado na bandeira do Brasil (Azul=Ação, Verde=Identidade)
   var TOKENS_LIGHT = {
-    // Primitivos Blue
     'blue-900':   { value: '#1C274D', type: 'color' },
     'blue-700':   { value: '#2C3D73', type: 'color' },
     'blue-500':   { value: '#4A5FA3', type: 'color' },
     'blue-300':   { value: '#7F93D9', type: 'color' },
     'blue-100':   { value: '#D6DEF5', type: 'color' },
-    // Primitivos Green
     'green-900':  { value: '#174B1F', type: 'color' },
     'green-700':  { value: '#24732F', type: 'color' },
     'green-500':  { value: '#3FAF4F', type: 'color' },
     'green-300':  { value: '#7DDB8A', type: 'color' },
     'green-100':  { value: '#D9F5DD', type: 'color' },
-    // Primitivos Neutral
     'neutral-900':{ value: '#08090D', type: 'color' },
     'neutral-800':{ value: '#0F1117', type: 'color' },
     'neutral-700':{ value: '#092640', type: 'color' },
     'neutral-500':{ value: '#3A3F4B', type: 'color' },
     'neutral-300':{ value: '#8C92A3', type: 'color' },
     'neutral-100':{ value: '#F2F2F2', type: 'color' },
-    // Semânticos
     actionPrimary:  { value: '#2C3D73', type: 'color' },
     actionHover:    { value: '#4A5FA3', type: 'color' },
     brandGreen:     { value: '#24732F', type: 'color' },
@@ -490,16 +493,11 @@
     },
   };
 
-  // Sistema dark-first — os tokens de cor são os mesmos (dark por padrão)
-  // Spacing e radius são idênticos em ambos os modos
   var TOKENS_DARK = TOKENS_LIGHT;
-
-  // ── UI State ────────────────────────────────────────────────────
   var syncMode = 'both';
 
-  // Preview de swatches
   (function() {
-    var keys = ['brand','brandDark','danger','success','neutral','text','surface','surfaceLight','border','borderInput'];
+    var keys = ['actionPrimary','actionHover','brandGreen','success','error','warning','bgPrimary','surface','border','textSecondary'];
     var el = document.getElementById('swatch-preview');
     keys.forEach(function(key) {
       var tok = TOKENS_LIGHT[key];
@@ -511,7 +509,7 @@
       el.appendChild(d);
     });
     var colorCount = Object.keys(TOKENS_LIGHT).filter(function(k){ return TOKENS_LIGHT[k] && TOKENS_LIGHT[k].type === 'color'; }).length;
-    document.getElementById('count-colors').textContent = colorCount + ' tokens (light) / ' + colorCount + ' (dark)';
+    document.getElementById('count-colors').textContent = colorCount + ' tokens';
   })();
 
   function setMode(m) {
@@ -545,7 +543,7 @@
     var doPaint = document.getElementById('opt-paint-styles').checked;
     var doVars  = document.getElementById('opt-variables').checked;
     var doText  = document.getElementById('opt-text-styles').checked;
-    showStatus('token-status', '⏳ Sincronizando tokens…', 'loading');
+    showStatus('token-status', 'Sincronizando tokens…', 'loading');
     parent.postMessage({ pluginMessage: {
       type: 'sync-tokens-v2',
       mode: syncMode,
@@ -558,68 +556,189 @@
   function buildComponents() {
     var selected = Array.from(document.querySelectorAll('.comp-card.selected')).map(function(c){ return c.dataset.comp; });
     if (!selected.length) {
-      showStatus('comp-status', '⚠️ Selecione pelo menos um componente.', 'error');
+      showStatus('comp-status', 'Selecione pelo menos um componente.', 'error');
       return;
     }
-    showStatus('comp-status', '⏳ Criando ' + selected.length + ' componente(s) no Figma…', 'loading');
+    showStatus('comp-status', 'Criando ' + selected.length + ' componente(s) no Figma…', 'loading');
     parent.postMessage({ pluginMessage: { type: 'build-components', selected: selected } }, '*');
   }
 
-  // ── Buscar componente ──────────────────────────────────────────
   var DS_COMPONENTS = {
-    button:   { icon:'🔘', label:'Button',   meta:'Primary · Secondary · Danger · Warning', desc:'Ações principais e secundárias da interface.' },
-    badge:    { icon:'🏷️', label:'Badge',    meta:'Brand · Success · Danger · Warning · Neutral', desc:'Rótulos de status e categorização.' },
-    card:     { icon:'🃏', label:'Card',     meta:'Com badge · Com botão · Simples', desc:'Container de conteúdo com borda e sombra.' },
-    input:    { icon:'📝', label:'Input',    meta:'Default · Password · Disabled', desc:'Campo de texto para formulários.' },
-    select:   { icon:'🔽', label:'Select',   meta:'Default · Selected · Disabled', desc:'Seletor de opções em dropdown.' },
-    spinner:  { icon:'⏳', label:'Spinner',  meta:'Brand · White · Neutral', desc:'Indicador de carregamento animado.' },
-    checkbox: { icon:'☑️', label:'Checkbox', meta:'Unchecked · Checked · Disabled', desc:'Seleção binária com label.' },
-    toggle:   { icon:'🔛', label:'Toggle',   meta:'Off · On · Disabled', desc:'Interruptor on/off para configurações.' },
-    toast:    { icon:'🔔', label:'Toast',    meta:'Success · Error · Warning · Info', desc:'Notificação temporária de feedback.' },
+    button:     { icon:'🔘', label:'Button',     meta:'Primary · Secondary · Danger · Warning', desc:'Ações principais e secundárias da interface.' },
+    badge:      { icon:'🏷️', label:'Badge',      meta:'Brand · Success · Danger · Warning · Neutral', desc:'Rótulos de status e categorização.' },
+    card:       { icon:'🃏', label:'Card',       meta:'Com badge · Com botão · Simples', desc:'Container de conteúdo com borda e sombra.' },
+    input:      { icon:'📝', label:'Input',      meta:'Default · Password · Disabled', desc:'Campo de texto para formulários.' },
+    select:     { icon:'🔽', label:'Select',     meta:'Default · Selected · Disabled', desc:'Seletor de opções em dropdown.' },
+    spinner:    { icon:'⏳', label:'Spinner',    meta:'Brand · White · Neutral', desc:'Indicador de carregamento animado.' },
+    checkbox:   { icon:'☑️', label:'Checkbox',   meta:'Unchecked · Checked · Disabled', desc:'Seleção binária com label.' },
+    toggle:     { icon:'🔛', label:'Toggle',     meta:'Off · On · Disabled', desc:'Interruptor on/off para configurações.' },
+    toast:      { icon:'🔔', label:'Toast',      meta:'Success · Error · Warning · Info', desc:'Notificação temporária de feedback.' },
     avatar:     { icon:'👤', label:'Avatar',     meta:'Brand · Success · Neutral · Initials', desc:'Representação visual de usuário.' },
-    modal:      { icon:'🪟', label:'Modal',      meta:'Default · Small · Large',              desc:'Diálogo sobreposto para ações e confirmações.' },
-    table:      { icon:'📊', label:'Table',      meta:'Default · Striped · Com legenda',      desc:'Exibição de dados tabulares com cabeçalho.' },
-    tabs:       { icon:'🗂️', label:'Tabs',       meta:'Active · Inactive · Panel',            desc:'Navegação entre seções de conteúdo.' },
-    tooltip:    { icon:'💬', label:'Tooltip',    meta:'Top · Bottom · Left · Right',          desc:'Informação contextual ao passar o mouse.' },
-    breadcrumb: { icon:'🧭', label:'Breadcrumb', meta:'Default · Deep · Separador custom',    desc:'Trilha de navegação hierárquica.' },
-    iconcard:   { icon:'🃏', label:'IconCard',   meta:'Brand · Success · Warning · Neutral',  desc:'Card de acao 150x150 com Brand frame (32x32, radius 8) e label Bold 16/24. Vertical SPACE_BETWEEN, radius 16, padding 16.' },
+    modal:      { icon:'🪟', label:'Modal',      meta:'Default · Small · Large', desc:'Diálogo sobreposto para ações e confirmações.' },
+    table:      { icon:'📊', label:'Table',      meta:'Default · Striped · Com legenda', desc:'Exibição de dados tabulares com cabeçalho.' },
+    tabs:       { icon:'🗂️', label:'Tabs',       meta:'Active · Inactive · Panel', desc:'Navegação entre seções de conteúdo.' },
+    tooltip:    { icon:'💬', label:'Tooltip',    meta:'Top · Bottom · Left · Right', desc:'Informação contextual ao passar o mouse.' },
+    breadcrumb: { icon:'🧭', label:'Breadcrumb', meta:'Default · Deep · Separador custom', desc:'Trilha de navegação hierárquica.' },
+    iconcard:   { icon:'🃏', label:'IconCard',   meta:'Brand · Success · Warning · Neutral', desc:'Card de ação 150×150 com frame de ícone 32×32 e label Bold 16.' },
   };
 
-  var GUIDELINES = {
-    cores: {
-      title: 'Cores',
-      body: 'Use sempre tokens semânticos, nunca hexadecimais diretos.\n• Fundo de componente: <code>componentBg (#FFFFFF)</code>\n• Texto principal: <code>componentText (#1C274D)</code>\n• Texto secundário: <code>componentMuted (#3A3F4B)</code>\n• Ação/destaque: <code>actionPrimary (#2C3D73)</code>\n• Borda: <code>borderLight (#D6DEF5)</code>'
-    },
-    tipografia: {
-      title: 'Tipografia',
-      body: 'Fonte: <code>Mulish</code> (primária) · <code>DM Mono</code> (código).\n• Label/meta: <code>body 14px / weight 400</code>\n• Título: <code>h4 18px / weight 700</code>\n• Subtítulo: <code>bodyLg 16px / weight 600</code>'
-    },
-    espacamento: {
-      title: 'Espaçamento',
-      body: 'Use a escala de 4pt: <code>4 · 8 · 12 · 16 · 24 · 32px</code>.\n• Padding interno: mínimo <code>8px</code>\n• Gap entre elementos: <code>8–12px</code>\n• Margem entre seções: <code>16–24px</code>'
-    },
-    raio: {
-      title: 'Border Radius',
-      body: '• Inputs e selects: <code>radius.md (8px)</code>\n• Cards e modais: <code>radius.lg (12px)</code>\n• Badges e chips: <code>radius.full (9999px)</code>\n• Botões: <code>radius.md (8px)</code>'
-    },
-    estados: {
-      title: 'Estados obrigatórios',
-      body: 'Todo componente interativo deve ter:\n• <code>Default</code> — estado neutro\n• <code>Hover</code> — feedback de cursor\n• <code>Disabled</code> — opacity 0.5, cursor not-allowed\n• <code>Focus</code> — outline 2px <code>actionPrimary</code>'
-    },
-    acessibilidade: {
-      title: 'Acessibilidade',
-      body: '• Contraste mínimo 4.5:1 (WCAG AA)\n• Todo componente interativo com <code>role</code> e <code>aria-label</code>\n• Suporte a navegação por teclado\n• Área clicável mínima de <code>44×44px</code>'
-    },
+  // ── Component type detection ──────────────────────────────────
+  var TYPE_KEYWORDS = {
+    button:  ['button','btn','cta','fab','action'],
+    input:   ['input','field','text','search','email','password','textarea','phone'],
+    card:    ['card','panel','tile','item','cell','block'],
+    modal:   ['modal','dialog','popup','overlay','drawer','sheet','bottom-sheet'],
+    nav:     ['navbar','header','menu','sidebar','navigation','nav','footer'],
+    table:   ['table','list','grid','datagrid','data'],
+    alert:   ['alert','banner','notification','snackbar','message','info'],
+    select:  ['select','dropdown','picker','combobox','autocomplete','multiselect'],
+  };
+
+  function detectType(q) {
+    for (var t in TYPE_KEYWORDS) {
+      var kws = TYPE_KEYWORDS[t];
+      for (var i = 0; i < kws.length; i++) { if (q.indexOf(kws[i]) !== -1) return t; }
+    }
+    return 'generic';
+  }
+
+  // ── Wireframes ─────────────────────────────────────────────────
+  var WIREFRAMES = {
+    button:
+      '<div class="wf-row" style="justify-content:center;gap:10px">' +
+        '<div class="wf-btn">Label</div>' +
+        '<div class="wf-btn-o">Cancelar</div>' +
+      '</div>',
+    input:
+      '<div class="wf-col" style="max-width:220px;gap:0">' +
+        '<div class="wf-lbl"></div>' +
+        '<div class="wf-input">Placeholder...</div>' +
+        '<div class="wf-ln" style="width:110px;margin-top:5px"></div>' +
+      '</div>',
+    card:
+      '<div class="wf-card">' +
+        '<div class="wf-row" style="margin-bottom:10px"><div class="wf-badge"></div></div>' +
+        '<div class="wf-ln" style="width:70%;height:12px"></div>' +
+        '<div class="wf-ln" style="width:90%"></div>' +
+        '<div class="wf-ln" style="width:80%"></div>' +
+        '<div class="wf-ln" style="width:60%"></div>' +
+        '<div style="margin-top:12px;display:flex"><div class="wf-btn" style="flex:1;justify-content:center">Ação</div></div>' +
+      '</div>',
+    modal:
+      '<div class="wf-card" style="width:100%">' +
+        '<div class="wf-row" style="margin-bottom:12px">' +
+          '<div class="wf-ln" style="flex:1;height:12px;margin:0"></div>' +
+          '<div class="wf-icon" style="margin-left:8px"></div>' +
+        '</div>' +
+        '<div class="wf-ln" style="width:90%"></div>' +
+        '<div class="wf-ln" style="width:80%"></div>' +
+        '<div class="wf-ln" style="width:70%"></div>' +
+        '<div class="wf-sep"></div>' +
+        '<div class="wf-row" style="justify-content:flex-end;gap:8px">' +
+          '<div class="wf-btn-o">Cancelar</div><div class="wf-btn">Confirmar</div>' +
+        '</div>' +
+      '</div>',
+    nav:
+      '<div class="wf-card" style="padding:10px 14px">' +
+        '<div class="wf-row" style="justify-content:space-between">' +
+          '<div class="wf-badge" style="border-radius:4px"></div>' +
+          '<div class="wf-row" style="gap:16px">' +
+            '<div class="wf-ln" style="width:36px;margin:0"></div>' +
+            '<div class="wf-ln" style="width:36px;margin:0"></div>' +
+            '<div class="wf-ln" style="width:36px;margin:0"></div>' +
+          '</div>' +
+          '<div class="wf-btn" style="height:26px;padding:0 12px;font-size:9px">CTA</div>' +
+        '</div>' +
+      '</div>',
+    table:
+      '<div style="width:100%;border:1.5px solid #D1D5DB;border-radius:8px;overflow:hidden">' +
+        '<div class="wf-tr" style="background:#F3F4F6;border-bottom:1.5px solid #D1D5DB">' +
+          '<div class="wf-td h"></div><div class="wf-td h"></div><div class="wf-td h"></div><div class="wf-td h"></div>' +
+        '</div>' +
+        '<div class="wf-tr"><div class="wf-td"></div><div class="wf-td"></div><div class="wf-td"></div><div class="wf-td"></div></div>' +
+        '<div class="wf-tr"><div class="wf-td"></div><div class="wf-td"></div><div class="wf-td"></div><div class="wf-td"></div></div>' +
+        '<div class="wf-tr" style="border-bottom:none"><div class="wf-td"></div><div class="wf-td"></div><div class="wf-td"></div><div class="wf-td"></div></div>' +
+      '</div>',
+    alert:
+      '<div style="border:1.5px solid #D1D5DB;border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:10px;width:100%">' +
+        '<div class="wf-icon"></div>' +
+        '<div class="wf-col" style="flex:1;gap:4px">' +
+          '<div class="wf-ln" style="width:50%;height:10px;margin:0"></div>' +
+          '<div class="wf-ln" style="width:80%;margin:0"></div>' +
+        '</div>' +
+        '<div class="wf-icon"></div>' +
+      '</div>',
+    select:
+      '<div class="wf-col" style="max-width:220px;gap:0">' +
+        '<div class="wf-lbl"></div>' +
+        '<div style="border:1.5px solid #D1D5DB;border-radius:6px;height:36px;padding:0 12px;display:flex;align-items:center;justify-content:space-between">' +
+          '<div class="wf-ln" style="width:80px;margin:0"></div>' +
+          '<div style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid #D1D5DB"></div>' +
+        '</div>' +
+      '</div>',
+    generic:
+      '<div class="wf-card">' +
+        '<div class="wf-row" style="margin-bottom:10px">' +
+          '<div class="wf-avatar"></div>' +
+          '<div class="wf-col" style="gap:5px">' +
+            '<div class="wf-ln" style="width:70%;height:10px;margin:0"></div>' +
+            '<div class="wf-ln" style="width:50%;margin:0"></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="wf-ln" style="width:90%"></div>' +
+        '<div class="wf-ln" style="width:80%"></div>' +
+        '<div class="wf-ln" style="width:60%"></div>' +
+      '</div>',
+  };
+
+  // ── Token suggestions ──────────────────────────────────────────
+  var TOKENS_SUGGEST = {
+    button:  '<span class="ck">"color.action"</span>:   <span class="cv">"#2C3D73"</span>\n<span class="ck">"color.text"</span>:     <span class="cv">"#FFFFFF"</span>\n<span class="ck">"font.size"</span>:      <span class="cv">"14px"</span>\n<span class="ck">"font.weight"</span>:    <span class="cv">"700"</span>\n<span class="ck">"spacing.padding"</span>: <span class="cv">"10px 20px"</span>\n<span class="ck">"radius.default"</span>:  <span class="cv">"8px"</span>',
+    input:   '<span class="ck">"color.border"</span>:    <span class="cv">"#D6DEF5"</span>\n<span class="ck">"color.text"</span>:      <span class="cv">"#1C274D"</span>\n<span class="ck">"color.label"</span>:     <span class="cv">"#3A3F4B"</span>\n<span class="ck">"font.size"</span>:       <span class="cv">"14px"</span>\n<span class="ck">"spacing.padding"</span>:  <span class="cv">"10px 14px"</span>\n<span class="ck">"radius.default"</span>:   <span class="cv">"8px"</span>',
+    card:    '<span class="ck">"color.bg"</span>:         <span class="cv">"#FFFFFF"</span>\n<span class="ck">"color.border"</span>:     <span class="cv">"#E5E7EB"</span>\n<span class="ck">"color.title"</span>:      <span class="cv">"#1C274D"</span>\n<span class="ck">"color.body"</span>:       <span class="cv">"#3A3F4B"</span>\n<span class="ck">"spacing.padding"</span>:   <span class="cv">"24px"</span>\n<span class="ck">"radius.default"</span>:    <span class="cv">"12px"</span>',
+    modal:   '<span class="ck">"color.bg"</span>:         <span class="cv">"#FFFFFF"</span>\n<span class="ck">"color.overlay"</span>:    <span class="cv">"rgba(0,0,0,0.5)"</span>\n<span class="ck">"color.title"</span>:      <span class="cv">"#1C274D"</span>\n<span class="ck">"spacing.padding"</span>:   <span class="cv">"24px"</span>\n<span class="ck">"radius.default"</span>:    <span class="cv">"16px"</span>\n<span class="ck">"shadow"</span>:            <span class="cv">"lg"</span>',
+    nav:     '<span class="ck">"color.bg"</span>:         <span class="cv">"#FFFFFF"</span>\n<span class="ck">"color.border"</span>:     <span class="cv">"#E8EAED"</span>\n<span class="ck">"color.link"</span>:       <span class="cv">"#3A3F4B"</span>\n<span class="ck">"color.active"</span>:     <span class="cv">"#2C3D73"</span>\n<span class="ck">"spacing.height"</span>:    <span class="cv">"56px"</span>\n<span class="ck">"spacing.gap"</span>:       <span class="cv">"24px"</span>',
+    table:   '<span class="ck">"color.header-bg"</span>:  <span class="cv">"#F7F8FA"</span>\n<span class="ck">"color.row-border"</span>: <span class="cv">"#E8EAED"</span>\n<span class="ck">"color.text"</span>:       <span class="cv">"#111827"</span>\n<span class="ck">"font.size"</span>:        <span class="cv">"14px"</span>\n<span class="ck">"spacing.cell"</span>:     <span class="cv">"12px 16px"</span>\n<span class="ck">"radius.default"</span>:   <span class="cv">"8px"</span>',
+    alert:   '<span class="ck">"color.success-bg"</span>: <span class="cv">"#D9F5DD"</span>\n<span class="ck">"color.error-bg"</span>:   <span class="cv">"#FDECEC"</span>\n<span class="ck">"color.warning-bg"</span>: <span class="cv">"#FFF4E5"</span>\n<span class="ck">"font.size"</span>:        <span class="cv">"14px"</span>\n<span class="ck">"spacing.padding"</span>:  <span class="cv">"12px 16px"</span>\n<span class="ck">"radius.default"</span>:   <span class="cv">"8px"</span>',
+    select:  '<span class="ck">"color.border"</span>:     <span class="cv">"#D6DEF5"</span>\n<span class="ck">"color.text"</span>:       <span class="cv">"#1C274D"</span>\n<span class="ck">"color.placeholder"</span>:<span class="cv">"#8C92A3"</span>\n<span class="ck">"font.size"</span>:        <span class="cv">"14px"</span>\n<span class="ck">"spacing.padding"</span>:  <span class="cv">"10px 14px"</span>\n<span class="ck">"radius.default"</span>:   <span class="cv">"8px"</span>',
+    generic: '<span class="ck">"color.bg"</span>:         <span class="cv">"#FFFFFF"</span>\n<span class="ck">"color.text"</span>:       <span class="cv">"#111827"</span>\n<span class="ck">"color.border"</span>:     <span class="cv">"#E8EAED"</span>\n<span class="ck">"spacing.padding"</span>:  <span class="cv">"16px"</span>\n<span class="ck">"radius.default"</span>:   <span class="cv">"8px"</span>',
+  };
+
+  // ── Microcopy ──────────────────────────────────────────────────
+  var MICROCOPY = {
+    button:  '"default":  "Confirmar"\n"loading":  "Aguarde..."\n"success":  "Feito!"\n"error":    "Tentar novamente"',
+    input:   '"placeholder": "Digite aqui..."\n"label":       "Nome completo"\n"hint":        "Mínimo 3 caracteres"\n"error":       "Campo obrigatório"',
+    card:    '"title":   "Título do card"\n"body":    "Descrição breve e objetiva"\n"cta":     "Ver detalhes"\n"badge":   "Novo"',
+    modal:   '"title":   "Confirmar ação"\n"body":    "Essa ação não pode ser desfeita."\n"confirm": "Confirmar"\n"cancel":  "Cancelar"',
+    nav:     '"brand":   "Design System"\n"links":   ["Início","Produtos","Sobre"]\n"cta":     "Entrar"',
+    table:   '"empty":   "Nenhum resultado encontrado"\n"loading": "Carregando dados..."\n"error":   "Erro ao carregar"\n"total":   "{n} itens"',
+    alert:   '"success": "Operação realizada com sucesso!"\n"error":   "Algo deu errado. Tente novamente."\n"warning": "Atenção: verifique os dados."\n"info":    "Dica: você pode editar depois."',
+    select:  '"placeholder": "Selecione uma opção"\n"empty":       "Nenhuma opção disponível"\n"search":      "Buscar..."',
+    generic: '"title":   "Título do componente"\n"body":    "Descrição ou conteúdo"\n"action":  "Ação principal"\n"dismiss": "Fechar"',
+  };
+
+  // ── Accessibility ──────────────────────────────────────────────
+  var A11Y = {
+    button:  { chips: ['role="button"','Enter + Space','Área 44×44px','Contraste 4.5:1'], note: 'Use aria-label quando o label visual não for suficiente. Nunca desabilite sem feedback.' },
+    input:   { chips: ['<label for="id">','aria-describedby','aria-invalid','Tab navigation'], note: 'Associe sempre um <label>. Em erro, use aria-invalid="true" + mensagem descritiva.' },
+    card:    { chips: ['role="article"','aria-labelledby','Contraste 4.5:1','Tab se clicável'], note: 'Se o card for clicável, torne o elemento inteiro focável com tabindex="0".' },
+    modal:   { chips: ['role="dialog"','aria-modal="true"','Focus trap','Esc fecha'], note: 'Ao abrir, mova foco para o primeiro elemento interativo. Ao fechar, retorne ao gatilho.' },
+    nav:     { chips: ['<nav> landmark','aria-current="page"','Skip link','Tab + Setas'], note: 'Inclua um skip link "Ir para conteúdo" visível no foco para usuários de teclado.' },
+    table:   { chips: ['<th scope="col">','aria-sort','role="grid"','Setas navegam'], note: 'Use caption ou aria-label para descrever a tabela. Indique ordenação com aria-sort.' },
+    alert:   { chips: ['role="alert"','aria-live="polite"','aria-atomic="true"','Contraste 4.5:1'], note: 'Use aria-live="assertive" só para erros críticos. Para notificações comuns, use "polite".' },
+    select:  { chips: ['role="combobox"','aria-expanded','aria-activedescendant','Setas navegam'], note: 'O dropdown deve ser navegável por teclado (setas cima/baixo, Enter seleciona, Esc fecha).' },
+    generic: { chips: ['role adequado','aria-label','Contraste 4.5:1','Tab navigation'], note: 'Escolha o role ARIA que melhor descreve a semântica do componente.' },
   };
 
   function onSearch(val) {
     var q = val.trim().toLowerCase();
     var el = document.getElementById('search-result');
     if (!q) {
-      el.innerHTML = '<div class="guide-empty">Digite o nome de um componente para ver se ele existe no DS ou receber diretrizes para criá-lo.</div>';
+      el.innerHTML = '<div class="guide-empty">Digite o nome de um componente para ver se ele existe no DS ou receber sugestões para criá-lo.</div>';
       return;
     }
-    // Busca no DS
+
+    // Check DS
     var found = null;
     Object.keys(DS_COMPONENTS).forEach(function(key) {
       var c = DS_COMPONENTS[key];
@@ -630,31 +749,57 @@
       el.innerHTML =
         '<div class="guide-found">' +
           '<div class="guide-found-header">' +
-            '<span class="guide-found-icon">' + found.data.icon + '</span>' +
             '<div>' +
-              '<div class="guide-found-name">' + found.data.label + ' <span class="guide-found-tag">No DS ✓</span></div>' +
-              '<div style="font-size:9px;color:#666;margin-top:2px">' + found.data.meta + '</div>' +
+              '<div class="guide-found-name">' + found.data.label + ' <span class="guide-found-tag">No DS</span></div>' +
+              '<div style="font-size:9px;color:#6B7280;margin-top:2px">' + found.data.meta + '</div>' +
             '</div>' +
           '</div>' +
-          '<div style="font-size:10px;color:#aaa;line-height:1.5">' + found.data.desc + '</div>' +
-          '<button class="primary" style="font-size:11px;padding:8px" onclick="goCreateComp(\'' + found.key + '\')">🧩 Criar no Figma</button>' +
+          '<div style="font-size:10px;color:#374151;line-height:1.5">' + found.data.desc + '</div>' +
+          '<button class="primary" style="font-size:11px;padding:8px" onclick="goCreateComp(\'' + found.key + '\')">Criar no Figma</button>' +
         '</div>';
-    } else {
-      var rules = Object.values(GUIDELINES).map(function(g) {
-        return '<div class="guide-rule"><div class="guide-rule-title">' + g.title + '</div><div class="guide-rule-body">' + g.body.replace(/\n/g,'<br>') + '</div></div>';
-      }).join('');
-      el.innerHTML =
-        '<div class="guide-missing">' +
-          '<div class="guide-missing-header">' +
-            '<span class="guide-missing-icon">⚠️</span>' +
-            '<div>' +
-              '<div class="guide-missing-title">"' + val.trim() + '" não existe no DS</div>' +
-              '<div class="guide-missing-sub">Siga as diretrizes abaixo para criar esse componente</div>' +
-            '</div>' +
+      return;
+    }
+
+    // Not found — build rich guide
+    var type = detectType(q);
+    var wf   = WIREFRAMES[type]   || WIREFRAMES.generic;
+    var tok  = TOKENS_SUGGEST[type] || TOKENS_SUGGEST.generic;
+    var mc   = MICROCOPY[type]    || MICROCOPY.generic;
+    var a11y = A11Y[type]         || A11Y.generic;
+    var name = val.trim();
+
+    var chips = a11y.chips.map(function(c) { return '<span class="a11y-chip">' + c + '</span>'; }).join('');
+
+    el.innerHTML =
+      '<div class="missing-wrap">' +
+        '<div class="missing-hdr">' +
+          '<div class="missing-title">"' + name + '" não existe no DS</div>' +
+          '<div class="missing-sub">Sugestão de base para criar esse componente</div>' +
+        '</div>' +
+
+        '<div class="info-block">' +
+          '<div class="info-block-title">Wireframe</div>' +
+          '<div class="info-block-body"><div class="wf-wrap">' + wf + '</div></div>' +
+        '</div>' +
+
+        '<div class="info-block">' +
+          '<div class="info-block-title">Tokens sugeridos</div>' +
+          '<div class="info-block-body"><div class="code-block">' + tok + '</div></div>' +
+        '</div>' +
+
+        '<div class="info-block">' +
+          '<div class="info-block-title">Microcopy</div>' +
+          '<div class="info-block-body"><div class="code-block" style="color:#374151">' + mc + '</div></div>' +
+        '</div>' +
+
+        '<div class="info-block">' +
+          '<div class="info-block-title">Acessibilidade</div>' +
+          '<div class="info-block-body">' +
+            '<div class="a11y-chips">' + chips + '</div>' +
+            '<div class="a11y-note">' + a11y.note + '</div>' +
           '</div>' +
         '</div>' +
-        '<div class="guide-rules">' + rules + '</div>';
-    }
+      '</div>';
   }
 
   function goCreateComp(key) {
@@ -673,21 +818,21 @@
 
     if (msg.type === 'sync-done') {
       var r = msg.results;
-      var txt = '✅ Tokens sincronizados!\n';
-      txt += '  🎨 Paint Styles:  ' + r.colors    + '\n';
-      txt += '  ✏️  Text Styles:   ' + r.texts     + '\n';
-      txt += '  ⚡ Variables:     ' + r.variables  + '\n';
-      txt += '  🌗 Modos:         ' + (r.modes || '-');
-      if (r.errors && r.errors.length) txt += '\n\n⚠️ ' + r.errors.slice(0, 3).join('\n');
+      var txt = 'Tokens sincronizados!\n';
+      txt += '  Paint Styles:  ' + r.colors    + '\n';
+      txt += '  Text Styles:   ' + r.texts     + '\n';
+      txt += '  Variables:     ' + r.variables  + '\n';
+      txt += '  Modos:         ' + (r.modes || '-');
+      if (r.errors && r.errors.length) txt += '\n\nAvisos:\n' + r.errors.slice(0, 3).join('\n');
       showStatus('token-status', txt, r.errors && r.errors.length ? 'error' : 'success');
     }
 
     if (msg.type === 'build-done') {
       var r   = msg.results;
       var built = r.built || [];
-      var txt = '✅ ' + built.length + ' componente(s) criado(s)!\n';
-      if (built.length) txt += '  🧩 ' + built.map(function(n){ return n.charAt(0).toUpperCase() + n.slice(1); }).join(', ');
-      if (r.errors && r.errors.length) txt += '\n\n⚠️ Erros:\n' + r.errors.join('\n');
+      var txt = built.length + ' componente(s) criado(s)!\n';
+      if (built.length) txt += '  ' + built.map(function(n){ return n.charAt(0).toUpperCase() + n.slice(1); }).join(', ');
+      if (r.errors && r.errors.length) txt += '\n\nErros:\n' + r.errors.join('\n');
       showStatus('comp-status', txt, r.errors && r.errors.length ? 'error' : 'success');
     }
   };
